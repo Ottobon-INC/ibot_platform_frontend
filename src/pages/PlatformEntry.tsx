@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { cn } from '../lib/utils';
 import { Check } from 'lucide-react';
@@ -45,7 +45,9 @@ export default function PlatformEntry() {
         <div className="font-bold tracking-tight text-lg">OTTOBON</div>
         <div className="flex items-center gap-4 text-sm">
           <span className="hidden sm:inline text-ink-gray-6">Already have an account?</span>
-          <Button variant="ghost" className="font-semibold text-ink-gray-8">Sign In</Button>
+          <Link to="/sign-in">
+            <Button variant="ghost" className="font-semibold text-ink-gray-8">Sign In</Button>
+          </Link>
         </div>
       </header>
 
