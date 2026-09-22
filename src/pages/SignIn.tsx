@@ -31,12 +31,22 @@ export default function SignIn() {
   const onSubmit = async (data: SignInFormValues) => {
     setGlobalError(null);
     try {
-      // Simulate API call for authentication
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await fetch('http://localhost:3000/v1/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: data.email, password: data.password })
+      });
+
+      if (!response.ok) {
+        throw new Error('Authentication failed');
+      }
+
+      const result = await response.json();
+      console.log('SignIn success', result);
       
-      // In real scenario, would validate and route properly
-      // For now, let's just pretend success and go to a dummy dashboard
-      console.log('SignIn success', data);
+      // Store token (in a real app, might use cookies or secure storage)
+      localStorage.setItem('accessToken', result.accessToken);
+      
       navigate('/');
     } catch (err) {
       setGlobalError('Email or password is incorrect.');
