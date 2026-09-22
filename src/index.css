@@ -1,42 +1,56 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-surface-base: var(--theme-surface-base);
+  --color-surface-gray-1: var(--theme-surface-gray-1);
+  --color-surface-gray-2: var(--theme-surface-gray-2);
+  --color-outline-gray-1: var(--theme-outline-gray-1);
+  --color-outline-gray-2: var(--theme-outline-gray-2);
+  --color-ink-gray-4: var(--theme-ink-gray-4);
+  --color-ink-gray-5: var(--theme-ink-gray-5);
+  --color-ink-gray-6: var(--theme-ink-gray-6);
+  --color-ink-gray-7: var(--theme-ink-gray-7);
+  --color-ink-gray-8: var(--theme-ink-gray-8);
+  --color-ink-gray-9: var(--theme-ink-gray-9);
+}
 
 @layer base {
   :root {
-    /* Flexible Grey Theme - Can be updated anytime */
-    --color-surface-base: #ffffff;
-    --color-surface-gray-1: #f9fafb;
-    --color-surface-gray-2: #f3f4f6;
+    --theme-surface-base: #ffffff;
+    --theme-surface-gray-1: #f9fafb;
+    --theme-surface-gray-2: #f3f4f6;
     
-    --color-outline-gray-1: #e5e7eb;
-    --color-outline-gray-2: #d1d5db;
+    --theme-outline-gray-1: #e5e7eb;
+    --theme-outline-gray-2: #d1d5db;
     
-    --color-ink-gray-4: #9ca3af;
-    --color-ink-gray-5: #6b7280;
-    --color-ink-gray-6: #4b5563;
-    --color-ink-gray-7: #374151;
-    --color-ink-gray-8: #1f2937;
-    --color-ink-gray-9: #111827;
+    --theme-ink-gray-4: #9ca3af;
+    --theme-ink-gray-5: #6b7280;
+    --theme-ink-gray-6: #4b5563;
+    --theme-ink-gray-7: #374151;
+    --theme-ink-gray-8: #1f2937;
+    --theme-ink-gray-9: #111827;
   }
 
   [data-theme="dark"] {
-    --color-surface-base: #030712;
-    --color-surface-gray-1: #111827;
-    --color-surface-gray-2: #1f2937;
+    --theme-surface-base: #030712;
+    --theme-surface-gray-1: #111827;
+    --theme-surface-gray-2: #1f2937;
     
-    --color-outline-gray-1: #374151;
-    --color-outline-gray-2: #4b5563;
+    --theme-outline-gray-1: #374151;
+    --theme-outline-gray-2: #4b5563;
     
-    --color-ink-gray-4: #4b5563;
-    --color-ink-gray-5: #6b7280;
-    --color-ink-gray-6: #9ca3af;
-    --color-ink-gray-7: #d1d5db;
-    --color-ink-gray-8: #e5e7eb;
-    --color-ink-gray-9: #f9fafb;
+    --theme-ink-gray-4: #4b5563;
+    --theme-ink-gray-5: #6b7280;
+    --theme-ink-gray-6: #9ca3af;
+    --theme-ink-gray-7: #d1d5db;
+    --theme-ink-gray-8: #e5e7eb;
+    --theme-ink-gray-9: #f9fafb;
   }
 
   body {
-    @apply bg-surface-base text-ink-gray-9 antialiased;
+    background-color: var(--theme-surface-base);
+    color: var(--theme-ink-gray-9);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
