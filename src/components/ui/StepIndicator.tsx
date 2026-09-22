@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
+import { Check } from 'lucide-react';
 
 export interface StepIndicatorProps {
   currentStep: number;
@@ -27,10 +28,12 @@ export function StepIndicator({ currentStep, steps }: StepIndicatorProps) {
               </span>
               <div 
                 className={cn(
-                  "w-2.5 h-2.5 rounded-full transition-colors",
-                  isCurrent ? "bg-ink-gray-9" : isCompleted ? "bg-ink-gray-9" : "border-2 border-outline-gray-2 bg-transparent"
+                  "flex items-center justify-center w-2.5 h-2.5 rounded-full transition-colors",
+                  isCurrent ? "bg-ink-gray-9" : isCompleted ? "bg-ink-gray-9 w-3 h-3 -ml-[1px]" : "border-2 border-outline-gray-2 bg-transparent"
                 )}
-              />
+              >
+                {isCompleted && <Check className="w-2.5 h-2.5 text-white" strokeWidth={4} />}
+              </div>
             </div>
 
             {/* Connecting Line */}
