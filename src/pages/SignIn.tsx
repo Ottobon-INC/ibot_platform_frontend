@@ -47,7 +47,7 @@ export default function SignIn() {
       // Store token (in a real app, might use cookies or secure storage)
       localStorage.setItem('accessToken', result.accessToken);
       
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       setGlobalError('Email or password is incorrect.');
     }

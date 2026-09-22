@@ -45,14 +45,24 @@ export default function CreateAccount() {
       // Fake API request to create onboarding draft
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Navigate to next page (Registration Details)
-      navigate('/registration-details', { 
-        state: { 
-          accountType,
-          draftId: 'draft_123',
-          email: data.email
-        }
-      });
+      // Navigate to next page based on account type
+      if (accountType === 'INDIVIDUAL') {
+        navigate('/email-verification', { 
+          state: { 
+            accountType,
+            draftId: 'draft_123',
+            email: data.email
+          }
+        });
+      } else {
+        navigate('/registration-details', { 
+          state: { 
+            accountType,
+            draftId: 'draft_123',
+            email: data.email
+          }
+        });
+      }
     } catch (err) {
       setGlobalError("We couldn't continue right now. Try again.");
     }
