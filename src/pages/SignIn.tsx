@@ -107,7 +107,7 @@ export default function SignIn() {
               {...register('password')}
               error={errors.password?.message}
               rightElement={
-                <Link to="/forgot-password" className="text-sm font-medium text-ink-gray-6 hover:text-ink-gray-9 outline-none focus-visible:ring-2 focus-visible:ring-ink-gray-9 rounded">
+                <Link to="/forgot-password" tabIndex={-1} className="text-sm font-medium text-ink-gray-6 hover:text-ink-gray-9 outline-none focus-visible:ring-2 focus-visible:ring-ink-gray-9 rounded">
                   Forgot password?
                 </Link>
               }

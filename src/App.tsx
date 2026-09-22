@@ -7,6 +7,7 @@ import RegistrationDetails from './pages/RegistrationDetails';
 import EmailVerification from './pages/EmailVerification';
 import SetPassword from './pages/SetPassword';
 import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -18,6 +19,10 @@ function App() {
         <Route path="/" element={<PlatformEntry />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        
+        {/* Placeholder for Page 9 */}
+        <Route path="/reset-password-success" element={<div className="p-10 font-bold">Password Reset Success Placeholder (Page 9)</div>} />
         
         {/* Onboarding Flow */}
         <Route path="/create-account" element={<CreateAccount />} />
