@@ -24,6 +24,7 @@ import SecuritySettings from './pages/SecuritySettings';
 import NotificationPreferences from './pages/NotificationPreferences';
 import Dashboard from './pages/Dashboard';
 import PlatformDashboard from './pages/admin/PlatformDashboard';
+import OrganizationsList from './pages/admin/OrganizationsList';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
 
         {/* Platform Admin */}
         <Route path="/admin/dashboard" element={<PlatformDashboard />} />
+        <Route path="/admin/organizations" element={<OrganizationsList />} />
         
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
