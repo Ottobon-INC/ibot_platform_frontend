@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { Button } from '../../components/ui/Button';
@@ -6,17 +6,53 @@ import { Search, ChevronDown, ChevronLeft, ChevronRight, ArrowLeft } from 'lucid
 
 type TabType = 'Needs Review' | 'Waiting for Information' | 'All';
 
-const mockReviews = [
-  { id: 'rev-1', name: 'NewCo Learning', location: 'India', type: 'Enterprise', owner: 'Suresh Kumar', email: 'suresh@newco.com', submitted: 'Today 10:15', status: 'Needs Review', age: '6h', requestedInfo: null },
-  { id: 'rev-2', name: 'ABC Learning', location: 'India', type: 'Academy', owner: 'Priya Rao', email: 'priya@abc.in', submitted: 'Today 12:40', status: 'Information Received', age: '4h', requestedInfo: null },
-  { id: 'rev-3', name: 'TalentWorks', location: 'United States', type: 'Enterprise', owner: 'Kiran Kumar', email: 'kiran@talentworks.com', submitted: 'Yesterday', status: 'Needs Review', age: '1d', requestedInfo: null },
-  { id: 'rev-4', name: 'Future Academy', location: 'United Kingdom', type: 'Academy', owner: 'Anjali Reddy', email: 'anjali@future.in', submitted: '19 Sep', status: 'Needs Review', age: '2d', requestedInfo: null },
-  { id: 'rev-5', name: 'XYZ Academy', location: 'India', type: 'Academy', owner: 'Anjali Rao', email: 'anjali@xyz.edu', submitted: '18 Sep', status: 'Waiting for Information', age: '3d', requestedInfo: 'Website' },
-  { id: 'rev-6', name: 'ABC Enterprise', location: 'United States', type: 'Enterprise', owner: 'Ravi Kumar', email: 'ravi@company.com', submitted: '17 Sep', status: 'Waiting for Information', age: '4d', requestedInfo: 'Contact number' },
-];
+interface ReviewItem {
+  id: string;
+  name: string;
+  location: string;
+  type: string;
+  owner: string;
+  email: string;
+  submitted: string;
+  status: string;
+  age: string;
+  requestedInfo: string | null;
+}
 
 export default function OrganizationReviewQueue() {
   const [activeTab, setActiveTab] = useState<TabType>('Needs Review');
+  const [reviews, setReviews] = useState<ReviewItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/v1/admin/organizations/pending')
+      .then(res => res.json())
+      .then(data => {
+        // Map the backend response to the frontend interface
+        const mappedData = data.map((item: any) => {
+          // Simple age calculation for display
+          const diffMs = new Date().getTime() - new Date(item.submitted).getTime();
+          const diffHrs = Math.floor(diffMs / (1000 * 60 * 60));
+          const ageStr = diffHrs < 24 ? `${diffHrs}h` : `${Math.floor(diffHrs / 24)}d`;
+          
+          return {
+            id: item.id,
+            name: item.name,
+            location: item.location || 'Unknown',
+            type: item.type === 'ENTERPRISE' ? 'Enterprise' : item.type === 'ACADEMY' ? 'Academy' : item.type,
+            owner: item.owner,
+            email: item.email,
+            submitted: new Date(item.submitted).toLocaleDateString(), // simplified
+            status: item.status, // "Needs Review"
+            age: ageStr,
+            requestedInfo: null
+          };
+        });
+        setReviews(mappedData);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  }, []);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -27,7 +63,7 @@ export default function OrganizationReviewQueue() {
     }
   };
 
-  const filteredReviews = mockReviews.filter(r => {
+  const filteredReviews = reviews.filter(r => {
     if (activeTab === 'Needs Review') return r.status === 'Needs Review' || r.status === 'Information Received';
     if (activeTab === 'Waiting for Information') return r.status === 'Waiting for Information';
     return true;
@@ -52,7 +88,11 @@ export default function OrganizationReviewQueue() {
         {/* Tabs */}
         <div className="flex items-center gap-6 border-b border-outline-gray-2 mb-6">
           {(['Needs Review', 'Waiting for Information', 'All'] as TabType[]).map((tab) => {
-            const count = tab === 'Needs Review' ? 4 : tab === 'Waiting for Information' ? 2 : 6;
+            const count = reviews.filter(r => {
+              if (tab === 'Needs Review') return r.status === 'Needs Review' || r.status === 'Information Received';
+              if (tab === 'Waiting for Information') return r.status === 'Waiting for Information';
+              return true;
+            }).length;
             const isActive = activeTab === tab;
             return (
               <button
@@ -108,7 +148,7 @@ export default function OrganizationReviewQueue() {
 
         {/* Results Summary */}
         <div className="text-sm font-medium text-ink-gray-6 mb-2">
-          {filteredReviews.length} organizations {activeTab === 'Waiting for Information' ? 'waiting for information' : 'awaiting review'}
+          {isLoading ? 'Loading...' : `${filteredReviews.length} organizations ${activeTab === 'Waiting for Information' ? 'waiting for information' : 'awaiting review'}`}
         </div>
 
         {/* Data Table */}
@@ -130,7 +170,19 @@ export default function OrganizationReviewQueue() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-gray-2 text-ink-gray-9">
-                {filteredReviews.map((r) => (
+                {isLoading ? (
+                  <tr>
+                    <td colSpan={8} className="px-5 py-8 text-center text-sm text-ink-gray-5">
+                      Loading review queue...
+                    </td>
+                  </tr>
+                ) : filteredReviews.length === 0 ? (
+                  <tr>
+                    <td colSpan={8} className="px-5 py-8 text-center text-sm text-ink-gray-5">
+                      No organizations found.
+                    </td>
+                  </tr>
+                ) : filteredReviews.map((r) => (
                   <tr key={r.id} className="hover:bg-surface-gray-1 transition-colors group h-[52px]">
                     <td className="px-5 cursor-pointer">
                       <div className="font-semibold text-ink-gray-9">{r.name}</div>

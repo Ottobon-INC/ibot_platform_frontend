@@ -3,11 +3,14 @@ import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { Clock, AlertTriangle, CheckCircle2, XCircle, Check } from 'lucide-react';
 
+import { useAuth } from '../contexts/AuthContext';
+
 type ReviewStatus = 'under_review' | 'action_required' | 'approved' | 'rejected';
 
 export default function AccountUnderReview() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const searchParams = new URLSearchParams(location.search);
   
   // Allow toggling status via URL for easy testing (default to under_review)
@@ -16,13 +19,15 @@ export default function AccountUnderReview() {
     ? statusParam 
     : 'under_review';
 
-  // Mock Organization Data
+  // Get dynamic organization data from AuthContext workspaces
+  const orgWorkspace = user?.workspaces?.find(w => w.workspaceType === 'ORGANIZATION');
+  
   const orgData = {
-    name: 'ABC Technologies',
-    type: 'Enterprise',
-    owner: 'Ravi Kumar',
-    email: 'ravi@company.com',
-    submitted: '21 Sep 2026'
+    name: orgWorkspace?.organizationName || 'Unknown Organization',
+    type: orgWorkspace?.organizationType || 'ENTERPRISE',
+    owner: user?.displayName || 'Organization Owner',
+    email: user?.email || '',
+    submitted: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) // Approximation for now
   };
 
   const handleSignOut = (e: React.MouseEvent) => {

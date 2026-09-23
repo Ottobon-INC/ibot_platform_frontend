@@ -42,7 +42,11 @@ This document tracks the progress of the frontend pages being built for the IBOT
 - [ ] **31. Project Detail — Platform View**
 - [ ] **32. Project Runs List — Platform View**
 - [ ] **33. Project Run Detail — Platform View**
-- [ ] **Identify Phase**
-- [ ] **Build Phase**
-- [ ] **Operate Phase**
-- [ ] **Transfer Phase**
+
+## Organization Owner Pages
+
+- [x] **94. Organization Dashboard**
+- [x] **95. Organization Projects List**
+- [x] **96. Create Project**
+- [ ] **97. Organization Project Detail**
+- [ ] **98. Organization Project Runs Overview**

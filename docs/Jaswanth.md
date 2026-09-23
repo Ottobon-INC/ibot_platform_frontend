@@ -45,3 +45,11 @@ This file tracks the changes and contributions made by Jaswanth for each push to
   - Built `OrganizationAccessManagement.tsx` (Page 28) isolating access status manipulation (suspension/pausing) completely from role/phase assignments as per strict architectural constraints.
   - Built `OrganizationActivity.tsx` (Page 29) utilizing a read-only Frappe-style feed-list to show chronological business events, distinct from technical audit logs.
   - Built `PlatformProjectsList.tsx` (Page 30) displaying global project directories, crucially separating reusable project records from specific Run metrics (e.g., separating Project runs and Active runs into separate columns).
+- **[2026-09-23] Implemented Enterprise Authentication & RBAC Architecture**
+  - Resolved React 18 Strict Mode double-dispatching bugs in `EmailVerification.tsx` by implementing `useRef` to guarantee single OTP execution.
+  - Connected Registration flow to real backend API: sending OTP, verifying OTP, and registering users. Configured account-type splitting to auto-create `Workspace` and `Organization` records for Enterprise users.
+  - Designed and executed highly scalable Zero-Database-Hit RBAC pattern: Admin permissions are defined strictly via `WorkspaceMembership` to the central `OTTOBON` workspace. Upon login, the backend dynamically fetches and embeds these workspace memberships into the cryptographically secure JWT payload.
+  - Implemented `<AdminRoute>` in `App.tsx` that instantly reads the decoded JWT token from `AuthContext` to secure all `/admin/*` routes in memory.
+  - Replaced hardcoded navigation in `SignIn.tsx` and `SetPassword.tsx` with dynamic routing. Platform Admins route to `/admin/organizations/reviews`, Pending Organizations route to `/under-review`, and Active Organizations route to `/org/dashboard`.
+  - Removed mock data from `AccountUnderReview.tsx` (Page 14) and successfully piped the user's real dynamic organization details from the authentication context.
+  - Wrote and executed `prisma/seed.ts` to provision the primary `OTTOBON` workspace and Super Admin account directly into the database.

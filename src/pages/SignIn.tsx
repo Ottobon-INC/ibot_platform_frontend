@@ -46,7 +46,28 @@ export default function SignIn() {
       const result = await response.json();
       login(result.accessToken, result.user);
       
-      navigate('/dashboard');
+      const workspaces = result.user?.workspaces || [];
+      
+      // 1. Platform Admin Check
+      const isPlatformAdmin = workspaces.some((w: any) => w.workspaceType === 'OTTOBON');
+      if (isPlatformAdmin) {
+        navigate('/admin/organizations/reviews', { replace: true });
+        return;
+      }
+
+      // 2. Organization Check
+      const orgWorkspace = workspaces.find((w: any) => w.workspaceType === 'ORGANIZATION');
+      if (orgWorkspace) {
+        if (orgWorkspace.organizationStatus === 'PENDING_REVIEW') {
+          navigate('/under-review', { replace: true });
+        } else {
+          navigate('/org/dashboard', { replace: true });
+        }
+        return;
+      }
+
+      // 3. Fallback for Individual users
+      navigate('/dashboard', { replace: true });
     } catch (err) {
       setGlobalError('Email or password is incorrect.');
     }

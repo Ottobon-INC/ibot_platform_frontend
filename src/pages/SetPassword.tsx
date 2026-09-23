@@ -4,10 +4,12 @@ import { Button } from '../components/ui/Button';
 import { StepIndicator } from '../components/ui/StepIndicator';
 import { PasswordInput, defaultRequirements } from '../components/ui/PasswordInput';
 import { Check } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function SetPassword() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { login } = useAuth();
   const state = location.state as any;
 
   // Protect route
@@ -38,11 +40,54 @@ export default function SetPassword() {
     setGlobalError(null);
     
     try {
-      // Fake API request to create the actual user identity in DB
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await fetch('http://localhost:3000/v1/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email: state.email, 
+          password: password,
+          firstName: state.firstName,
+          lastName: state.lastName,
+          accountType: state.accountType,
+          organizationDetails: state.organizationDetails
+        })
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Registration failed');
+      }
+
+      // Auto-login
+      const loginResponse = await fetch('http://localhost:3000/v1/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: state.email, password })
+      });
+
+      if (!loginResponse.ok) {
+        // If login fails for some reason, just send them to sign in
+        navigate('/sign-in', { replace: true });
+        return;
+      }
+
+      const loginData = await loginResponse.json();
+      login(loginData.accessToken, loginData.user);
       
-      // Success! Route to Dashboard (or "Account Under Review" page later)
-      navigate('/dashboard', { replace: true });
+      // Dynamic routing based on workspaces in user object
+      const workspaces = loginData.user.workspaces || [];
+      const orgWorkspace = workspaces.find((w: any) => w.workspaceType === 'ORGANIZATION');
+
+      if (orgWorkspace) {
+        if (orgWorkspace.organizationStatus === 'PENDING_REVIEW') {
+          navigate('/under-review', { replace: true });
+        } else {
+          navigate('/org/dashboard', { replace: true });
+        }
+      } else {
+        // Fallback for individuals
+        navigate('/dashboard', { replace: true });
+      }
     } catch (err: any) {
       setGlobalError(err.message || "We couldn't create your account right now. Try again.");
       setIsSubmitting(false);

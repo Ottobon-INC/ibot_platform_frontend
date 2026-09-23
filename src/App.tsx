@@ -32,6 +32,9 @@ import OrganizationDetail from './pages/admin/OrganizationDetail';
 import OrganizationAccessManagement from './pages/admin/OrganizationAccessManagement';
 import OrganizationActivity from './pages/admin/OrganizationActivity';
 import PlatformProjectsList from './pages/admin/PlatformProjectsList';
+import OrganizationDashboard from './pages/organization/OrganizationDashboard';
+import OrganizationProjectsList from './pages/organization/OrganizationProjectsList';
+import CreateProject from './pages/organization/CreateProject';
 import ScrollToTop from './components/ScrollToTop';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -40,6 +43,24 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   if (!isAuthenticated) {
     return <Navigate to="/sign-in" state={{ from: location }} replace />;
+  }
+
+  return <>{children}</>;
+}
+
+function AdminRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated, user } = useAuth();
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/sign-in" state={{ from: location }} replace />;
+  }
+
+  // Check if user belongs to OTTOBON workspace
+  const isPlatformAdmin = user?.workspaces?.some(w => w.workspaceType === 'OTTOBON');
+  
+  if (!isPlatformAdmin) {
+    return <Navigate to="/access-denied" replace />;
   }
 
   return <>{children}</>;
@@ -86,17 +107,33 @@ function App() {
           <Route path="/notifications" element={<ProtectedRoute><NotificationPreferences /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
 
+          {/* Organization Workspace */}
+          <Route path="/org/dashboard" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
+          <Route path="/org/projects" element={<ProtectedRoute><OrganizationProjectsList /></ProtectedRoute>} />
+          <Route path="/org/projects/create" element={<ProtectedRoute><CreateProject /></ProtectedRoute>} />
+          {/* Temporary placeholder for created project redirect */}
+          <Route path="/org/projects/:id" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
+          {/* Temporary placeholders for layout links */}
+          <Route path="/org/runs" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
+          <Route path="/org/team" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
+          <Route path="/org/approvals" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
+          <Route path="/org/commercials" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
+          <Route path="/org/billing" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
+          <Route path="/org/reports" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
+          <Route path="/org/activity" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
+          <Route path="/org/settings" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
+
           {/* Platform Admin */}
-          <Route path="/admin/dashboard" element={<ProtectedRoute><PlatformDashboard /></ProtectedRoute>} />
-          <Route path="/admin/organizations" element={<ProtectedRoute><OrganizationsList /></ProtectedRoute>} />
-          <Route path="/admin/organizations/reviews" element={<ProtectedRoute><OrganizationReviewQueue /></ProtectedRoute>} />
-          <Route path="/admin/organizations/reviews/:id" element={<ProtectedRoute><OrganizationReviewDetail /></ProtectedRoute>} />
-          <Route path="/admin/organizations/:id" element={<ProtectedRoute><OrganizationDetail /></ProtectedRoute>} />
-          <Route path="/admin/organizations/:id/access" element={<ProtectedRoute><OrganizationAccessManagement /></ProtectedRoute>} />
-          <Route path="/admin/organizations/:id/activity" element={<ProtectedRoute><OrganizationActivity /></ProtectedRoute>} />
+          <Route path="/admin/dashboard" element={<AdminRoute><PlatformDashboard /></AdminRoute>} />
+          <Route path="/admin/organizations" element={<AdminRoute><OrganizationsList /></AdminRoute>} />
+          <Route path="/admin/organizations/reviews" element={<AdminRoute><OrganizationReviewQueue /></AdminRoute>} />
+          <Route path="/admin/organizations/reviews/:id" element={<AdminRoute><OrganizationReviewDetail /></AdminRoute>} />
+          <Route path="/admin/organizations/:id" element={<AdminRoute><OrganizationDetail /></AdminRoute>} />
+          <Route path="/admin/organizations/:id/access" element={<AdminRoute><OrganizationAccessManagement /></AdminRoute>} />
+          <Route path="/admin/organizations/:id/activity" element={<AdminRoute><OrganizationActivity /></AdminRoute>} />
           
           {/* Admin - Projects */}
-          <Route path="/admin/projects" element={<ProtectedRoute><PlatformProjectsList /></ProtectedRoute>} />
+          <Route path="/admin/projects" element={<AdminRoute><PlatformProjectsList /></AdminRoute>} />
           
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { Button } from '../../components/ui/Button';
 import { 
@@ -15,16 +15,42 @@ import {
 type ModalType = 'none' | 'approve' | 'request_info' | 'not_approve';
 
 export default function OrganizationReviewDetail() {
+  const { id } = useParams();
   const navigate = useNavigate();
   const [activeModal, setActiveModal] = useState<ModalType>('none');
   const [showDropdown, setShowDropdown] = useState(false);
+  
+  const [orgData, setOrgData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isApproving, setIsApproving] = useState(false);
 
-  // Mock handlers
-  const handleApprove = () => {
-    setActiveModal('none');
-    // In real app: toast.success('Organization approved');
-    // Then navigate to the active Organization Detail page (Page 27)
-    navigate('/admin/organizations/org-1'); 
+  useEffect(() => {
+    if (!id) return;
+    fetch(`http://localhost:3000/v1/admin/organizations/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setOrgData(data);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  }, [id]);
+
+  const handleApprove = async () => {
+    if (!id) return;
+    setIsApproving(true);
+    try {
+      await fetch(`http://localhost:3000/v1/admin/organizations/${id}/approve`, {
+        method: 'POST'
+      });
+      setActiveModal('none');
+      // In real app: toast.success('Organization approved');
+      // Then navigate to the active Organization Detail page (Page 27) - placeholder for now
+      navigate('/admin/organizations'); 
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsApproving(false);
+    }
   };
 
   return (

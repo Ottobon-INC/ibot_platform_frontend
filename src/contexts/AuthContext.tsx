@@ -1,10 +1,19 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+interface WorkspaceMembership {
+  workspaceId: string;
+  workspaceType: string;
+  organizationId?: string;
+  organizationStatus?: string;
+  organizationName?: string;
+  organizationType?: string;
+}
+
 interface User {
   id: string;
   email: string;
-  firstName?: string;
-  lastName?: string;
+  displayName?: string;
+  workspaces?: WorkspaceMembership[];
 }
 
 interface AuthContextType {

@@ -45,40 +45,27 @@ export default function CreateAccount() {
       const [firstName, ...lastNameParts] = data.fullName.split(' ');
       const lastName = lastNameParts.join(' ') || 'User';
 
-      const response = await fetch('http://localhost:3000/v1/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          email: data.email, 
-          password: 'password123', // Hardcoded for testing authentication
-          firstName,
-          lastName 
-        })
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Registration failed');
-      }
-      
       // Navigate to next page based on account type
       if (accountType === 'INDIVIDUAL') {
         navigate('/email-verification', { 
           state: { 
             accountType,
-            draftId: 'draft_123',
-            email: data.email
+            email: data.email,
+            firstName,
+            lastName
           }
         });
       } else {
         navigate('/registration-details', { 
           state: { 
             accountType,
-            draftId: 'draft_123',
-            email: data.email
+            email: data.email,
+            firstName,
+            lastName
           }
         });
       }
+
     } catch (err: any) {
       setGlobalError(err.message || "We couldn't continue right now. Try again.");
     }

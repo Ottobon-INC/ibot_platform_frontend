@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { StepIndicator } from '../components/ui/StepIndicator';
@@ -22,6 +22,23 @@ export default function EmailVerification() {
   const [isVerifying, setIsVerifying] = useState(false);
   const [globalError, setGlobalError] = useState<string | null>(null);
   const [countdown, setCountdown] = useState(30);
+  
+  // Use a ref to track if we've sent the OTP, so it survives React Strict Mode double-mounting
+  const hasSentInitialOtp = useRef(false);
+
+  // Send initial OTP
+  useEffect(() => {
+    if (!hasSentInitialOtp.current && email) {
+      hasSentInitialOtp.current = true;
+      fetch('http://localhost:3000/v1/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      }).catch(err => {
+        setGlobalError("Failed to send verification email. Please try resending.");
+      });
+    }
+  }, [email]);
 
   // Timer effect
   useEffect(() => {
@@ -35,7 +52,15 @@ export default function EmailVerification() {
     if (countdown > 0) return;
     setCountdown(30);
     setGlobalError(null);
-    // Fake API resend
+    
+    fetch('http://localhost:3000/v1/auth/send-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    }).catch(err => {
+      setGlobalError("Failed to resend verification email.");
+      setCountdown(0);
+    });
   };
 
   const handleChangeEmail = () => {
@@ -51,12 +76,16 @@ export default function EmailVerification() {
     setGlobalError(null);
     
     try {
-      // Fake API request
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // If code is wrong (mock validation)
-      if (code === '000000') {
-        throw new Error('That verification code is incorrect. Try again.');
+      const response = await fetch('http://localhost:3000/v1/auth/verify-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, code }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'That verification code is incorrect. Try again.');
       }
       
       // Navigate to Set Password (Page 6)

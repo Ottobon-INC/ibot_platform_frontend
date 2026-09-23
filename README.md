@@ -1,32 +1,38 @@
-# React + TypeScript + Vite
+# Ottobon Platform Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+This is the React frontend for the Ottobon Platform.
 
-Currently, two official plugins are available:
+## Architecture
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The frontend is built using:
+- **React (Vite)** for the core framework.
+- **Tailwind CSS** for styling, utilizing a custom design system for premium enterprise aesthetics.
+- **React Router v6** for routing.
 
-## React Compiler
+### Authentication & Routing
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+We use a completely **stateless routing architecture** to achieve maximum scalability.
 
-## Expanding the Oxlint configuration
+1. **AuthContext:** The `AuthContext` stores the user's JWT token and decoded `user` object.
+2. **JWT-Embedded Roles:** When a user logs in, the backend sends back their `WorkspaceMemberships` embedded in the response. We store this in the frontend context.
+3. **Dynamic Routing (`SignIn.tsx` / `SetPassword.tsx`):**
+   Upon login, the application instantly reads the user's workspace memberships in memory to route them:
+   - If they have a membership to an `OTTOBON` workspace, they are routed to the **Admin Dashboard**.
+   - If they have an `ORGANIZATION` workspace that is `PENDING_REVIEW`, they are routed to the **Under Review** screen.
+   - If their `ORGANIZATION` is `ACTIVE`, they are routed to their **Organization Dashboard**.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+### Protected Routes
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+We use strict wrapper components to protect routes:
+- `<ProtectedRoute>`: Ensures the user has a valid session.
+- `<AdminRoute>`: Ensures the user specifically holds an `OTTOBON` workspace membership. If they do not, they are redirected to `/access-denied`.
+
+## Running Locally
+
+```bash
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
 ```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
