@@ -1,0 +1,47 @@
+# Jaswanth's Tracking File
+
+This file tracks the changes and contributions made by Jaswanth for each push to the IBOT platform codebase.
+
+## Log
+
+- **[2026-09-22] Implemented Platform Entry Page**
+  - Created `src/pages/PlatformEntry.tsx` strictly following the UI constraints.
+  - Implemented responsive design (mobile stacked cards, desktop 3-column grid).
+  - Configured `react-router-dom` in `App.tsx` and created a reusable `Button.tsx`.
+  - Used gray-scale theme matching `docs/Design.md`.
+  - *Hotfix 1:* Installed `@tailwindcss/postcss` and updated `postcss.config.js`.
+  - *Hotfix 2:* Rewrote `src/index.css` to use Tailwind v4 `@import "tailwindcss"` and `@theme` syntax instead of `@tailwind` directives.
+- **[2026-09-22] Implemented Sign In Page**
+  - Created `src/components/ui/Input.tsx` for accessible, reusable form fields.
+  - Built `src/pages/SignIn.tsx` using `react-hook-form` and `zod` for strictly controlled client-side validation.
+  - Implemented exact visual hierarchy, UX constraints, error states, and responsive centered mobile/desktop layout per requirements.
+  - Wired up `App.tsx` router and linked from `PlatformEntry.tsx`.
+  - *Hotfix 3:* Resolved white screen crash by importing missing React Router `Link` component in `PlatformEntry.tsx` and fixed TypeScript testing types.
+- **[2026-09-22] Implemented Create Account Page (Page 3)**
+  - Created reusable `StepIndicator.tsx` for multi-step onboarding.
+  - Built `CreateAccount.tsx` which consumes account type from router state.
+  - Implemented dynamic copy (e.g. 'Work email' vs 'Email address') and 'Change' logic to seamlessly return to Page 1 without losing context.
+  - Added strict zod email validation and terms of service acknowledgement.
+- **[2026-09-22 to 2026-09-23] Implemented Complete Authentication & Onboarding Funnel (Pages 4 - 18)**
+  - **Registration & Setup:** Built `OrganizationDetails.tsx` (Page 4), `EmailVerification.tsx` (Page 5) featuring a reusable robust `OtpInput.tsx` source-of-truth component, and `SetPassword.tsx` (Page 6) featuring a reusable `PasswordInput.tsx` that handles live policy validation (length, cases, numbers, symbols).
+  - **Account Recovery:** Built `ForgotPassword.tsx` (Page 7), `ResetPassword.tsx` (Page 8), and `PasswordResetSuccess.tsx` (Page 9) adhering strictly to UX rules forbidding username enumeration leaks and handling success/error states seamlessly.
+  - **Invitation Flow:** Built `AcceptInvitation.tsx` (Page 10) for evaluating and accepting organization invites, and `SetPasswordInvitation.tsx` (Page 11) for activating first-time invited users.
+  - **MFA Flow:** Built `MfaSetup.tsx` (Page 12) for establishing secondary auth methods, and `MfaVerification.tsx` (Page 13) for authenticating via configured apps/keys. Both securely handle dynamic method state.
+  - **System Holding States & Interceptors:** 
+    - Built `AccountUnderReview.tsx` (Page 14) for handling pending org creations.
+    - Built `AccountSuspended.tsx` (Page 15) to cleanly intercept disabled identities without exposing sensitive org-level state.
+    - Built `WorkspaceSelector.tsx` (Page 16) as a secure post-auth routing hub, intelligently grouping Active/Pending/Suspended workspaces into 'Recently Used' and 'Other' categories.
+    - Built `AccessDenied.tsx` (Page 17) providing highly contextual, safe restriction handling (e.g., mismatched workspace, missing project role) wrapped in an authenticated shell.
+    - Built `SessionExpired.tsx` (Page 18) to securely bounce users back to the unauthenticated shell, complete with dynamic 'draft saved' recovery messaging.
+  - **Infrastructure & Routing:** Centralized all component exports, established the comprehensive route map in `App.tsx`, and ensured all components rely on consistent URL query parameters to toggle visual states for design review.
+- **[2026-09-23] Implemented Account & Notification Pages (Pages 19 - 22)**
+  - Built `MyProfile.tsx` (Page 19), `MyAccount.tsx` (Page 20), `SecuritySettings.tsx` (Page 21), and `NotificationPreferences.tsx` (Page 22) as secure, authenticated workspace shells.
+  - Created the robust `AdminLayout.tsx` for shared platform navigation and integrated the Frappe-style 'form view' pattern across these pages.
+- **[2026-09-23] Implemented Core Platform Directory (Pages 23 - 30)**
+  - Built `PlatformDashboard.tsx` (Page 23) using a simple modular action grid for platform-wide control.
+  - Built `OrganizationsList.tsx` (Page 24), maintaining dense tabular views for cross-organizational data.
+  - Built `OrganizationReviewQueue.tsx` (Page 25) and `OrganizationReviewDetail.tsx` (Page 26) with decision logic (Approve/Reject) using modals.
+  - Built `OrganizationDetail.tsx` (Page 27) featuring comprehensive tabbed views, KPI strips, suspension logic, and deep links.
+  - Built `OrganizationAccessManagement.tsx` (Page 28) isolating access status manipulation (suspension/pausing) completely from role/phase assignments as per strict architectural constraints.
+  - Built `OrganizationActivity.tsx` (Page 29) utilizing a read-only Frappe-style feed-list to show chronological business events, distinct from technical audit logs.
+  - Built `PlatformProjectsList.tsx` (Page 30) displaying global project directories, crucially separating reusable project records from specific Run metrics (e.g., separating Project runs and Active runs into separate columns).
