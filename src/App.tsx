@@ -21,6 +21,7 @@ import SessionExpired from './pages/SessionExpired';
 import MyProfile from './pages/MyProfile';
 import MyAccount from './pages/MyAccount';
 import SecuritySettings from './pages/SecuritySettings';
+import NotificationPreferences from './pages/NotificationPreferences';
 import Dashboard from './pages/Dashboard';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -61,6 +62,7 @@ function App() {
         <Route path="/profile" element={<MyProfile />} />
         <Route path="/account" element={<MyAccount />} />
         <Route path="/security" element={<SecuritySettings />} />
+        <Route path="/notifications" element={<NotificationPreferences />} />
         <Route path="/dashboard" element={<Dashboard />} />
         
         <Route path="*" element={<Navigate to="/" replace />} />
