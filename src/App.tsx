@@ -19,6 +19,8 @@ import WorkspaceSelector from './pages/WorkspaceSelector';
 import AccessDenied from './pages/AccessDenied';
 import SessionExpired from './pages/SessionExpired';
 import MyProfile from './pages/MyProfile';
+import MyAccount from './pages/MyAccount';
+import SecuritySettings from './pages/SecuritySettings';
 import Dashboard from './pages/Dashboard';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -54,9 +56,11 @@ function App() {
         <Route path="/access-denied" element={<AccessDenied />} />
         <Route path="/session-expired" element={<SessionExpired />} />
         
-        {/* Authenticated Dashboard / Workspaces / Profile */}
+        {/* Authenticated Dashboard / Workspaces / Profile / Account */}
         <Route path="/workspaces" element={<WorkspaceSelector />} />
         <Route path="/profile" element={<MyProfile />} />
+        <Route path="/account" element={<MyAccount />} />
+        <Route path="/security" element={<SecuritySettings />} />
         <Route path="/dashboard" element={<Dashboard />} />
         
         <Route path="*" element={<Navigate to="/" replace />} />
