@@ -16,6 +16,9 @@ import MfaVerification from './pages/MfaVerification';
 import AccountUnderReview from './pages/AccountUnderReview';
 import AccountSuspended from './pages/AccountSuspended';
 import WorkspaceSelector from './pages/WorkspaceSelector';
+import AccessDenied from './pages/AccessDenied';
+import SessionExpired from './pages/SessionExpired';
+import MyProfile from './pages/MyProfile';
 import Dashboard from './pages/Dashboard';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -48,9 +51,12 @@ function App() {
         {/* Exception / Holding States */}
         <Route path="/under-review" element={<AccountUnderReview />} />
         <Route path="/account-suspended" element={<AccountSuspended />} />
+        <Route path="/access-denied" element={<AccessDenied />} />
+        <Route path="/session-expired" element={<SessionExpired />} />
         
-        {/* Authenticated Dashboard / Workspaces */}
+        {/* Authenticated Dashboard / Workspaces / Profile */}
         <Route path="/workspaces" element={<WorkspaceSelector />} />
+        <Route path="/profile" element={<MyProfile />} />
         <Route path="/dashboard" element={<Dashboard />} />
         
         <Route path="*" element={<Navigate to="/" replace />} />
