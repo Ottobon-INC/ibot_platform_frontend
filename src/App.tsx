@@ -25,6 +25,11 @@ import NotificationPreferences from './pages/NotificationPreferences';
 import Dashboard from './pages/Dashboard';
 import PlatformDashboard from './pages/admin/PlatformDashboard';
 import OrganizationsList from './pages/admin/OrganizationsList';
+import OrganizationReviewQueue from './pages/admin/OrganizationReviewQueue';
+import OrganizationReviewDetail from './pages/admin/OrganizationReviewDetail';
+import OrganizationDetail from './pages/admin/OrganizationDetail';
+import OrganizationAccessManagement from './pages/admin/OrganizationAccessManagement';
+import OrganizationActivity from './pages/admin/OrganizationActivity';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -70,6 +75,11 @@ function App() {
         {/* Platform Admin */}
         <Route path="/admin/dashboard" element={<PlatformDashboard />} />
         <Route path="/admin/organizations" element={<OrganizationsList />} />
+        <Route path="/admin/organizations/reviews" element={<OrganizationReviewQueue />} />
+        <Route path="/admin/organizations/reviews/:id" element={<OrganizationReviewDetail />} />
+        <Route path="/admin/organizations/:id" element={<OrganizationDetail />} />
+        <Route path="/admin/organizations/:id/access" element={<OrganizationAccessManagement />} />
+        <Route path="/admin/organizations/:id/activity" element={<OrganizationActivity />} />
         
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

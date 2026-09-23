@@ -32,9 +32,11 @@ export default function OrganizationsList() {
             <h1 className="text-3xl font-bold tracking-tight text-ink-gray-9 mb-2">Organizations</h1>
             <p className="text-sm text-ink-gray-6">View and manage organizations registered on Ottobon.</p>
           </div>
-          <Button variant="outline" theme="gray" className="gap-2">
-            Review pending <span className="bg-surface-gray-1 px-1.5 py-0.5 rounded text-xs font-bold text-ink-gray-9 border border-outline-gray-2 shadow-sm">4</span>
-          </Button>
+          <Link to="/admin/organizations/reviews">
+            <Button variant="outline" theme="gray" className="gap-2">
+              Review pending <span className="bg-surface-gray-1 px-1.5 py-0.5 rounded text-xs font-bold text-ink-gray-9 border border-outline-gray-2 shadow-sm">4</span>
+            </Button>
+          </Link>
         </div>
 
         {/* Toolbar */}
@@ -96,7 +98,9 @@ export default function OrganizationsList() {
                 {organizations.map((org) => (
                   <tr key={org.id} className="hover:bg-surface-gray-1 transition-colors group h-[52px]">
                     <td className="px-5 cursor-pointer">
-                      <div className="font-semibold text-ink-gray-9">{org.name}</div>
+                      <Link to={`/admin/organizations/${org.id}`}>
+                        <div className="font-semibold text-ink-gray-9 hover:underline decoration-outline-gray-3">{org.name}</div>
+                      </Link>
                       <div className="text-xs text-ink-gray-5 mt-0.5">{org.email}</div>
                     </td>
                     <td className="px-5 text-ink-gray-7 cursor-pointer">{org.type}</td>
