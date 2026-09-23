@@ -42,8 +42,24 @@ export default function CreateAccount() {
   const onSubmit = async (data: CreateAccountFormValues) => {
     setGlobalError(null);
     try {
-      // Fake API request to create onboarding draft
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const [firstName, ...lastNameParts] = data.fullName.split(' ');
+      const lastName = lastNameParts.join(' ') || 'User';
+
+      const response = await fetch('http://localhost:3000/v1/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email: data.email, 
+          password: 'password123', // Hardcoded for testing authentication
+          firstName,
+          lastName 
+        })
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Registration failed');
+      }
       
       // Navigate to next page based on account type
       if (accountType === 'INDIVIDUAL') {
@@ -63,8 +79,8 @@ export default function CreateAccount() {
           }
         });
       }
-    } catch (err) {
-      setGlobalError("We couldn't continue right now. Try again.");
+    } catch (err: any) {
+      setGlobalError(err.message || "We couldn't continue right now. Try again.");
     }
   };
 

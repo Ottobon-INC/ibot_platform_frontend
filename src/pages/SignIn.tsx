@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 const signInSchema = z.object({
   email: z.string().min(1, 'Enter your email address.').email('Enter a valid email address.'),
@@ -16,6 +17,7 @@ type SignInFormValues = z.infer<typeof signInSchema>;
 
 export default function SignIn() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [globalError, setGlobalError] = useState<string | null>(null);
 
@@ -42,10 +44,7 @@ export default function SignIn() {
       }
 
       const result = await response.json();
-      console.log('SignIn success', result);
-      
-      // Store token (in a real app, might use cookies or secure storage)
-      localStorage.setItem('accessToken', result.accessToken);
+      login(result.accessToken, result.user);
       
       navigate('/dashboard');
     } catch (err) {
