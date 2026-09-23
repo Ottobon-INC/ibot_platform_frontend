@@ -212,7 +212,10 @@ export default function OrganizationDetail() {
               <div className="space-y-12">
                 {/* Active Projects & Runs */}
                 <section>
-                  <h2 className="text-xs font-bold text-ink-gray-5 uppercase tracking-wider mb-4 border-b border-outline-gray-2 pb-2">Active Projects & Runs</h2>
+                  <div className="flex items-center justify-between mb-4 border-b border-outline-gray-2 pb-2">
+                    <h2 className="text-xs font-bold text-ink-gray-5 uppercase tracking-wider">Active Projects & Runs</h2>
+                    <Link to="/admin/projects" className="text-xs font-bold text-ink-gray-9 hover:underline flex items-center gap-1">View all <ArrowRight className="size-3" /></Link>
+                  </div>
                   <div className="space-y-4">
                     <div>
                       <div className="flex items-center justify-between mb-1">

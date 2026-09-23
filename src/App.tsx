@@ -30,6 +30,7 @@ import OrganizationReviewDetail from './pages/admin/OrganizationReviewDetail';
 import OrganizationDetail from './pages/admin/OrganizationDetail';
 import OrganizationAccessManagement from './pages/admin/OrganizationAccessManagement';
 import OrganizationActivity from './pages/admin/OrganizationActivity';
+import PlatformProjectsList from './pages/admin/PlatformProjectsList';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -80,6 +81,9 @@ function App() {
         <Route path="/admin/organizations/:id" element={<OrganizationDetail />} />
         <Route path="/admin/organizations/:id/access" element={<OrganizationAccessManagement />} />
         <Route path="/admin/organizations/:id/activity" element={<OrganizationActivity />} />
+        
+        {/* Admin - Projects */}
+        <Route path="/admin/projects" element={<PlatformProjectsList />} />
         
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
