@@ -23,6 +23,7 @@ import MyAccount from './pages/MyAccount';
 import SecuritySettings from './pages/SecuritySettings';
 import NotificationPreferences from './pages/NotificationPreferences';
 import Dashboard from './pages/Dashboard';
+import PlatformDashboard from './pages/admin/PlatformDashboard';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -64,6 +65,9 @@ function App() {
         <Route path="/security" element={<SecuritySettings />} />
         <Route path="/notifications" element={<NotificationPreferences />} />
         <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Platform Admin */}
+        <Route path="/admin/dashboard" element={<PlatformDashboard />} />
         
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
