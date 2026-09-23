@@ -8,6 +8,14 @@ import EmailVerification from './pages/EmailVerification';
 import SetPassword from './pages/SetPassword';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import ResetPasswordSuccess from './pages/ResetPasswordSuccess';
+import AcceptInvitation from './pages/AcceptInvitation';
+import SetPasswordInvitation from './pages/SetPasswordInvitation';
+import MfaSetup from './pages/MfaSetup';
+import MfaVerification from './pages/MfaVerification';
+import AccountUnderReview from './pages/AccountUnderReview';
+import AccountSuspended from './pages/AccountSuspended';
+import WorkspaceSelector from './pages/WorkspaceSelector';
 import Dashboard from './pages/Dashboard';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -20,9 +28,7 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        
-        {/* Placeholder for Page 9 */}
-        <Route path="/reset-password-success" element={<div className="p-10 font-bold">Password Reset Success Placeholder (Page 9)</div>} />
+        <Route path="/reset-password-success" element={<ResetPasswordSuccess />} />
         
         {/* Onboarding Flow */}
         <Route path="/create-account" element={<CreateAccount />} />
@@ -31,7 +37,20 @@ function App() {
         <Route path="/email-verification" element={<EmailVerification />} />
         <Route path="/set-password" element={<SetPassword />} />
         
-        {/* Authenticated Dashboard */}
+        {/* Invitation Flow */}
+        <Route path="/accept-invitation" element={<AcceptInvitation />} />
+        <Route path="/set-password-invitation" element={<SetPasswordInvitation />} />
+        
+        {/* MFA Flow */}
+        <Route path="/mfa-setup" element={<MfaSetup />} />
+        <Route path="/mfa-verification" element={<MfaVerification />} />
+        
+        {/* Exception / Holding States */}
+        <Route path="/under-review" element={<AccountUnderReview />} />
+        <Route path="/account-suspended" element={<AccountSuspended />} />
+        
+        {/* Authenticated Dashboard / Workspaces */}
+        <Route path="/workspaces" element={<WorkspaceSelector />} />
         <Route path="/dashboard" element={<Dashboard />} />
         
         <Route path="*" element={<Navigate to="/" replace />} />
