@@ -35,6 +35,7 @@ import PlatformProjectsList from './pages/admin/PlatformProjectsList';
 import OrganizationDashboard from './pages/organization/OrganizationDashboard';
 import OrganizationProjectsList from './pages/organization/OrganizationProjectsList';
 import CreateProject from './pages/organization/CreateProject';
+import OrganizationProjectDetail from './pages/organization/OrganizationProjectDetail';
 import ScrollToTop from './components/ScrollToTop';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -111,8 +112,7 @@ function App() {
           <Route path="/org/dashboard" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
           <Route path="/org/projects" element={<ProtectedRoute><OrganizationProjectsList /></ProtectedRoute>} />
           <Route path="/org/projects/create" element={<ProtectedRoute><CreateProject /></ProtectedRoute>} />
-          {/* Temporary placeholder for created project redirect */}
-          <Route path="/org/projects/:id" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
+          <Route path="/org/projects/:id" element={<ProtectedRoute><OrganizationProjectDetail /></ProtectedRoute>} />
           {/* Temporary placeholders for layout links */}
           <Route path="/org/runs" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
           <Route path="/org/team" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />

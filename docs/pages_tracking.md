@@ -48,5 +48,5 @@ This document tracks the progress of the frontend pages being built for the IBOT
 - [x] **94. Organization Dashboard**
 - [x] **95. Organization Projects List**
 - [x] **96. Create Project**
-- [ ] **97. Organization Project Detail**
+- [x] **97. Organization Project Detail**
 - [ ] **98. Organization Project Runs Overview**

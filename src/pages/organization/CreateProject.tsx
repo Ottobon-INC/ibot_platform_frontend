@@ -8,28 +8,39 @@ import { ChevronDown, ChevronRight, CheckCircle2 } from 'lucide-react';
 export default function CreateProject() {
   const navigate = useNavigate();
   const [projectName, setProjectName] = useState('');
+  const [description, setDescription] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
   const isValid = projectName.trim().length > 0;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isValid || isSubmitting) return;
 
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const res = await fetch('http://localhost:3000/v1/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orgId: 'default',
+          name: projectName,
+          description: description
+        })
+      });
+      const data = await res.json();
+      
       setShowToast(true);
       
-      // Navigate to Project Detail after a short delay
       setTimeout(() => {
-        // Generating a dummy ID for the new project
-        navigate('/org/projects/proj_123');
+        navigate(`/org/projects`);
       }, 1500);
-    }, 1000);
+    } catch (err) {
+      console.error(err);
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -100,6 +111,8 @@ export default function CreateProject() {
                     id="description"
                     rows={4}
                     placeholder="Add additional context about this Project..."
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                     className="flex w-full rounded-md border border-outline-gray-2 bg-surface-base px-3 py-2 text-sm placeholder:text-ink-gray-5 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ink-gray-9 focus-visible:ring-offset-0 hover:border-ink-gray-4 resize-none"
                   />
                 </div>

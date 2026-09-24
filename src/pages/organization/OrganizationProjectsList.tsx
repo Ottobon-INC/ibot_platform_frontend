@@ -7,10 +7,40 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  MoreHorizontal
+  MoreHorizontal,
+  Loader2
 } from 'lucide-react';
+import { formatDistanceToNow } from 'date-fns';
 
 export default function OrganizationProjectsList() {
+  const [projects, setProjects] = React.useState<any[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/v1/projects?orgId=default');
+        const data = await res.json();
+        setProjects(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProjects();
+  }, []);
+
+  if (loading) {
+    return (
+      <OrganizationLayout>
+        <div className="flex h-64 items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-ink-gray-4" />
+        </div>
+      </OrganizationLayout>
+    );
+  }
+
   return (
     <OrganizationLayout>
       <div className="p-6 md:p-8 flex flex-col min-h-full">
@@ -75,75 +105,40 @@ export default function OrganizationProjectsList() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-gray-2 text-ink-gray-9">
-                  
-                  {/* Row 1 */}
-                  <tr className="hover:bg-surface-gray-1 transition-colors group cursor-pointer">
-                    <td className="px-6 py-4">
-                      <div className="font-bold text-ink-gray-9 group-hover:text-ink-gray-9 transition-colors">Graduate Talent Project</div>
-                    </td>
-                    <td className="px-6 py-4 font-medium text-ink-gray-7">Suresh Kumar</td>
-                    <td className="px-6 py-4 font-bold">3</td>
-                    <td className="px-6 py-4 font-bold">1</td>
-                    <td className="px-6 py-4 font-medium text-ink-gray-7">Apr 2027</td>
-                    <td className="px-6 py-4 text-right font-medium text-ink-gray-5">2h ago</td>
-                    <td className="px-4 py-4 text-right">
-                      <button className="p-1 rounded text-ink-gray-4 hover:bg-outline-gray-2 hover:text-ink-gray-9 transition-colors">
-                        <MoreHorizontal className="size-5" />
-                      </button>
-                    </td>
-                  </tr>
-
-                  {/* Row 2 */}
-                  <tr className="hover:bg-surface-gray-1 transition-colors group cursor-pointer">
-                    <td className="px-6 py-4">
-                      <div className="font-bold text-ink-gray-9 group-hover:text-ink-gray-9 transition-colors">AI Workforce Project</div>
-                    </td>
-                    <td className="px-6 py-4 font-medium text-ink-gray-7">Priya Rao</td>
-                    <td className="px-6 py-4 font-bold">2</td>
-                    <td className="px-6 py-4 font-bold">1</td>
-                    <td className="px-6 py-4 font-medium text-ink-gray-7">Sep 2026</td>
-                    <td className="px-6 py-4 text-right font-medium text-ink-gray-5">6h ago</td>
-                    <td className="px-4 py-4 text-right">
-                      <button className="p-1 rounded text-ink-gray-4 hover:bg-outline-gray-2 hover:text-ink-gray-9 transition-colors">
-                        <MoreHorizontal className="size-5" />
-                      </button>
-                    </td>
-                  </tr>
-
-                  {/* Row 3 */}
-                  <tr className="hover:bg-surface-gray-1 transition-colors group cursor-pointer">
-                    <td className="px-6 py-4">
-                      <div className="font-bold text-ink-gray-9 group-hover:text-ink-gray-9 transition-colors">Campus Hiring Project</div>
-                    </td>
-                    <td className="px-6 py-4 font-medium text-ink-gray-7">Kiran Kumar</td>
-                    <td className="px-6 py-4 font-bold">4</td>
-                    <td className="px-6 py-4 font-bold">2</td>
-                    <td className="px-6 py-4 font-medium text-ink-gray-7">Jul 2027</td>
-                    <td className="px-6 py-4 text-right font-medium text-ink-gray-5">1d ago</td>
-                    <td className="px-4 py-4 text-right">
-                      <button className="p-1 rounded text-ink-gray-4 hover:bg-outline-gray-2 hover:text-ink-gray-9 transition-colors">
-                        <MoreHorizontal className="size-5" />
-                      </button>
-                    </td>
-                  </tr>
-
-                  {/* Row 4 */}
-                  <tr className="hover:bg-surface-gray-1 transition-colors group cursor-pointer">
-                    <td className="px-6 py-4">
-                      <div className="font-bold text-ink-gray-9 group-hover:text-ink-gray-9 transition-colors">Future Talent Project</div>
-                    </td>
-                    <td className="px-6 py-4 font-medium text-ink-gray-5">Not assigned</td>
-                    <td className="px-6 py-4 font-bold text-ink-gray-5">0</td>
-                    <td className="px-6 py-4 font-bold text-ink-gray-5">0</td>
-                    <td className="px-6 py-4 font-medium text-ink-gray-4">—</td>
-                    <td className="px-6 py-4 text-right font-medium text-ink-gray-5">3d ago</td>
-                    <td className="px-4 py-4 text-right">
-                      <button className="p-1 rounded text-ink-gray-4 hover:bg-outline-gray-2 hover:text-ink-gray-9 transition-colors">
-                        <MoreHorizontal className="size-5" />
-                      </button>
-                    </td>
-                  </tr>
-
+                  {projects.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="px-6 py-12 text-center text-ink-gray-5">
+                        No projects found. Create one to get started!
+                      </td>
+                    </tr>
+                  ) : (
+                    projects.map(project => {
+                      const activeRunsCount = project.runs?.filter((r: any) => r.status === 'ACTIVE').length || 0;
+                      const latestRun = project.runs?.[0] ? new Date(project.runs[0].createdAt).toLocaleDateString(undefined, { month: 'short', year: 'numeric' }) : '—';
+                      
+                      return (
+                        <tr key={project.id} className="hover:bg-surface-gray-1 transition-colors group cursor-pointer">
+                          <td className="px-6 py-4">
+                            <Link to={`/org/projects/${project.id}`} className="block">
+                              <div className="font-bold text-ink-gray-9 group-hover:text-ink-gray-9 transition-colors">{project.canonicalName}</div>
+                            </Link>
+                          </td>
+                          <td className="px-6 py-4 font-medium text-ink-gray-5">Not assigned</td>
+                          <td className="px-6 py-4 font-bold">{project.runs?.length || 0}</td>
+                          <td className="px-6 py-4 font-bold">{activeRunsCount}</td>
+                          <td className="px-6 py-4 font-medium text-ink-gray-7">{latestRun}</td>
+                          <td className="px-6 py-4 text-right font-medium text-ink-gray-5">
+                            {formatDistanceToNow(new Date(project.updatedAt), { addSuffix: true })}
+                          </td>
+                          <td className="px-4 py-4 text-right">
+                            <button className="p-1 rounded text-ink-gray-4 hover:bg-outline-gray-2 hover:text-ink-gray-9 transition-colors">
+                              <MoreHorizontal className="size-5" />
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  )}
                 </tbody>
               </table>
             </div>
@@ -151,7 +146,7 @@ export default function OrganizationProjectsList() {
             {/* Pagination Footer */}
             <div className="px-6 py-4 border-t border-outline-gray-2 flex items-center justify-between text-sm mt-auto bg-surface-gray-1">
               <div className="font-medium text-ink-gray-6">
-                Showing <span className="font-bold text-ink-gray-9">1&ndash;24</span> of 24
+                Showing <span className="font-bold text-ink-gray-9">1&ndash;{projects.length}</span> of {projects.length}
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1">

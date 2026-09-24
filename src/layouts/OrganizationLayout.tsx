@@ -12,6 +12,7 @@ import {
   Settings,
   Bell
 } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 interface OrganizationLayoutProps {
   children: React.ReactNode;
@@ -19,6 +20,10 @@ interface OrganizationLayoutProps {
 
 export function OrganizationLayout({ children }: OrganizationLayoutProps) {
   const location = useLocation();
+  const { user } = useAuth();
+
+  const orgName = user?.workspaces?.[0]?.organizationName || 'My Organization';
+  const firstName = user?.displayName?.split(' ')[0] || 'User';
 
   const isActive = (path: string) => {
     if (path === '/org/dashboard' && location.pathname === '/org/dashboard') return true;
@@ -50,7 +55,7 @@ export function OrganizationLayout({ children }: OrganizationLayoutProps) {
       <header className="flex items-center justify-between px-6 h-14 bg-surface-base border-b border-outline-gray-2 shrink-0 sticky top-0 z-20">
         <div className="flex items-center gap-3">
           <Link to="/org/dashboard" className="font-bold tracking-tight text-lg outline-none focus-visible:ring-2 focus-visible:ring-ink-gray-9 rounded">
-            ABC Technologies ▾
+            {orgName} ▾
           </Link>
         </div>
         
@@ -59,7 +64,7 @@ export function OrganizationLayout({ children }: OrganizationLayoutProps) {
             <Bell className="size-5" />
           </button>
           <div className="h-4 w-px bg-outline-gray-2" />
-          <span className="text-ink-gray-9 cursor-pointer hover:bg-surface-gray-1 px-2 py-1 rounded">Ravi ▾</span>
+          <span className="text-ink-gray-9 cursor-pointer hover:bg-surface-gray-1 px-2 py-1 rounded">{firstName} ▾</span>
         </div>
       </header>
 
