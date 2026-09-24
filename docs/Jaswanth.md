@@ -53,3 +53,10 @@ This file tracks the changes and contributions made by Jaswanth for each push to
   - Replaced hardcoded navigation in `SignIn.tsx` and `SetPassword.tsx` with dynamic routing. Platform Admins route to `/admin/organizations/reviews`, Pending Organizations route to `/under-review`, and Active Organizations route to `/org/dashboard`.
   - Removed mock data from `AccountUnderReview.tsx` (Page 14) and successfully piped the user's real dynamic organization details from the authentication context.
   - Wrote and executed `prisma/seed.ts` to provision the primary `OTTOBON` workspace and Super Admin account directly into the database.
+- **[2026-09-24] Implemented Dynamic Organization Dashboard & Project Runs Flow**
+  - Updated `OrganizationDashboard.tsx` to fetch and display dynamic metrics from the backend.
+  - Built `OrganizationProjectDetail.tsx` (Page 97) adhering to the strict Frappe-style tabbed layout for project context.
+  - Built `OrganizationRunsList.tsx` (Page 98) representing the Organization-wide Run directory.
+  - Implemented the backend API endpoints in `project.controller.ts` and `project.service.ts` to support dynamic project and run listing.
+  - Built `SelectRunStartingPoint.tsx` (Page 128) establishing the architectural decision boundary for Run initialization (Previous Run / Blueprint / Blank).
+  - Built `CopyPreviousRun.tsx` (Page 129) enforcing the rule that only configuration (not execution history) can be reused from a single source run.
