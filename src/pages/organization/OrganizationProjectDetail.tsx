@@ -98,7 +98,9 @@ export default function OrganizationProjectDetail() {
                 <p className="text-ink-gray-6 font-medium">Project Lead: <span className="text-ink-gray-9">{projectLead}</span></p>
               </div>
               <div className="flex items-center gap-3 shrink-0">
-                <Button variant="solid" theme="gray" label="Create Project Run" />
+                <Link to={`/org/projects/${project.id}/runs/create`}>
+                  <Button variant="solid" theme="gray" label="Create Project Run" />
+                </Link>
                 <button className="p-2 border border-outline-gray-2 rounded-md bg-surface-base hover:bg-surface-gray-1 text-ink-gray-6 transition-colors shadow-sm">
                   <MoreHorizontal className="size-5" />
                 </button>
@@ -158,7 +160,7 @@ export default function OrganizationProjectDetail() {
                 </div>
                 <div className="flex items-center justify-between py-2">
                   <span className="font-medium text-ink-gray-9">Create first Project Run</span>
-                  <Link to="#" className="text-sm font-semibold text-ink-gray-6 flex items-center gap-1 hover:text-ink-gray-9">Create Run →</Link>
+                  <Link to={`/org/projects/${project.id}/runs/create`} className="text-sm font-semibold text-ink-gray-6 flex items-center gap-1 hover:text-ink-gray-9">Create Run →</Link>
                 </div>
               </div>
             </section>
@@ -209,7 +211,9 @@ export default function OrganizationProjectDetail() {
                       <tr>
                         <td colSpan={4} className="px-6 py-8 text-center text-ink-gray-5">
                           No Project Runs have been created yet.<br/><br/>
-                          <Button variant="outline" theme="gray" label="Create Project Run" />
+                          <Link to={`/org/projects/${project.id}/runs/create`}>
+                            <Button variant="outline" theme="gray" label="Create Project Run" />
+                          </Link>
                         </td>
                       </tr>
                     ) : (
