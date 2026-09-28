@@ -23,8 +23,9 @@ This file tracks the changes and contributions made by Kusuma for each push to t
 - **[2026-09-28] Frontend: Implemented Create Project Run Modal & UI Integration**
   - **Interactive Project Run Creation Modal:**
     - Built dynamic "Create Project Run" modal inside `src/pages/organization/OrganizationProjectDetail.tsx`.
+    - Implemented interactive phase enabling/disabling selector allowing users to choose custom subsets of journey phases (`IDENTIFY`, `BUILD`, `OPERATE`, `TRANSFER`) per HLD architecture.
     - Added input controls for Display Name, Description, Target Participant Count, Planned Start Date, and Planned End Date with full form state management.
-    - Integrated direct API communication (`POST /projects/:id/runs`) with asynchronous loading states, validation, and automated run list refresh.
+    - Integrated direct API communication (`POST /projects/:id/runs`) sending `enabledPhases` array with asynchronous loading states, validation, and automated run list refresh.
   - **UI Checklist & Zero-State Enhancements:**
     - Linked "Create first Project Run" action item in the project onboarding checklist directly to the creation modal.
     - Provided an empty-state action button on the runs tab to trigger run creation when zero runs exist.
@@ -36,6 +37,19 @@ This file tracks the changes and contributions made by Kusuma for each push to t
   - **TypeScript & Module Support:**
     - Added `src/vite-env.d.ts` for module style declaration support.
     - Configured `tsconfig.app.json` for Vitest and Vite type compatibility while tuning compiler flags.
+
+- **[2026-09-28] Milestone 5 Frontend: Run Execution Dashboard & Phase Workbenches**
+  - **Run Execution Dashboard (`OrganizationRunDetail.tsx` / Page 99):**
+    - Built comprehensive dashboard displaying run header metadata, status, target intake, and total participations.
+    - Implemented Visual Journey Stepper rendering enabled phases (`IDENTIFY` -> `BUILD` -> `OPERATE` -> `TRANSFER`) per HLD Rule 5.
+    - Added Phase Governance Cards displaying ownership types (`ORGANIZATION`, `OTTOBON`, `SHARED`), assigned Phase Leads, and interactive Team Lead Assignment modal (`POST /v1/runs/phases/:phaseId/assignments`).
+  - **Phase Workbench & Manual Handover Engine (`RunPhaseDetail.tsx` / Page 100):**
+    - Built Phase Workbench with candidate roster table listing active/completed participations (`PhaseParticipation`).
+    - Implemented Manual Phase Handover modal allowing Phase Leads to select candidate checkboxes, choose target phase, enter handover title and justification, and post package (`POST /v1/runs/handovers`).
+    - Integrated Incoming Handover review and acceptance drawer calling `POST /v1/runs/handovers/:id/accept` to transition candidates to target phase and complete source participations.
+  - **Routing & Navigation:**
+    - Updated `App.tsx` registering `/org/projects/:projectId/runs/:runId` and `/org/projects/:projectId/runs/:runId/phases/:phaseId`.
+    - Enhanced `OrganizationProjectDetail.tsx` (Page 97) making project run rows clickable to navigate directly to the Run Execution Dashboard.
 
 - **[2026-09-28] Repository Synchronization**
   - Merged main branch updates across both `ibot_platform_backend` and `ibot_platform_frontend` repositories.

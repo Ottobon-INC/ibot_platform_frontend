@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { OrganizationLayout } from '../../layouts/OrganizationLayout';
 import { Button } from '../../components/ui/Button';
 import { 
@@ -11,6 +11,7 @@ import {
 
 export default function OrganizationProjectDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [project, setProject] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -20,6 +21,7 @@ export default function OrganizationProjectDetail() {
   const [runDisplayName, setRunDisplayName] = useState('');
   const [targetParticipantCount, setTargetParticipantCount] = useState(50);
   const [runDescription, setRunDescription] = useState('');
+  const [enabledPhases, setEnabledPhases] = useState<string[]>(['IDENTIFY', 'BUILD', 'OPERATE', 'TRANSFER']);
   const [isCreatingRun, setIsCreatingRun] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
@@ -41,11 +43,23 @@ export default function OrganizationProjectDetail() {
     fetchProject();
   }, [id]);
 
+  const togglePhase = (phase: string) => {
+    if (enabledPhases.includes(phase)) {
+      if (enabledPhases.length === 1) return; // Maintain at least 1 phase
+      setEnabledPhases(enabledPhases.filter(p => p !== phase));
+    } else {
+      const allPhases = ['IDENTIFY', 'BUILD', 'OPERATE', 'TRANSFER'];
+      const updated = [...enabledPhases, phase].sort((a, b) => allPhases.indexOf(a) - allPhases.indexOf(b));
+      setEnabledPhases(updated);
+    }
+  };
+
   const handleOpenCreateRun = () => {
     if (project) {
       const cycleNo = (project.runs?.length || 0) + 1;
       setRunDisplayName(`${project.canonicalName} — Cycle ${cycleNo}`);
     }
+    setEnabledPhases(['IDENTIFY', 'BUILD', 'OPERATE', 'TRANSFER']);
     setShowCreateRunModal(true);
   };
 
@@ -61,7 +75,8 @@ export default function OrganizationProjectDetail() {
         body: JSON.stringify({
           displayName: runDisplayName,
           targetParticipantCount: Number(targetParticipantCount) || 50,
-          description: runDescription
+          description: runDescription,
+          enabledPhases
         })
       });
 
@@ -186,14 +201,37 @@ export default function OrganizationProjectDetail() {
                 />
               </div>
 
-              {/* Default Journey Phases Preview */}
-              <div className="bg-surface-gray-1 p-3 rounded-lg border border-outline-gray-2 text-xs space-y-1">
-                <div className="font-semibold text-ink-gray-8">Journey Phases Automatically Included:</div>
-                <div className="flex gap-2 text-ink-gray-6 font-medium pt-1">
-                  <span className="px-2 py-0.5 bg-surface-base border border-outline-gray-2 rounded">1. IDENTIFY</span>
-                  <span className="px-2 py-0.5 bg-surface-base border border-outline-gray-2 rounded">2. BUILD</span>
-                  <span className="px-2 py-0.5 bg-surface-base border border-outline-gray-2 rounded">3. OPERATE</span>
-                  <span className="px-2 py-0.5 bg-surface-base border border-outline-gray-2 rounded">4. TRANSFER</span>
+              {/* Interactive Journey Phases Selector */}
+              <div className="bg-surface-gray-1 p-4 rounded-lg border border-outline-gray-2 text-xs space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="font-semibold text-ink-gray-9">Select Journey Phases for this Run:</div>
+                  <span className="text-ink-gray-5 text-[11px]">Click to enable / disable</span>
+                </div>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {[
+                    { id: 'IDENTIFY', label: '1. IDENTIFY', desc: 'Sourcing & Intake' },
+                    { id: 'BUILD', label: '2. BUILD', desc: 'Curriculum & Upskilling' },
+                    { id: 'OPERATE', label: '3. OPERATE', desc: 'Project Execution' },
+                    { id: 'TRANSFER', label: '4. TRANSFER', desc: 'Handover & Sign-off' }
+                  ].map((phase) => {
+                    const isEnabled = enabledPhases.includes(phase.id);
+                    return (
+                      <button
+                        key={phase.id}
+                        type="button"
+                        onClick={() => togglePhase(phase.id)}
+                        className={`px-3 py-1.5 rounded-md border text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
+                          isEnabled 
+                            ? 'bg-ink-gray-9 text-surface-base border-ink-gray-9 shadow-sm' 
+                            : 'bg-surface-base text-ink-gray-4 border-outline-gray-2 hover:border-ink-gray-5'
+                        }`}
+                        title={phase.desc}
+                      >
+                        <span className="text-[10px]">{isEnabled ? '✓' : '+'}</span>
+                        <span>{phase.label}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -356,16 +394,26 @@ export default function OrganizationProjectDetail() {
                       </tr>
                     ) : (
                       project.runs?.map((run: any) => (
-                        <tr key={run.id} className="hover:bg-surface-gray-1 transition-colors group cursor-pointer">
+                        <tr 
+                          key={run.id} 
+                          onClick={() => navigate(`/org/projects/${id}/runs/${run.id}`)}
+                          className="hover:bg-surface-gray-1 transition-colors group cursor-pointer"
+                        >
                           <td className="px-5 py-4 font-bold text-ink-gray-9 w-1/4">
                             {run.displayName}
                           </td>
                           <td className="px-5 py-4 font-medium text-ink-gray-6 w-1/4">
-                            I → B → O → T
+                            {run.runPhases?.length > 0 
+                              ? run.runPhases.map((p: any) => p.phaseType.charAt(0)).join(' → ')
+                              : 'I → B → O → T'}
                           </td>
                           <td className="px-5 py-4 w-1/4">
-                            <span className="text-ink-gray-6">Active: </span>
-                            <span className="font-semibold text-ink-gray-9">Identify + Build</span>
+                            <span className="text-ink-gray-6">Phases: </span>
+                            <span className="font-semibold text-ink-gray-9">
+                              {run.runPhases?.length > 0 
+                                ? run.runPhases.map((p: any) => p.phaseType.charAt(0) + p.phaseType.slice(1).toLowerCase()).join(' + ')
+                                : 'Identify + Build'}
+                            </span>
                           </td>
                           <td className="px-5 py-4 w-1/4 text-right">
                             <span className="inline-flex items-center rounded-md bg-ink-gray-1 px-2 py-1 text-xs font-medium text-ink-gray-7 ring-1 ring-inset ring-outline-gray-2">
@@ -380,7 +428,7 @@ export default function OrganizationProjectDetail() {
               </div>
               {project.runs?.length > 0 && (
                 <div className="px-5 py-3 border-t border-outline-gray-2 bg-surface-gray-1 text-right rounded-b-lg">
-                  <Link to="#" className="text-sm font-semibold text-ink-gray-6 flex items-center justify-end gap-1 hover:text-ink-gray-9 transition-colors w-full">
+                  <Link to="/org/runs" className="text-sm font-semibold text-ink-gray-6 flex items-center justify-end gap-1 hover:text-ink-gray-9 transition-colors w-full">
                     View all Runs <ArrowRight className="size-4" />
                   </Link>
                 </div>

@@ -39,6 +39,8 @@ import OrganizationProjectDetail from './pages/organization/OrganizationProjectD
 import SelectRunStartingPoint from './pages/organization/SelectRunStartingPoint';
 import CopyPreviousRun from './pages/organization/CopyPreviousRun';
 import OrganizationRunsList from './pages/organization/OrganizationRunsList';
+import OrganizationRunDetail from './pages/organization/OrganizationRunDetail';
+import RunPhaseDetail from './pages/organization/RunPhaseDetail';
 import ScrollToTop from './components/ScrollToTop';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -118,6 +120,8 @@ function App() {
           <Route path="/org/projects/:id" element={<ProtectedRoute><OrganizationProjectDetail /></ProtectedRoute>} />
           <Route path="/org/projects/:id/runs/create" element={<ProtectedRoute><SelectRunStartingPoint /></ProtectedRoute>} />
           <Route path="/org/projects/:id/runs/create/copy-previous" element={<ProtectedRoute><CopyPreviousRun /></ProtectedRoute>} />
+          <Route path="/org/projects/:projectId/runs/:runId" element={<ProtectedRoute><OrganizationRunDetail /></ProtectedRoute>} />
+          <Route path="/org/projects/:projectId/runs/:runId/phases/:phaseId" element={<ProtectedRoute><RunPhaseDetail /></ProtectedRoute>} />
           <Route path="/org/runs" element={<ProtectedRoute><OrganizationRunsList /></ProtectedRoute>} />
           <Route path="/org/team" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
           <Route path="/org/approvals" element={<ProtectedRoute><OrganizationDashboard /></ProtectedRoute>} />
