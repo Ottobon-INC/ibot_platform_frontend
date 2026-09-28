@@ -30,7 +30,7 @@ export default function CreateProject() {
           description: description
         })
       });
-      const data = await res.json();
+      await res.json();
       
       setShowToast(true);
       
@@ -165,16 +165,19 @@ export default function CreateProject() {
             {/* Actions */}
             <div className="pt-6 border-t border-outline-gray-2 flex items-center justify-end gap-3">
               <Link to="/org/projects">
-                <Button variant="outline" theme="gray" label="Cancel" type="button" disabled={isSubmitting} />
+                <Button variant="ghost" theme="gray" type="button" disabled={isSubmitting}>
+                  Cancel
+                </Button>
               </Link>
               <Button 
                 variant="solid" 
                 theme="gray" 
-                label={isSubmitting ? "Creating Project..." : "Create Project"} 
                 type="submit" 
                 disabled={!isValid || isSubmitting}
                 className="min-w-32"
-              />
+              >
+                {isSubmitting ? "Creating Project..." : "Create Project"}
+              </Button>
             </div>
 
           </form>

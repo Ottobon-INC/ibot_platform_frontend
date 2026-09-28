@@ -10,7 +10,20 @@ import {
   MoreHorizontal,
   Loader2
 } from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns';
+
+function formatTimeAgo(dateString: string) {
+  if (!dateString) return 'Recently';
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return 'Recently';
+  const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
+  if (seconds < 60) return 'just now';
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
+}
 
 export default function OrganizationProjectsList() {
   const [projects, setProjects] = React.useState<any[]>([]);
@@ -53,7 +66,9 @@ export default function OrganizationProjectsList() {
               <p className="text-sm text-ink-gray-6">Manage Projects and their Project Runs.</p>
             </div>
             <Link to="/org/projects/create">
-              <Button variant="solid" theme="gray" label="Create Project" className="w-full md:w-auto shadow-sm" />
+              <Button variant="solid" theme="gray" className="w-full md:w-auto shadow-sm">
+                Create Project
+              </Button>
             </Link>
           </div>
 
@@ -128,7 +143,7 @@ export default function OrganizationProjectsList() {
                           <td className="px-6 py-4 font-bold">{activeRunsCount}</td>
                           <td className="px-6 py-4 font-medium text-ink-gray-7">{latestRun}</td>
                           <td className="px-6 py-4 text-right font-medium text-ink-gray-5">
-                            {formatDistanceToNow(new Date(project.updatedAt), { addSuffix: true })}
+                            {formatTimeAgo(project.updatedAt)}
                           </td>
                           <td className="px-4 py-4 text-right">
                             <button className="p-1 rounded text-ink-gray-4 hover:bg-outline-gray-2 hover:text-ink-gray-9 transition-colors">

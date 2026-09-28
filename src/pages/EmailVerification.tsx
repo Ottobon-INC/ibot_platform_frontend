@@ -34,7 +34,7 @@ export default function EmailVerification() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
-      }).catch(err => {
+      }).catch(() => {
         setGlobalError("Failed to send verification email. Please try resending.");
       });
     }
@@ -57,7 +57,7 @@ export default function EmailVerification() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
-    }).catch(err => {
+    }).catch(() => {
       setGlobalError("Failed to resend verification email.");
       setCountdown(0);
     });

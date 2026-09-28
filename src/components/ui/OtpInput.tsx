@@ -6,9 +6,11 @@ interface OtpInputProps {
   value: string;
   onChange: (value: string) => void;
   disabled?: boolean;
+  autoFocus?: boolean;
+  onComplete?: (code: string) => void;
 }
 
-export function OtpInput({ length = 6, value, onChange, disabled }: OtpInputProps) {
+export function OtpInput({ length = 6, value, onChange, disabled, autoFocus, onComplete }: OtpInputProps) {
   const [activeInput, setActiveInput] = useState(0);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -21,6 +23,10 @@ export function OtpInput({ length = 6, value, onChange, disabled }: OtpInputProp
     newValue[index] = val.slice(-1);
     const joinedValue = newValue.join('');
     onChange(joinedValue);
+
+    if (joinedValue.length === length) {
+      onComplete?.(joinedValue);
+    }
 
     if (val && index < length - 1) {
       setActiveInput(index + 1);
@@ -77,7 +83,7 @@ export function OtpInput({ length = 6, value, onChange, disabled }: OtpInputProp
       {Array.from({ length }).map((_, index) => (
         <input
           key={index}
-          ref={(el) => (inputRefs.current[index] = el)}
+          ref={(el) => { inputRefs.current[index] = el; }}
           type="text"
           inputMode="numeric"
           pattern="\d*"

@@ -4,7 +4,6 @@ import { OrganizationLayout } from '../../layouts/OrganizationLayout';
 import { Button } from '../../components/ui/Button';
 import { 
   ChevronRight, 
-  Loader2,
   MoreHorizontal,
   ArrowRight,
   AlertCircle
@@ -16,29 +15,74 @@ export default function OrganizationProjectDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  // Create Run Modal State
+  const [showCreateRunModal, setShowCreateRunModal] = useState(false);
+  const [runDisplayName, setRunDisplayName] = useState('');
+  const [targetParticipantCount, setTargetParticipantCount] = useState(50);
+  const [runDescription, setRunDescription] = useState('');
+  const [isCreatingRun, setIsCreatingRun] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+
+  const fetchProject = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/v1/projects/${id}`);
+      if (!res.ok) throw new Error('Failed to fetch project');
+      const data = await res.json();
+      setProject(data);
+    } catch (err) {
+      console.error(err);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchProject = async () => {
-      try {
-        const res = await fetch(`http://localhost:3000/v1/projects/${id}`);
-        if (!res.ok) throw new Error('Failed to fetch project');
-        const data = await res.json();
-        setProject(data);
-      } catch (err) {
-        console.error(err);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchProject();
   }, [id]);
+
+  const handleOpenCreateRun = () => {
+    if (project) {
+      const cycleNo = (project.runs?.length || 0) + 1;
+      setRunDisplayName(`${project.canonicalName} — Cycle ${cycleNo}`);
+    }
+    setShowCreateRunModal(true);
+  };
+
+  const handleCreateRunSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!runDisplayName.trim() || isCreatingRun) return;
+
+    setIsCreatingRun(true);
+    try {
+      const res = await fetch(`http://localhost:3000/v1/projects/${id}/runs`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          displayName: runDisplayName,
+          targetParticipantCount: Number(targetParticipantCount) || 50,
+          description: runDescription
+        })
+      });
+
+      if (!res.ok) throw new Error('Failed to create run');
+
+      await fetchProject();
+      setShowCreateRunModal(false);
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsCreatingRun(false);
+    }
+  };
 
   if (loading) {
     return (
       <OrganizationLayout>
         <div className="p-6 md:p-8 flex flex-col min-h-full">
           <div className="max-w-4xl mx-auto w-full space-y-8 animate-in fade-in pb-20">
-            {/* Header skeleton */}
             <div className="space-y-4">
               <div className="h-4 w-48 bg-outline-gray-2 rounded animate-pulse" />
               <div className="flex justify-between items-start">
@@ -49,7 +93,6 @@ export default function OrganizationProjectDetail() {
               </div>
               <div className="h-10 w-full bg-outline-gray-2 rounded animate-pulse" />
             </div>
-            {/* Section skeleton */}
             <div className="h-48 w-full bg-outline-gray-2 rounded animate-pulse" />
             <div className="h-48 w-full bg-outline-gray-2 rounded animate-pulse" />
           </div>
@@ -64,9 +107,13 @@ export default function OrganizationProjectDetail() {
         <div className="flex flex-col h-full items-center justify-center gap-4">
           <p className="text-ink-gray-5">We couldn't load this Project.</p>
           <div className="flex gap-3">
-            <Button variant="solid" theme="gray" label="Try again" onClick={() => window.location.reload()} />
+            <Button variant="solid" theme="gray" onClick={() => window.location.reload()}>
+              Try again
+            </Button>
             <Link to="/org/projects">
-              <Button variant="outline" theme="gray" label="Back to Projects" />
+              <Button variant="ghost" theme="gray">
+                Back to Projects
+              </Button>
             </Link>
           </div>
         </div>
@@ -75,12 +122,105 @@ export default function OrganizationProjectDetail() {
   }
 
   const activeRunsCount = project.runs?.filter((r: any) => r.status === 'ACTIVE').length || 0;
-  const projectMembersCount = 0; // Stub
-  const actionsRequiredCount = 1; // Example stub
-  const projectLead = "Not assigned"; // Stub
+  const projectMembersCount = 0;
+  const actionsRequiredCount = 1;
+  const projectLead = "Not assigned";
 
   return (
     <OrganizationLayout>
+
+      {/* Toast Notification */}
+      {showToast && (
+        <div className="fixed top-4 right-4 z-50 animate-in fade-in slide-in-from-top-4 flex items-center gap-3 bg-ink-gray-9 text-white px-4 py-3 rounded-md shadow-lg font-medium text-sm">
+          <AlertCircle className="size-5 text-ink-green-4" />
+          Project Run created successfully.
+        </div>
+      )}
+
+      {/* Create Run Modal */}
+      {showCreateRunModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink-gray-9/40 backdrop-blur-sm animate-in fade-in">
+          <div className="bg-surface-base border border-outline-gray-2 rounded-xl shadow-xl w-full max-w-lg p-6 space-y-6 animate-in zoom-in-95">
+            <div className="flex items-center justify-between border-b border-outline-gray-2 pb-4">
+              <h3 className="text-lg font-bold text-ink-gray-9">Create Project Run</h3>
+              <button 
+                onClick={() => setShowCreateRunModal(false)}
+                className="text-ink-gray-5 hover:text-ink-gray-9 text-xl leading-none font-bold"
+              >
+                &times;
+              </button>
+            </div>
+
+            <form onSubmit={handleCreateRunSubmit} className="space-y-5">
+              <div>
+                <label className="block text-sm font-medium text-ink-gray-9 mb-1">Run Display Name *</label>
+                <input 
+                  type="text"
+                  required
+                  value={runDisplayName}
+                  onChange={(e) => setRunDisplayName(e.target.value)}
+                  placeholder="e.g. Hiring 2027 — Cycle 1"
+                  className="w-full px-3 py-2 border border-outline-gray-2 rounded-md text-sm text-ink-gray-9 focus:outline-none focus:ring-2 focus:ring-ink-gray-9"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-ink-gray-9 mb-1">Target Participant Count</label>
+                <input 
+                  type="number"
+                  min={1}
+                  value={targetParticipantCount}
+                  onChange={(e) => setTargetParticipantCount(Number(e.target.value))}
+                  className="w-full px-3 py-2 border border-outline-gray-2 rounded-md text-sm text-ink-gray-9 focus:outline-none focus:ring-2 focus:ring-ink-gray-9"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-ink-gray-9 mb-1">Description (Optional)</label>
+                <textarea 
+                  rows={3}
+                  value={runDescription}
+                  onChange={(e) => setRunDescription(e.target.value)}
+                  placeholder="Cycle specifics, target profile, or notes..."
+                  className="w-full px-3 py-2 border border-outline-gray-2 rounded-md text-sm text-ink-gray-9 focus:outline-none focus:ring-2 focus:ring-ink-gray-9 resize-none"
+                />
+              </div>
+
+              {/* Default Journey Phases Preview */}
+              <div className="bg-surface-gray-1 p-3 rounded-lg border border-outline-gray-2 text-xs space-y-1">
+                <div className="font-semibold text-ink-gray-8">Journey Phases Automatically Included:</div>
+                <div className="flex gap-2 text-ink-gray-6 font-medium pt-1">
+                  <span className="px-2 py-0.5 bg-surface-base border border-outline-gray-2 rounded">1. IDENTIFY</span>
+                  <span className="px-2 py-0.5 bg-surface-base border border-outline-gray-2 rounded">2. BUILD</span>
+                  <span className="px-2 py-0.5 bg-surface-base border border-outline-gray-2 rounded">3. OPERATE</span>
+                  <span className="px-2 py-0.5 bg-surface-base border border-outline-gray-2 rounded">4. TRANSFER</span>
+                </div>
+              </div>
+
+              <div className="flex justify-end gap-3 pt-3 border-t border-outline-gray-2">
+                <Button 
+                  variant="ghost" 
+                  theme="gray" 
+                  type="button" 
+                  onClick={() => setShowCreateRunModal(false)}
+                  disabled={isCreatingRun}
+                >
+                  Cancel
+                </Button>
+                <Button 
+                  variant="solid" 
+                  theme="gray" 
+                  type="submit" 
+                  disabled={!runDisplayName.trim() || isCreatingRun}
+                >
+                  {isCreatingRun ? 'Creating Run...' : 'Create Run'}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       <div className="p-6 md:p-8 flex flex-col min-h-full">
         <div className="max-w-4xl mx-auto w-full space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
           
@@ -98,7 +238,9 @@ export default function OrganizationProjectDetail() {
                 <p className="text-ink-gray-6 font-medium">Project Lead: <span className="text-ink-gray-9">{projectLead}</span></p>
               </div>
               <div className="flex items-center gap-3 shrink-0">
-                <Button variant="solid" theme="gray" label="Create Project Run" />
+                <Button variant="solid" theme="gray" onClick={handleOpenCreateRun}>
+                  Create Project Run
+                </Button>
                 <button className="p-2 border border-outline-gray-2 rounded-md bg-surface-base hover:bg-surface-gray-1 text-ink-gray-6 transition-colors shadow-sm">
                   <MoreHorizontal className="size-5" />
                 </button>
@@ -146,19 +288,19 @@ export default function OrganizationProjectDetail() {
                 <p className="text-sm text-ink-gray-6 mb-4">Complete these initial steps to start executing this Project.</p>
                 <div className="flex items-center justify-between py-2 border-b border-outline-gray-2/50">
                   <span className="font-medium text-ink-gray-9">Assign Project Lead</span>
-                  <Link to="#" className="text-sm font-semibold text-ink-gray-6 flex items-center gap-1 hover:text-ink-gray-9">Assign →</Link>
+                  <button className="text-sm font-semibold text-ink-gray-6 flex items-center gap-1 hover:text-ink-gray-9">Assign →</button>
                 </div>
                 <div className="flex items-center justify-between py-2 border-b border-outline-gray-2/50">
                   <span className="font-medium text-ink-gray-9">Build Project Team</span>
-                  <Link to="#" className="text-sm font-semibold text-ink-gray-6 flex items-center gap-1 hover:text-ink-gray-9">Build →</Link>
+                  <button className="text-sm font-semibold text-ink-gray-6 flex items-center gap-1 hover:text-ink-gray-9">Build →</button>
                 </div>
                 <div className="flex items-center justify-between py-2 border-b border-outline-gray-2/50">
                   <span className="font-medium text-ink-gray-9">Configure Project Blueprint</span>
-                  <Link to="#" className="text-sm font-semibold text-ink-gray-6 flex items-center gap-1 hover:text-ink-gray-9">Configure →</Link>
+                  <button className="text-sm font-semibold text-ink-gray-6 flex items-center gap-1 hover:text-ink-gray-9">Configure →</button>
                 </div>
                 <div className="flex items-center justify-between py-2">
                   <span className="font-medium text-ink-gray-9">Create first Project Run</span>
-                  <Link to="#" className="text-sm font-semibold text-ink-gray-6 flex items-center gap-1 hover:text-ink-gray-9">Create Run →</Link>
+                  <button onClick={handleOpenCreateRun} className="text-sm font-semibold text-ink-gray-6 flex items-center gap-1 hover:text-ink-gray-9">Create Run →</button>
                 </div>
               </div>
             </section>
@@ -209,7 +351,7 @@ export default function OrganizationProjectDetail() {
                       <tr>
                         <td colSpan={4} className="px-6 py-8 text-center text-ink-gray-5">
                           No Project Runs have been created yet.<br/><br/>
-                          <Button variant="outline" theme="gray" label="Create Project Run" />
+                          <Button variant="subtle" theme="gray" onClick={() => setShowCreateRunModal(true)}>Create Project Run</Button>
                         </td>
                       </tr>
                     ) : (

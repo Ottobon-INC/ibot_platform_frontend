@@ -294,7 +294,7 @@ export default function SecuritySettings() {
                     label="Current password"
                     name="currentPassword"
                     value={currentPassword}
-                    onChange={(val) => setCurrentPassword(val)}
+                    onChange={(e) => setCurrentPassword(e.target.value)}
                     showRequirements={false}
                     autoFocus
                   />
@@ -308,7 +308,7 @@ export default function SecuritySettings() {
                     label="New password"
                     name="newPassword"
                     value={newPassword}
-                    onChange={(val) => setNewPassword(val)}
+                    onChange={(e) => setNewPassword(e.target.value)}
                     showRequirements={true}
                   />
                 </div>
@@ -318,7 +318,7 @@ export default function SecuritySettings() {
                     label="Confirm new password"
                     name="confirmPassword"
                     value={confirmPassword}
-                    onChange={(val) => setConfirmPassword(val)}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     showRequirements={false}
                   />
                   {confirmPassword && newPassword !== confirmPassword && (
