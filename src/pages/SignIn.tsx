@@ -7,6 +7,7 @@ import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { API_BASE_URL } from '../config/api';
 
 const signInSchema = z.object({
   email: z.string().min(1, 'Enter your email address.').email('Enter a valid email address.'),
@@ -33,7 +34,7 @@ export default function SignIn() {
   const onSubmit = async (data: SignInFormValues) => {
     setGlobalError(null);
     try {
-      const response = await fetch('http://localhost:3000/v1/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: data.email, password: data.password })

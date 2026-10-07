@@ -11,6 +11,7 @@ import {
   MessageSquarePlus,
   AlertTriangle
 } from 'lucide-react';
+import { API_BASE_URL } from '../../config/api';
 
 type ModalType = 'none' | 'approve' | 'request_info' | 'not_approve';
 
@@ -26,7 +27,7 @@ export default function OrganizationReviewDetail() {
 
   useEffect(() => {
     if (!id) return;
-    fetch(`http://localhost:3000/v1/admin/organizations/${id}`)
+    fetch(`${API_BASE_URL}/admin/organizations/${id}`)
       .then(res => res.json())
       .then(data => {
         setOrgData(data);
@@ -39,7 +40,7 @@ export default function OrganizationReviewDetail() {
     if (!id) return;
     setIsApproving(true);
     try {
-      await fetch(`http://localhost:3000/v1/admin/organizations/${id}/approve`, {
+      await fetch(`${API_BASE_URL}/admin/organizations/${id}/approve`, {
         method: 'POST'
       });
       setActiveModal('none');

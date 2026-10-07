@@ -4,6 +4,7 @@ import { OrganizationLayout } from '../../layouts/OrganizationLayout';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { ChevronDown, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { API_BASE_URL } from '../../config/api';
 
 export default function CreateProject() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function CreateProject() {
     setIsSubmitting(true);
     
     try {
-      const res = await fetch('http://localhost:3000/v1/projects', {
+      const res = await fetch(`${API_BASE_URL}/projects`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

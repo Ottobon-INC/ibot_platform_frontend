@@ -16,6 +16,7 @@ import {
   ChevronRightCircle,
   X
 } from 'lucide-react';
+import { API_BASE_URL } from '../../config/api';
 
 export default function OrganizationRunDetail() {
   const { projectId, runId } = useParams();
@@ -34,7 +35,7 @@ export default function OrganizationRunDetail() {
 
   const fetchRun = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/v1/runs/${runId}`);
+      const res = await fetch(`${API_BASE_URL}/runs/${runId}`);
       if (!res.ok) throw new Error('Failed to fetch run details');
       const data = await res.json();
       setRun(data);
@@ -63,7 +64,7 @@ export default function OrganizationRunDetail() {
 
     setIsAssigning(true);
     try {
-      const res = await fetch(`http://localhost:3000/v1/runs/phases/${selectedPhaseForAssignment.id}/assignments`, {
+      const res = await fetch(`${API_BASE_URL}/runs/phases/${selectedPhaseForAssignment.id}/assignments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

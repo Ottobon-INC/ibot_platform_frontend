@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config/api';
 
 interface WorkspaceMembership {
   workspaceId: string;
@@ -66,7 +67,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem('ibot_user');
     
     // Attempt to clear backend cookie
-    fetch('http://localhost:3000/v1/auth/logout', { method: 'POST', credentials: 'include' }).catch(console.error);
+    fetch(`${API_BASE_URL}/auth/logout`, { method: 'POST', credentials: 'include' }).catch(console.error);
   };
 
   if (isLoading) {

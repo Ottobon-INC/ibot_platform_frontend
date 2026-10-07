@@ -3,6 +3,7 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { StepIndicator } from '../components/ui/StepIndicator';
 import { OtpInput } from '../components/ui/OtpInput';
+import { API_BASE_URL } from '../config/api';
 
 export default function EmailVerification() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function EmailVerification() {
   useEffect(() => {
     if (!hasSentInitialOtp.current && email) {
       hasSentInitialOtp.current = true;
-      fetch('http://localhost:3000/v1/auth/send-otp', {
+      fetch(`${API_BASE_URL}/auth/send-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -53,7 +54,7 @@ export default function EmailVerification() {
     setCountdown(30);
     setGlobalError(null);
     
-    fetch('http://localhost:3000/v1/auth/send-otp', {
+    fetch(`${API_BASE_URL}/auth/send-otp`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
@@ -76,7 +77,7 @@ export default function EmailVerification() {
     setGlobalError(null);
     
     try {
-      const response = await fetch('http://localhost:3000/v1/auth/verify-email', {
+      const response = await fetch(`${API_BASE_URL}/auth/verify-email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, code }),

@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { OrganizationLayout } from '../../layouts/OrganizationLayout';
 import { Button } from '../../components/ui/Button';
 import { ChevronRight, Loader2, ArrowLeft } from 'lucide-react';
+import { API_BASE_URL } from '../../config/api';
 
 export default function SelectRunStartingPoint() {
   const { id: projectId } = useParams();
@@ -16,7 +17,7 @@ export default function SelectRunStartingPoint() {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/v1/projects/${projectId}`);
+        const res = await fetch(`${API_BASE_URL}/projects/${projectId}`);
         if (!res.ok) throw new Error('Failed to fetch project');
         const data = await res.json();
         setProject(data);

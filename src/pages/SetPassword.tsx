@@ -5,6 +5,7 @@ import { StepIndicator } from '../components/ui/StepIndicator';
 import { PasswordInput, defaultRequirements } from '../components/ui/PasswordInput';
 import { Check } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { API_BASE_URL } from '../config/api';
 
 export default function SetPassword() {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ export default function SetPassword() {
     setGlobalError(null);
     
     try {
-      const response = await fetch('http://localhost:3000/v1/auth/register', {
+      const response = await fetch(`${API_BASE_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -59,7 +60,7 @@ export default function SetPassword() {
       }
 
       // Auto-login
-      const loginResponse = await fetch('http://localhost:3000/v1/auth/login', {
+      const loginResponse = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: state.email, password })

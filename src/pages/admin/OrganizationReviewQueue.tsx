@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { Button } from '../../components/ui/Button';
 import { Search, ChevronDown, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
+import { API_BASE_URL } from '../../config/api';
 
 type TabType = 'Needs Review' | 'Waiting for Information' | 'All';
 
@@ -25,7 +26,7 @@ export default function OrganizationReviewQueue() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/v1/admin/organizations/pending')
+    fetch(`${API_BASE_URL}/admin/organizations/pending`)
       .then(res => res.json())
       .then(data => {
         // Map the backend response to the frontend interface

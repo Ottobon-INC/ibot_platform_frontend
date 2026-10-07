@@ -19,6 +19,7 @@ import {
   AlertCircle,
   FileCheck
 } from 'lucide-react';
+import { API_BASE_URL } from '../../config/api';
 
 export default function RunPhaseDetail() {
   const { projectId, runId, phaseId } = useParams();
@@ -51,13 +52,13 @@ export default function RunPhaseDetail() {
   const fetchData = async () => {
     try {
       // Fetch Phase details
-      const phaseRes = await fetch(`http://localhost:3000/v1/runs/phases/${phaseId}`);
+      const phaseRes = await fetch(`${API_BASE_URL}/runs/phases/${phaseId}`);
       if (!phaseRes.ok) throw new Error('Failed to fetch phase details');
       const phaseData = await phaseRes.json();
       setPhase(phaseData);
 
       // Fetch Run details for sibling phases
-      const runRes = await fetch(`http://localhost:3000/v1/runs/${runId}`);
+      const runRes = await fetch(`${API_BASE_URL}/runs/${runId}`);
       if (runRes.ok) {
         const runData = await runRes.json();
         setRun(runData);
@@ -112,7 +113,7 @@ export default function RunPhaseDetail() {
 
     setIsInitiating(true);
     try {
-      const res = await fetch(`http://localhost:3000/v1/runs/handovers`, {
+      const res = await fetch(`${API_BASE_URL}/runs/handovers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -146,7 +147,7 @@ export default function RunPhaseDetail() {
     if (isAccepting) return;
     setIsAccepting(true);
     try {
-      const res = await fetch(`http://localhost:3000/v1/runs/handovers/${handoverId}/accept`, {
+      const res = await fetch(`${API_BASE_URL}/runs/handovers/${handoverId}/accept`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -10,6 +10,7 @@ import {
   MoreHorizontal,
   Loader2
 } from 'lucide-react';
+import { API_BASE_URL } from '../../config/api';
 
 function formatTimeAgo(dateString: string) {
   if (!dateString) return 'Recently';
@@ -32,7 +33,7 @@ export default function OrganizationProjectsList() {
   React.useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch('http://localhost:3000/v1/projects?orgId=default');
+        const res = await fetch(`${API_BASE_URL}/projects?orgId=default`);
         const data = await res.json();
         setProjects(data);
       } catch (err) {

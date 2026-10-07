@@ -8,6 +8,7 @@ import {
   ArrowRight,
   AlertCircle
 } from 'lucide-react';
+import { API_BASE_URL } from '../../config/api';
 
 export default function OrganizationProjectDetail() {
   const { id } = useParams();
@@ -27,7 +28,7 @@ export default function OrganizationProjectDetail() {
 
   const fetchProject = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/v1/projects/${id}`);
+      const res = await fetch(`${API_BASE_URL}/projects/${id}`);
       if (!res.ok) throw new Error('Failed to fetch project');
       const data = await res.json();
       setProject(data);
@@ -69,7 +70,7 @@ export default function OrganizationProjectDetail() {
 
     setIsCreatingRun(true);
     try {
-      const res = await fetch(`http://localhost:3000/v1/projects/${id}/runs`, {
+      const res = await fetch(`${API_BASE_URL}/projects/${id}/runs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

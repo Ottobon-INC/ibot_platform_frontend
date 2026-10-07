@@ -10,6 +10,7 @@ import {
   Loader2 
 } from 'lucide-react';
 import { format } from 'date-fns';
+import { API_BASE_URL } from '../../config/api';
 
 export default function OrganizationRunsList() {
   const [runs, setRuns] = useState<any[]>([]);
@@ -19,7 +20,7 @@ export default function OrganizationRunsList() {
   useEffect(() => {
     const fetchRuns = async () => {
       try {
-        const res = await fetch('http://localhost:3000/v1/projects/runs?orgId=default');
+        const res = await fetch(`${API_BASE_URL}/projects/runs?orgId=default`);
         if (!res.ok) throw new Error('Failed to fetch runs');
         const data = await res.json();
         setRuns(data);

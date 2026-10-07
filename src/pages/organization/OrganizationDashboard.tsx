@@ -9,6 +9,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { API_BASE_URL } from '../../config/api';
 
 export default function OrganizationDashboard() {
   const { user } = useAuth();
@@ -21,8 +22,8 @@ export default function OrganizationDashboard() {
     const fetchData = async () => {
       try {
         const [metricsRes, projectsRes] = await Promise.all([
-          fetch('http://localhost:3000/v1/projects/dashboard-metrics?orgId=default'),
-          fetch('http://localhost:3000/v1/projects?orgId=default')
+          fetch(`${API_BASE_URL}/projects/dashboard-metrics?orgId=default`),
+          fetch(`${API_BASE_URL}/projects?orgId=default`)
         ]);
         
         const metricsData = await metricsRes.json();
