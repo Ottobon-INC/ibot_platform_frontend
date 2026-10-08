@@ -81,7 +81,7 @@ export default function SignIn() {
         <Link to="/" className="font-bold tracking-tight text-lg outline-none focus-visible:ring-2 focus-visible:ring-ink-gray-9 rounded">OTTOBON</Link>
         <div className="flex items-center gap-4 text-sm">
           <span className="hidden sm:inline text-ink-gray-6">New to Ottobon?</span>
-          <Link to="/">
+          <Link to="/get-started">
             <Button variant="ghost" className="font-semibold text-ink-gray-8">Create Account</Button>
           </Link>
         </div>

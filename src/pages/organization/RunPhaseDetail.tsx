@@ -224,7 +224,7 @@ export default function RunPhaseDetail() {
                 Initiate Manual Phase Handover
               </h3>
               <button 
-                onClick={() => setShowInitiateModal(null)} 
+                onClick={() => setShowInitiateModal(false)} 
                 className="p-1 text-ink-gray-5 hover:text-ink-gray-9 rounded-md transition-colors"
               >
                 <X className="size-5" />

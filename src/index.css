@@ -1,71 +1,216 @@
 @import "tailwindcss";
 
+/* =========================================================================
+   OTTOBON IBOT — PREMIUM ENTERPRISE DESIGN SYSTEM
+   Informed by Academic Portal Quality:
+   Obsidian Slate + Electric Indigo/Sapphire + Atmospheric Light Surfaces
+   Typography: Cabinet Grotesk (display) + Geist (sans) + JetBrains Mono (meta)
+   ========================================================================= */
+
 @theme {
-  --color-surface-base: var(--theme-surface-base);
-  --color-surface-gray-1: var(--theme-surface-gray-1);
-  --color-surface-gray-2: var(--theme-surface-gray-2);
-  --color-outline-gray-1: var(--theme-outline-gray-1);
-  --color-outline-gray-2: var(--theme-outline-gray-2);
-  --color-ink-gray-4: var(--theme-ink-gray-4);
-  --color-ink-gray-5: var(--theme-ink-gray-5);
-  --color-ink-gray-6: var(--theme-ink-gray-6);
-  --color-ink-gray-7: var(--theme-ink-gray-7);
-  --color-ink-gray-8: var(--theme-ink-gray-8);
-  --color-ink-gray-9: var(--theme-ink-gray-9);
+  /* Semantic Tokens for Tailwind */
+  --color-ibot-bg-dark:            var(--ibot-bg-dark);
+  --color-ibot-bg-dark-card:       var(--ibot-bg-dark-card);
+  --color-ibot-bg-dark-raised:     var(--ibot-bg-dark-raised);
+  --color-ibot-bg-light:           var(--ibot-bg-light);
+  --color-ibot-bg-light-card:      var(--ibot-bg-light-card);
+  --color-ibot-bg-light-subtle:    var(--ibot-bg-light-subtle);
+
+  --color-ibot-accent-primary:     var(--ibot-accent-primary);
+  --color-ibot-accent-hover:       var(--ibot-accent-hover);
+  --color-ibot-accent-bright:      var(--ibot-accent-bright);
+  --color-ibot-accent-secondary:   var(--ibot-accent-secondary);
+  --color-ibot-accent-tint:        var(--ibot-accent-tint);
+
+  --color-ibot-status-verified:    var(--ibot-status-verified);
+  --color-ibot-status-pending:     var(--ibot-status-pending);
+  --color-ibot-status-neutral:     var(--ibot-status-neutral);
+
+  --color-ibot-text-on-dark:       var(--ibot-text-on-dark);
+  --color-ibot-text-muted-dark:    var(--ibot-text-muted-dark);
+  --color-ibot-text-dim-dark:      var(--ibot-text-dim-dark);
+
+  --color-ibot-text-on-light:      var(--ibot-text-on-light);
+  --color-ibot-text-muted-light:   var(--ibot-text-muted-light);
+  --color-ibot-text-dim-light:     var(--ibot-text-dim-light);
+
+  --color-ibot-border-dark:        var(--ibot-border-dark);
+  --color-ibot-border-dark-hover:  var(--ibot-border-dark-hover);
+  --color-ibot-border-light:       var(--ibot-border-light);
+
+  /* Legacy tokens for ApproachSection & LeadModal */
+  --color-lp-bg:                   var(--ibot-bg-light);
+  --color-lp-surface:              #FFFFFF;
+  --color-lp-heading:              var(--ibot-text-on-light);
+  --color-lp-body:                 var(--ibot-text-muted-light);
+  --color-lp-muted:                var(--ibot-text-dim-light);
+  --color-lp-border:               var(--ibot-border-light);
+  --color-lp-border-decor:         var(--ibot-border-light);
+  --color-lp-border-inter:         var(--ibot-accent-primary);
+  --color-lp-cta-primary:          var(--ibot-accent-primary);
+  --color-lp-cta-hover:            var(--ibot-accent-hover);
+  --color-lp-cta-text:             #FFFFFF;
+  --color-lp-section-alt:          var(--ibot-bg-light-subtle);
+  --color-lp-section-warm:         var(--ibot-bg-light);
+  --color-lp-section-cool:         var(--ibot-bg-light);
+  --color-lp-section-blue:         var(--ibot-bg-light-subtle);
+  --color-lp-deep:                 var(--ibot-bg-dark);
+  --color-lp-success:              var(--ibot-status-verified);
+  --color-lp-success-surface:      rgba(16, 185, 129, 0.1);
+
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans:    "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    "Geist Mono", "JetBrains Mono", monospace;
 }
 
 @layer base {
   :root {
-    --theme-surface-base: #ffffff;
-    --theme-surface-gray-1: #f9fafb;
-    --theme-surface-gray-2: #f3f4f6;
-    
-    --theme-outline-gray-1: #e5e7eb;
-    --theme-outline-gray-2: #d1d5db;
-    
-    --theme-ink-gray-4: #9ca3af;
-    --theme-ink-gray-5: #6b7280;
-    --theme-ink-gray-6: #4b5563;
-    --theme-ink-gray-7: #374151;
-    --theme-ink-gray-8: #1f2937;
-    --theme-ink-gray-9: #111827;
+    /* ── Atmospheric Obsidian & Electric Sapphire System ── */
+    --ibot-bg-dark:            #09090B;
+    --ibot-bg-dark-card:       #121216;
+    --ibot-bg-dark-raised:     #1C1C22;
+    --ibot-bg-light:           #F8F9FA;
+    --ibot-bg-light-card:      #FFFFFF;
+    --ibot-bg-light-subtle:    #F1F3F5;
+
+    --ibot-accent-primary:     #4338CA;
+    --ibot-accent-hover:       #4F46E5;
+    --ibot-accent-bright:      #818CF8;
+    --ibot-accent-secondary:   #2563EB;
+    --ibot-accent-tint:        rgba(79, 70, 229, 0.12);
+
+    --ibot-status-verified:    #10B981;
+    --ibot-status-pending:     #F59E0B;
+    --ibot-status-neutral:     #71717A;
+
+    --ibot-text-on-dark:       #FAFAFA;
+    --ibot-text-muted-dark:    #A1A1AA;
+    --ibot-text-dim-dark:      #71717A;
+
+    --ibot-text-on-light:      #09090B;
+    --ibot-text-muted-light:   #4B5563;
+    --ibot-text-dim-light:     #6B7280;
+
+    --ibot-border-dark:        rgba(255, 255, 255, 0.08);
+    --ibot-border-dark-hover:  rgba(255, 255, 255, 0.16);
+    --ibot-border-light:       rgba(0, 0, 0, 0.08);
+
+    --font-display: "Instrument Serif", Georgia, serif;
+    --font-sans:    "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono:    "Geist Mono", "JetBrains Mono", monospace;
   }
 
-  [data-theme="dark"] {
-    --theme-surface-base: #030712;
-    --theme-surface-gray-1: #111827;
-    --theme-surface-gray-2: #1f2937;
-    
-    --theme-outline-gray-1: #374151;
-    --theme-outline-gray-2: #4b5563;
-    
-    --theme-ink-gray-4: #4b5563;
-    --theme-ink-gray-5: #6b7280;
-    --theme-ink-gray-6: #9ca3af;
-    --theme-ink-gray-7: #d1d5db;
-    --theme-ink-gray-8: #e5e7eb;
-    --theme-ink-gray-9: #f9fafb;
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--theme-surface-base);
-    color: var(--theme-ink-gray-9);
+    background-color: var(--ibot-bg-dark);
+    color: var(--ibot-text-on-dark);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
 
-  /* Global Button & Interactive Element Interactivity */
-  button,
-  [role="button"],
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"] {
-    cursor: pointer;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
   }
 
-  button:disabled,
-  [role="button"][aria-disabled="true"],
-  input:disabled {
-    cursor: not-allowed !important;
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
+
+  button, [role="button"], input[type="button"],
+  input[type="submit"], input[type="reset"] { cursor: pointer; }
+
+  button:disabled, [role="button"][aria-disabled="true"],
+  input:disabled { cursor: not-allowed !important; }
+}
+
+/* =========================================================================
+   BUTTON SYSTEM — Commercial Grade
+   ========================================================================= */
+
+/* Primary CTA: Electric Sapphire with subtle specular glow */
+.btn-primary-glow,
+.ibot-btn-primary,
+.lp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 9999px;
+  background-color: var(--ibot-accent-primary);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(67, 56, 202, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 180ms ease;
+  text-decoration: none;
+}
+
+.btn-primary-glow:hover,
+.ibot-btn-primary:hover,
+.lp-btn-primary:hover {
+  background-color: var(--ibot-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary-glow:active,
+.ibot-btn-primary:active,
+.lp-btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(67, 56, 202, 0.3);
+}
+
+/* Secondary CTA: Frosted outline */
+.btn-secondary-ghost,
+.ibot-btn-ghost,
+.lp-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--ibot-text-on-dark);
+  border: 1px solid var(--ibot-border-dark);
+  backdrop-filter: blur(8px);
+  transition: all 180ms ease;
+  text-decoration: none;
+}
+
+.btn-secondary-ghost:hover,
+.ibot-btn-ghost:hover,
+.lp-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--ibot-border-dark-hover);
+  color: #FFFFFF;
+}
+
+/* Subtle background noise texture */
+.bg-subtle-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }

@@ -12,7 +12,7 @@ export default function EmailVerification() {
 
   // Protect route
   if (!state?.email) {
-    navigate('/', { replace: true });
+    navigate('/get-started', { replace: true });
     return null;
   }
 

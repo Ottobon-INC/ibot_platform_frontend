@@ -42,7 +42,7 @@ export default function PlatformEntry() {
     <div className="min-h-screen flex flex-col bg-surface-base text-ink-gray-9 font-sans">
       {/* Top bar */}
       <header className="flex items-center justify-between px-6 h-16 border-b border-outline-gray-1">
-        <div className="font-bold tracking-tight text-lg">OTTOBON</div>
+        <Link to="/" className="font-bold tracking-tight text-lg outline-none focus-visible:ring-2 focus-visible:ring-ink-gray-9 rounded">OTTOBON</Link>
         <div className="flex items-center gap-4 text-sm">
           <span className="hidden sm:inline text-ink-gray-6">Already have an account?</span>
           <Link to="/sign-in">

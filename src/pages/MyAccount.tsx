@@ -23,6 +23,7 @@ export default function MyAccount() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalStep, setModalStep] = useState<'enter_email' | 'verify'>('enter_email');
   const [newEmail, setNewEmail] = useState('');
+  const [otp, setOtp] = useState('');
   
   // Handle copy
   const [copied, setCopied] = useState(false);
@@ -279,6 +280,8 @@ export default function MyAccount() {
                   <div className="mb-8 flex justify-center">
                     <OtpInput 
                       length={6} 
+                      value={otp}
+                      onChange={setOtp}
                       onComplete={handleVerify} 
                     />
                   </div>

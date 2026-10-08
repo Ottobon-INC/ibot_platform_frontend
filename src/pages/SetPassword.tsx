@@ -15,7 +15,7 @@ export default function SetPassword() {
 
   // Protect route
   if (!state?.email || !state?.emailVerified) {
-    navigate('/', { replace: true });
+    navigate('/get-started', { replace: true });
     return null;
   }
 

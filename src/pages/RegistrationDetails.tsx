@@ -26,7 +26,7 @@ export default function RegistrationDetails() {
 
   // Protect route
   if (!state?.accountType || state.accountType === 'INDIVIDUAL') {
-    navigate('/', { replace: true });
+    navigate('/get-started', { replace: true });
     return null;
   }
 

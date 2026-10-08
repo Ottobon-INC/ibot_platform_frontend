@@ -2,9 +2,10 @@
 
 This document tracks the progress of the frontend pages being built for the IBOT platform.
 
-## Shared Authentication & Account Pages
+## Landing & Entry Pages
 
-- [x] **01. Platform Entry Page**
+- [ ] **00. Landing Page (`/`)**
+- [x] **01. Platform Entry Page (`/get-started`, `/platform-entry`)**
 - [x] **02. Sign In**
 - [x] **03. Create Account**
 - [x] **04. Registration Details**

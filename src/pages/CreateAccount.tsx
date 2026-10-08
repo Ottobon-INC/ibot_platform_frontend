@@ -23,7 +23,7 @@ export default function CreateAccount() {
 
   // If accessed directly without selecting an account type, push back to entry
   if (!state?.accountType) {
-    navigate('/', { replace: true });
+    navigate('/get-started', { replace: true });
     return null;
   }
 
@@ -106,7 +106,7 @@ export default function CreateAccount() {
             <span className="text-sm font-medium text-ink-gray-7">
               Creating an {displayAccountType} account
             </span>
-            <Link to="/" className="text-sm font-medium text-ink-gray-6 hover:text-ink-gray-9 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ink-gray-9 rounded px-1">
+            <Link to="/get-started" className="text-sm font-medium text-ink-gray-6 hover:text-ink-gray-9 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ink-gray-9 rounded px-1">
               Change
             </Link>
           </div>
