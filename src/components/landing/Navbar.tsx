@@ -35,7 +35,7 @@ export function Navbar({ onCTA }: NavbarProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#09090B]/90 backdrop-blur-xl border-b border-[rgba(255,255,255,0.08)] py-4 shadow-xl'
+          ? 'bg-white/90 backdrop-blur-xl border-b border-black/5 py-4 shadow-sm'
           : 'bg-transparent border-b border-transparent py-6'
       }`}
     >
@@ -50,13 +50,13 @@ export function Navbar({ onCTA }: NavbarProps) {
           aria-label="IBOT by Ottobon"
         >
           <span
-            className="font-bold text-white text-[22px] tracking-[-0.03em] leading-none"
+            className="font-bold text-[#0F172A] text-[22px] tracking-[-0.03em] leading-none"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             IBOT
           </span>
           <span
-            className="hidden sm:inline text-[10px] font-bold text-[#A1A1AA] tracking-[0.14em] uppercase px-2 py-0.5 rounded-full border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)]"
+            className="hidden sm:inline text-[10px] font-bold text-[#EA580C] tracking-[0.14em] uppercase px-2 py-0.5 rounded-full border border-[#EA580C]/20 bg-[#EA580C]/5"
             style={{ fontFamily: 'var(--font-mono)' }}
           >
             by Ottobon
@@ -70,7 +70,7 @@ export function Navbar({ onCTA }: NavbarProps) {
               key={link.href}
               href={link.href}
               onClick={(e) => handleAnchor(e, link.href)}
-              className="text-[14px] font-medium text-[#A1A1AA] hover:text-[#FAFAFA] transition-colors duration-150"
+              className="text-[14px] font-medium text-[#475569] hover:text-[#0F172A] transition-colors duration-150"
               style={{ fontFamily: 'var(--font-sans)', letterSpacing: '-0.01em' }}
             >
               {link.label}
@@ -83,7 +83,7 @@ export function Navbar({ onCTA }: NavbarProps) {
           <button
             type="button"
             onClick={onCTA}
-            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-white bg-[#4338CA] hover:bg-[#4F46E5] transition-all duration-150 shadow-md shadow-[#4338CA]/25 border border-white/10"
+            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-white bg-[#0F172A] hover:bg-[#1E293B] transition-all duration-150 shadow-sm border border-transparent"
             style={{ fontFamily: 'var(--font-sans)' }}
           >
             <span>Request a Demo</span>
@@ -92,7 +92,7 @@ export function Navbar({ onCTA }: NavbarProps) {
 
           <button
             type="button"
-            className="lg:hidden p-2 text-[#A1A1AA] hover:text-white"
+            className="lg:hidden p-2 text-[#0F172A] hover:text-[#EA580C]"
             onClick={() => setMobileMenuOpen((v) => !v)}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileMenuOpen}
@@ -104,27 +104,27 @@ export function Navbar({ onCTA }: NavbarProps) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#09090B]/98 backdrop-blur-2xl border-t border-[rgba(255,255,255,0.1)] px-6 py-6 shadow-2xl">
+        <div className="lg:hidden bg-white/98 backdrop-blur-2xl border-t border-black/5 px-6 py-6 shadow-xl">
           <nav className="flex flex-col gap-3" aria-label="Mobile">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleAnchor(e, link.href)}
-                className="text-[16px] font-semibold text-[#A1A1AA] hover:text-white py-1"
+                className="text-[16px] font-semibold text-[#475569] hover:text-[#0F172A] py-1"
                 style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {link.label}
               </a>
             ))}
-            <div className="pt-4 border-t border-[rgba(255,255,255,0.1)] mt-2">
+            <div className="pt-4 border-t border-black/5 mt-2">
               <button
                 type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onCTA();
                 }}
-                className="w-full btn-primary-glow justify-center py-3"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-md text-[15px] font-semibold text-white bg-[#0F172A] transition-all duration-150"
               >
                 <span>Request a Demo</span>
                 <ArrowRight size={15} />

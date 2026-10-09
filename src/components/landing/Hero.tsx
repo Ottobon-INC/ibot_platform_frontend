@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Clock, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { GlassTileWaveGrid } from './GlassTileWaveGrid';
 
@@ -15,145 +15,152 @@ export function Hero({ onCTA }: HeroProps) {
   }
 
   return (
-    <section
-      className="relative min-h-[94vh] flex items-center justify-center overflow-hidden border-b"
-      style={{ backgroundColor: 'var(--ibot-bg-dark)', borderColor: 'var(--ibot-border-dark)' }}
-    >
-      {/* ── Glass Tile Wave Grid Background Experiment ── */}
-      <GlassTileWaveGrid />
+    <section className="relative w-full pt-32 pb-20 sm:pt-40 sm:pb-24 overflow-hidden bg-[var(--ibot-bg-light)] flex flex-col items-center">
+      
+      {/* Animated Background Grid */}
+      <GlassTileWaveGrid className="opacity-70" />
 
-      {/* ── Deep Atmospheric Radial Glow Centered ── */}
-      <div
-        className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[550px] rounded-full blur-[160px] opacity-25"
-        style={{
-          background: 'radial-gradient(circle, rgba(67, 56, 202, 0.45) 0%, rgba(37, 99, 235, 0.18) 50%, transparent 75%)',
-        }}
-        aria-hidden="true"
-      />
+      {/* Subtle Background Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden flex justify-end items-start z-0">
+        <div 
+          className="w-[800px] h-[800px] rounded-full opacity-[0.05] blur-[100px]"
+          style={{ background: 'radial-gradient(circle, #EA580C 0%, transparent 70%)', transform: 'translate(20%, -20%)' }}
+        />
+        <div 
+          className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full opacity-[0.03] blur-[100px]"
+          style={{ background: 'radial-gradient(circle, #0F172A 0%, transparent 70%)', transform: 'translate(-20%, 20%)' }}
+        />
+      </div>
 
-      {/* ── Content Container: Fully Centered Single-Column ── */}
-      <div
-        className="relative z-10 mx-auto w-full px-5 sm:px-8 md:px-12 lg:px-16 pt-36 pb-20 sm:pt-40 sm:pb-24 lg:pt-44 lg:pb-28"
-        style={{ maxWidth: '1120px' }}
-      >
-        <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+      <div className="relative z-10 w-full px-6 sm:px-12 lg:px-20 max-w-[1200px] mx-auto flex flex-col items-center text-center">
+        <div className="max-w-4xl flex flex-col items-center">
           
           {/* Eyebrow Pill */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="inline-flex items-center gap-2.5 mb-7 px-4 py-1.5 rounded-full border backdrop-blur-md"
-            style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.04)',
-              borderColor: 'var(--ibot-border-dark)',
-            }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-black/5 bg-white shadow-sm"
           >
-            <span className="w-2 h-2 rounded-full bg-[#818CF8] animate-pulse" />
-            <span
-              className="text-[11px] tracking-[0.16em] uppercase font-semibold text-[#A1A1AA]"
-              style={{ fontFamily: 'var(--font-mono)' }}
-            >
-              Capability Validation · Talent Readiness
+            <div className="w-2 h-2 rounded-full bg-[#EA580C] animate-pulse" />
+            <span className="text-[12px] font-bold text-[#0F172A] uppercase tracking-widest">
+              IBOT Enterprise Pipeline
             </span>
           </motion.div>
 
-          {/* Requested Headline */}
+          {/* Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.08 }}
-            className="text-[#FAFAFA] font-normal mb-7 text-[42px] sm:text-[58px] lg:text-[70px] leading-[1.08] tracking-[-0.015em]"
-            style={{ fontFamily: 'var(--font-display)' }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[var(--ibot-text-on-light)] mb-6 text-[52px] sm:text-[72px] lg:text-[84px] leading-[1.05] tracking-tight"
+            style={{ fontFamily: 'var(--font-display)', fontWeight: 600 }}
           >
-            Upgrade your talent pipeline within your{' '}
-            <span
-              className="italic bg-clip-text text-transparent font-normal"
-              style={{
-                backgroundImage: 'linear-gradient(135deg, #C7D2FE 0%, #A5B4FC 45%, #818CF8 100%)',
-              }}
-            >
-              current hiring model.
+            Upgrade your talent pipeline <br className="hidden sm:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0F172A] to-[#EA580C] italic font-medium pr-2">
+              without disruption.
             </span>
           </motion.h1>
 
-          {/* Requested Supporting Copy */}
+          {/* Reduced Subheadline */}
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.16 }}
-            className="text-[#A1A1AA] mb-8 text-[17px] sm:text-[19px] md:text-[20px] leading-[1.65] max-w-2xl font-normal"
-            style={{ fontFamily: 'var(--font-sans)' }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-10 text-[18px] sm:text-[22px] leading-[1.6] text-[var(--ibot-text-muted-light)] max-w-2xl font-light"
           >
-            From candidate selection to project handover, Ottobon works alongside your talent acquisition and delivery teams to build capable, business-ready contributors—taking the preparation burden off your managers.
+            Build capable, business-ready contributors alongside your existing teams. We handle the preparation, so your managers don't have to.
           </motion.p>
 
-          {/* Requested Tagline / Value Proposition Reassurance Pill */}
+          {/* CTAs & Avatars */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.22 }}
-            className="inline-flex items-center justify-center gap-2.5 mb-10 px-5 py-2.5 rounded-full border max-w-2xl backdrop-blur-md"
-            style={{
-              backgroundColor: 'rgba(67, 56, 202, 0.09)',
-              borderColor: 'rgba(129, 140, 248, 0.28)',
-            }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center gap-8"
           >
-            <Zap size={14} className="text-[#818CF8] shrink-0" />
-            <span className="text-[13px] sm:text-[14px] text-[#C7D2FE] font-medium leading-relaxed">
-              Change nothing in your workflow. Strengthen where it counts. Step in at any phase.
-            </span>
-          </motion.div>
-
-          {/* Two Centered CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.28 }}
-            className="flex flex-wrap items-center justify-center gap-4 mb-10"
-          >
-            <button
-              type="button"
-              onClick={onCTA}
-              className="btn-primary-glow"
-            >
-              <span>Request a Demo</span>
-              <ArrowRight size={16} />
-            </button>
-
-            <a
-              href="#evidence-trail"
-              onClick={scrollToEvidenceTrail}
-              className="btn-secondary-ghost"
-            >
-              <span>See the Evidence Trail</span>
-            </a>
-          </motion.div>
-
-          {/* Non-Disruptive Trust Layer */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.45, delay: 0.36 }}
-            className="flex flex-wrap items-center justify-center gap-6 text-[12px] text-[#71717A]"
-            style={{ fontFamily: 'var(--font-sans)' }}
-          >
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 size={13} className="text-[#10B981]" />
-              <span>Zero workflow disruption</span>
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+              <button
+                type="button"
+                onClick={onCTA}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-md bg-[#0F172A] hover:bg-[#1E293B] text-white font-medium text-[16px] transition-colors shadow-lg"
+              >
+                Book a demo
+                <ArrowRight size={18} />
+              </button>
+              <a
+                href="#evidence-trail"
+                onClick={scrollToEvidenceTrail}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-md bg-white border border-black/10 text-[#0F172A] hover:bg-black/5 font-medium text-[16px] transition-colors shadow-sm"
+              >
+                See the evidence
+              </a>
             </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 size={13} className="text-[#10B981]" />
-              <span>Works alongside your existing ATS</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <ShieldCheck size={13} className="text-[#818CF8]" />
-              <span>Practitioner-verified readiness</span>
+
+            {/* Attractive Element: Avatar Group + Trust text */}
+            <div className="flex items-center gap-4 pt-2 border-t border-black/5">
+              <div className="flex -space-x-3">
+                <img className="w-10 h-10 rounded-full border-2 border-white shadow-sm" src="https://i.pravatar.cc/100?img=68" alt="Avatar 1" />
+                <img className="w-10 h-10 rounded-full border-2 border-white shadow-sm" src="https://i.pravatar.cc/100?img=47" alt="Avatar 2" />
+                <img className="w-10 h-10 rounded-full border-2 border-white shadow-sm" src="https://i.pravatar.cc/100?img=33" alt="Avatar 3" />
+                <img className="w-10 h-10 rounded-full border-2 border-white shadow-sm" src="https://i.pravatar.cc/100?img=12" alt="Avatar 4" />
+              </div>
+              <div className="text-left">
+                <div className="text-[14px] font-semibold text-[#0F172A]">Trusted by 500+</div>
+                <div className="text-[13px] text-[#64748B]">Engineering Leaders</div>
+              </div>
             </div>
           </motion.div>
 
         </div>
       </div>
+
+      {/* Metrics / Stats Bar */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 w-full max-w-[1000px] mx-auto px-6 mt-20"
+      >
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 p-8 rounded-2xl bg-white border border-black/5 shadow-md">
+          
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-[#EA580C]/10 flex items-center justify-center">
+              <Zap size={24} className="text-[#EA580C]" />
+            </div>
+            <div className="text-left">
+              <div className="text-[18px] font-bold text-[#0F172A]">Day-1 Ready</div>
+              <div className="text-[13px] text-[#64748B]">Business-ready impact</div>
+            </div>
+          </div>
+
+          <div className="hidden md:block w-px h-12 bg-black/5" />
+
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-black/5 flex items-center justify-center">
+              <Clock size={24} className="text-[#0F172A]" />
+            </div>
+            <div className="text-left">
+              <div className="text-[18px] font-bold text-[#0F172A]">Any Phase</div>
+              <div className="text-[13px] text-[#64748B]">Step in when needed</div>
+            </div>
+          </div>
+
+          <div className="hidden md:block w-px h-12 bg-black/5" />
+
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-[#10B981]/10 flex items-center justify-center">
+              <ShieldCheck size={24} className="text-[#10B981]" />
+            </div>
+            <div className="text-left">
+              <div className="text-[18px] font-bold text-[#0F172A]">Zero-Liability</div>
+              <div className="text-[13px] text-[#64748B]">Risk-free integration</div>
+            </div>
+          </div>
+
+        </div>
+      </motion.div>
+
     </section>
   );
 }

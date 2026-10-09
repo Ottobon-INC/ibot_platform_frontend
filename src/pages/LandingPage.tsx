@@ -22,7 +22,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#09090B] text-[#FAFAFA] font-sans selection:bg-[#4338CA] selection:text-white">
+    <div className="min-h-screen bg-[var(--ibot-bg-dark)] text-[var(--ibot-text-on-dark)] font-sans selection:bg-[#2563EB] selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

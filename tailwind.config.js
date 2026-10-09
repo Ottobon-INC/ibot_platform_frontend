@@ -48,6 +48,14 @@ export default {
         'card': '8px',
         'btn': '6px',
       },
+      keyframes: {
+        shimmer: {
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 2s infinite',
+      },
     },
   },
   plugins: [],

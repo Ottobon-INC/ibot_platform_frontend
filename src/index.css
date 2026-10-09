@@ -1,10 +1,11 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 /* =========================================================================
-   OTTOBON IBOT — PREMIUM ENTERPRISE DESIGN SYSTEM
-   Informed by Academic Portal Quality:
-   Obsidian Slate + Electric Indigo/Sapphire + Atmospheric Light Surfaces
-   Typography: Cabinet Grotesk (display) + Geist (sans) + JetBrains Mono (meta)
+   OTTOBON IBOT — PREMIUM ACADEMIC/ENTERPRISE DESIGN SYSTEM
+   Informed by Wireframe:
+   Cream/White Surfaces + Deep Navy + Warm Coral
+   Typography: Playfair Display (display) + Inter (sans)
    ========================================================================= */
 
 @theme {
@@ -22,10 +23,6 @@
   --color-ibot-accent-secondary:   var(--ibot-accent-secondary);
   --color-ibot-accent-tint:        var(--ibot-accent-tint);
 
-  --color-ibot-status-verified:    var(--ibot-status-verified);
-  --color-ibot-status-pending:     var(--ibot-status-pending);
-  --color-ibot-status-neutral:     var(--ibot-status-neutral);
-
   --color-ibot-text-on-dark:       var(--ibot-text-on-dark);
   --color-ibot-text-muted-dark:    var(--ibot-text-muted-dark);
   --color-ibot-text-dim-dark:      var(--ibot-text-dim-dark);
@@ -38,66 +35,46 @@
   --color-ibot-border-dark-hover:  var(--ibot-border-dark-hover);
   --color-ibot-border-light:       var(--ibot-border-light);
 
-  /* Legacy tokens for ApproachSection & LeadModal */
-  --color-lp-bg:                   var(--ibot-bg-light);
-  --color-lp-surface:              #FFFFFF;
-  --color-lp-heading:              var(--ibot-text-on-light);
-  --color-lp-body:                 var(--ibot-text-muted-light);
-  --color-lp-muted:                var(--ibot-text-dim-light);
-  --color-lp-border:               var(--ibot-border-light);
-  --color-lp-border-decor:         var(--ibot-border-light);
-  --color-lp-border-inter:         var(--ibot-accent-primary);
-  --color-lp-cta-primary:          var(--ibot-accent-primary);
-  --color-lp-cta-hover:            var(--ibot-accent-hover);
-  --color-lp-cta-text:             #FFFFFF;
-  --color-lp-section-alt:          var(--ibot-bg-light-subtle);
-  --color-lp-section-warm:         var(--ibot-bg-light);
-  --color-lp-section-cool:         var(--ibot-bg-light);
-  --color-lp-section-blue:         var(--ibot-bg-light-subtle);
-  --color-lp-deep:                 var(--ibot-bg-dark);
-  --color-lp-success:              var(--ibot-status-verified);
-  --color-lp-success-surface:      rgba(16, 185, 129, 0.1);
-
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-sans:    "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono:    "Geist Mono", "JetBrains Mono", monospace;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @layer base {
   :root {
-    /* ── Atmospheric Obsidian & Electric Sapphire System ── */
-    --ibot-bg-dark:            #09090B;
-    --ibot-bg-dark-card:       #121216;
-    --ibot-bg-dark-raised:     #1C1C22;
-    --ibot-bg-light:           #F8F9FA;
-    --ibot-bg-light-card:      #FFFFFF;
-    --ibot-bg-light-subtle:    #F1F3F5;
+    /* ── Light Mode System (Navy / Coral / Cream) ── */
+    --ibot-bg-dark:            #FAF9F6;  /* Soft Cream background (formerly dark) */
+    --ibot-bg-dark-card:       #FFFFFF;  /* White card */
+    --ibot-bg-dark-raised:     #F3F2EE;
+    
+    --ibot-bg-light:           #FFFFFF;
+    --ibot-bg-light-card:      #FAF9F6;
+    --ibot-bg-light-subtle:    #F3F2EE;
 
-    --ibot-accent-primary:     #4338CA;
-    --ibot-accent-hover:       #4F46E5;
-    --ibot-accent-bright:      #818CF8;
-    --ibot-accent-secondary:   #2563EB;
-    --ibot-accent-tint:        rgba(79, 70, 229, 0.12);
+    --ibot-accent-primary:     #0F172A;  /* Deep Navy */
+    --ibot-accent-hover:       #1E293B;
+    --ibot-accent-bright:      #EA580C;  /* Warm Coral */
+    --ibot-accent-secondary:   #F97316;
+    --ibot-accent-tint:        rgba(234, 88, 12, 0.1);
 
     --ibot-status-verified:    #10B981;
     --ibot-status-pending:     #F59E0B;
-    --ibot-status-neutral:     #71717A;
+    --ibot-status-neutral:     #64748B;
 
-    --ibot-text-on-dark:       #FAFAFA;
-    --ibot-text-muted-dark:    #A1A1AA;
-    --ibot-text-dim-dark:      #71717A;
+    --ibot-text-on-dark:       #0F172A;  /* Navy text for main content */
+    --ibot-text-muted-dark:    #475569;  /* Slate gray */
+    --ibot-text-dim-dark:      #64748B;
 
-    --ibot-text-on-light:      #09090B;
-    --ibot-text-muted-light:   #4B5563;
-    --ibot-text-dim-light:     #6B7280;
+    --ibot-text-on-light:      #0F172A;
+    --ibot-text-muted-light:   #475569;
+    --ibot-text-dim-light:     #64748B;
 
-    --ibot-border-dark:        rgba(255, 255, 255, 0.08);
-    --ibot-border-dark-hover:  rgba(255, 255, 255, 0.16);
-    --ibot-border-light:       rgba(0, 0, 0, 0.08);
+    --ibot-border-dark:        rgba(15, 23, 42, 0.1);
+    --ibot-border-dark-hover:  rgba(15, 23, 42, 0.2);
+    --ibot-border-light:       rgba(15, 23, 42, 0.1);
 
-    --font-display: "Instrument Serif", Georgia, serif;
-    --font-sans:    "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono:    "Geist Mono", "JetBrains Mono", monospace;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono:    "JetBrains Mono", monospace;
   }
 
   html {
@@ -118,9 +95,10 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: -0.015em;
     line-height: 1.15;
+    color: var(--ibot-text-on-dark);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -140,10 +118,10 @@
 }
 
 /* =========================================================================
-   BUTTON SYSTEM — Commercial Grade
+   BUTTON SYSTEM — Academic / Enterprise Grade
    ========================================================================= */
 
-/* Primary CTA: Electric Sapphire with subtle specular glow */
+/* Primary CTA: Deep Navy */
 .btn-primary-glow,
 .ibot-btn-primary,
 .lp-btn-primary {
@@ -154,13 +132,11 @@
   padding: 0.75rem 1.6rem;
   font-family: var(--font-sans);
   font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 500;
   border-radius: 9999px;
   background-color: var(--ibot-accent-primary);
   color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 16px rgba(67, 56, 202, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid transparent;
   transition: all 180ms ease;
   text-decoration: none;
 }
@@ -170,17 +146,17 @@
 .lp-btn-primary:hover {
   background-color: var(--ibot-accent-hover);
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
 }
 
 .btn-primary-glow:active,
 .ibot-btn-primary:active,
 .lp-btn-primary:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(67, 56, 202, 0.3);
+  box-shadow: none;
 }
 
-/* Secondary CTA: Frosted outline */
+/* Secondary CTA: Coral Outline or Subtle White */
 .btn-secondary-ghost,
 .ibot-btn-ghost,
 .lp-btn-secondary {
@@ -192,12 +168,10 @@
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   font-weight: 500;
-  letter-spacing: -0.01em;
   border-radius: 9999px;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: transparent;
   color: var(--ibot-text-on-dark);
   border: 1px solid var(--ibot-border-dark);
-  backdrop-filter: blur(8px);
   transition: all 180ms ease;
   text-decoration: none;
 }
@@ -205,12 +179,11 @@
 .btn-secondary-ghost:hover,
 .ibot-btn-ghost:hover,
 .lp-btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: var(--ibot-border-dark-hover);
-  color: #FFFFFF;
+  background-color: rgba(15, 23, 42, 0.05);
+  border-color: var(--ibot-text-on-dark);
 }
 
 /* Subtle background noise texture */
 .bg-subtle-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
 }

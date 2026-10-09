@@ -344,14 +344,14 @@ export function LeadModal({ open, onClose, preset }: LeadModalProps) {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold text-white transition-all duration-150 shadow-md shadow-[#4338CA]/30"
+                      className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold text-white transition-all duration-150 shadow-md shadow-[#2563EB]/30"
                       style={{
-                        backgroundColor: '#4338CA',
+                        backgroundColor: '#2563EB',
                         fontFamily: 'var(--font-sans)',
                         letterSpacing: '-0.01em',
                       }}
-                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#4F46E5')}
-                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#4338CA')}
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#1D4ED8')}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#2563EB')}
                     >
                       {submitting ? (
                         <span>Submitting...</span>

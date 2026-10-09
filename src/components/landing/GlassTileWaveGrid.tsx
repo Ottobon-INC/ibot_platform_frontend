@@ -130,17 +130,17 @@ export function GlassTileWaveGrid({ className = '' }: GlassTileWaveGridProps) {
 
           // Dimensional Glass Tile Base
           drawRoundedRect(ctx, 0, 0, tileSize, tileSize, cornerRadius);
-          ctx.fillStyle = `rgba(255, 255, 255, ${0.02 * opacity + (mouseFactor * 0.03 * opacity)})`;
+          ctx.fillStyle = `rgba(15, 23, 42, ${0.02 * opacity + (mouseFactor * 0.03 * opacity)})`; // Navy fill
           ctx.fill();
 
           // Subtle Specular Glint Highlight on Top-Left Bevel
           const specularGradient = ctx.createLinearGradient(0, 0, tileSize, tileSize);
           specularGradient.addColorStop(
             0,
-            `rgba(255, 255, 255, ${(0.14 + mouseFactor * 0.25) * opacity})`
+            `rgba(15, 23, 42, ${(0.08 + mouseFactor * 0.15) * opacity})`
           );
-          specularGradient.addColorStop(0.5, `rgba(129, 140, 248, ${(0.05 + mouseFactor * 0.12) * opacity})`);
-          specularGradient.addColorStop(1, `rgba(255, 255, 255, ${0.02 * opacity})`);
+          specularGradient.addColorStop(0.5, `rgba(234, 88, 12, ${(0.04 + mouseFactor * 0.1) * opacity})`); // Coral glint
+          specularGradient.addColorStop(1, `rgba(15, 23, 42, ${0.01 * opacity})`);
 
           ctx.lineWidth = 1;
           ctx.strokeStyle = specularGradient;
@@ -150,7 +150,7 @@ export function GlassTileWaveGrid({ className = '' }: GlassTileWaveGridProps) {
           if (mouseFactor > 0.15) {
             ctx.beginPath();
             ctx.arc(tileSize * 0.3, tileSize * 0.3, 1.5, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(165, 180, 252, ${mouseFactor * 0.6 * opacity})`;
+            ctx.fillStyle = `rgba(234, 88, 12, ${mouseFactor * 0.5 * opacity})`;
             ctx.fill();
           }
 

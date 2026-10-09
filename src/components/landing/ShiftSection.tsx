@@ -1,202 +1,111 @@
 import React from 'react';
-import { CheckCircle2, XCircle } from 'lucide-react';
+import { ShieldCheck, GitBranch, TerminalSquare, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function ShiftSection() {
-  const traditionalPoints = [
+  const cards = [
     {
-      title: 'Resume & Verbal Recall',
-      desc: 'Eloquent storytelling highlights memory, not day-one execution or architectural judgment.',
+      icon: <TerminalSquare size={24} />,
+      title: 'Every commit accounted for',
+      desc: 'Built from patterns seen across thousands of real engineering incidents — not a generic technical screen.',
+      id: 'LOG 01',
+      color: '#EA580C' // Coral
     },
     {
-      title: 'Conversational Rapport',
-      desc: 'Panels assess poise and presentation—leaving production skills unverified until post-hire.',
+      icon: <GitBranch size={24} />,
+      title: 'Validates, not just flags',
+      desc: 'IBOT doesn’t stop at detection — it traces the candidate’s resolution logic back to its root architectural cause.',
+      id: 'LOG 02',
+      color: '#0F172A' // Navy
     },
     {
-      title: 'Abstract Puzzles',
-      desc: 'Whiteboard algorithms disconnected from real codebase dependencies and constraints.',
-    },
-  ];
-
-  const ibotPoints = [
-    {
-      title: 'Real Repository Execution',
-      desc: 'Hands-on delivery inside isolated environments mirrored on your actual stack.',
+      icon: <Search size={24} />,
+      title: 'From thousands down to one',
+      desc: 'Thousands of signals come in. What reaches your hiring team is only what genuinely needs human judgment.',
+      id: 'LOG 03',
+      color: '#EA580C' // Coral
     },
     {
-      title: 'Response to Senior Critique',
-      desc: 'Constructive review on code PRs measures how quickly candidates adapt.',
-    },
-    {
-      title: 'Pinpointed Capability Gaps',
-      desc: 'Specific diagnosis of concurrency, test, and design gaps—not a binary guess.',
-    },
-    {
-      title: 'Measurable Velocity',
-      desc: 'Tangible commits tracking learning speed and problem-solving depth over time.',
-    },
-    {
-      title: 'Audit-Ready Dossiers',
-      desc: 'Objective evidence aligning recruiters, engineering leads, and business stakeholders.',
-    },
+      icon: <ShieldCheck size={24} />,
+      title: 'Sharper with every case',
+      desc: 'Every investigation feeds back into the model — tomorrow’s triage is faster and more precise than today’s.',
+      id: 'LOG 04',
+      color: '#0F172A' // Navy
+    }
   ];
 
   return (
     <section
       id="the-shift"
-      className="relative w-full py-24 sm:py-32 border-b overflow-hidden"
+      className="relative w-full py-32 border-b overflow-hidden"
       style={{
         backgroundColor: 'var(--ibot-bg-light)',
         borderColor: 'var(--ibot-border-light)',
       }}
     >
-      {/* ── Subtle light ambient gradient ── */}
       <div
-        className="pointer-events-none absolute top-0 right-0 w-[500px] h-[450px] rounded-full blur-[120px] opacity-35"
-        style={{
-          background: 'radial-gradient(circle, rgba(67, 56, 202, 0.08) 0%, rgba(37, 99, 235, 0.03) 50%, transparent 70%)',
-        }}
-        aria-hidden="true"
-      />
-
-      <div
-        className="relative z-10 mx-auto w-full px-5 sm:px-8 md:px-12 lg:px-16"
-        style={{ maxWidth: '1240px' }}
+        className="relative z-10 mx-auto w-full px-5 sm:px-8"
+        style={{ maxWidth: '1200px' }}
       >
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-2xl mb-14 lg:mb-16"
+          className="text-center max-w-3xl mx-auto mb-20"
         >
-          <p
-            className="text-[11px] tracking-[0.18em] uppercase font-bold mb-3 text-[#4338CA]"
-            style={{ fontFamily: 'var(--font-mono)' }}
-          >
-            The Evaluation Gap
-          </p>
-          <h2
-            className="text-[#09090B] font-normal mb-4 text-[30px] sm:text-[38px] lg:text-[44px] leading-[1.12] tracking-[-0.02em]"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            A Good Interview Is Only the Beginning.
+          <h2 className="text-[var(--ibot-text-on-light)] font-normal mb-6 text-[40px] sm:text-[48px] leading-[1.1] tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+            Built for the talent signals <br />
+            <span className="font-semibold text-[#EA580C]">
+              that actually matter.
+            </span>
           </h2>
-          <p
-            className="text-[#4B5563] text-[16px] sm:text-[17px] leading-[1.6] max-w-[54ch]"
-            style={{ fontFamily: 'var(--font-sans)' }}
-          >
-            Traditional hiring loops measure how eloquently someone describes past work. IBOT reveals how they actually build, troubleshoot, and adapt when handed real engineering requirements.
+          <p className="text-[var(--ibot-text-muted-light)] text-[18px] leading-[1.6]">
+            IBOT clears the noise so your engineering and hiring teams can focus on real capabilities, not resume optimizations.
           </p>
         </motion.div>
 
-        {/* ── Asymmetrical Editorial Comparison Spread ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          
-          {/* Left Column: What Traditional Hiring Reveals (40%) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-5 p-6 sm:p-8 rounded-2xl border transition-all duration-300 hover:shadow-sm"
-            style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.02)',
-              borderColor: 'var(--ibot-border-light)',
-            }}
-          >
-            <div className="flex items-center gap-2 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#71717A]" />
-              <h3
-                className="text-[12px] uppercase tracking-[0.14em] font-semibold text-[#71717A]"
-                style={{ fontFamily: 'var(--font-mono)' }}
+        {/* ── 4-Column Card Grid ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {cards.map((card, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="flex flex-col p-8 rounded-2xl border border-black/5 bg-white shadow-sm hover:shadow-md transition-all duration-300 group"
+            >
+              {/* Card Meta Header */}
+              <div className="flex justify-between items-center mb-8">
+                <span className="text-[10px] font-mono font-bold tracking-widest text-[#94A3B8]">
+                  {card.id}
+                </span>
+                <div 
+                  className="w-1.5 h-1.5 rounded-full opacity-50 group-hover:opacity-100 transition-opacity" 
+                  style={{ backgroundColor: card.color }}
+                />
+              </div>
+
+              {/* Icon */}
+              <div 
+                className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
+                style={{ backgroundColor: `${card.color}10`, color: card.color }}
               >
-                What Traditional Hiring Reveals
+                {card.icon}
+              </div>
+
+              {/* Card Content */}
+              <h3 className="text-[18px] font-semibold text-[#0F172A] mb-3">
+                {card.title}
               </h3>
-            </div>
-
-            <div className="space-y-5">
-              {traditionalPoints.map((item, idx) => (
-                <div key={idx} className="border-b pb-4 last:border-b-0 last:pb-0" style={{ borderColor: 'rgba(0, 0, 0, 0.06)' }}>
-                  <div className="flex items-start gap-2.5">
-                    <XCircle size={15} className="text-[#9CA3AF] shrink-0 mt-0.5" />
-                    <div>
-                      <h4
-                        className="text-[16px] font-normal text-[#1F2937] mb-0.5"
-                        style={{ fontFamily: 'var(--font-display)' }}
-                      >
-                        {item.title}
-                      </h4>
-                      <p className="text-[13px] text-[#6B7280] leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 pt-4 border-t text-[12px] text-[#6B7280] italic" style={{ borderColor: 'rgba(0, 0, 0, 0.06)' }}>
-              "Interviews measure recall and presentation under ideal assumptions."
-            </div>
-          </motion.div>
-
-          {/* Right Column: What IBOT Adds (60%) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-7 p-7 sm:p-9 rounded-2xl border transition-all duration-300 hover:shadow-md"
-            style={{
-              backgroundColor: 'var(--ibot-bg-light-card)',
-              borderColor: 'rgba(67, 56, 202, 0.2)',
-              boxShadow: '0 8px 30px -8px rgba(67, 56, 202, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03)',
-            }}
-          >
-            <div className="flex items-center gap-2 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-              <h3
-                className="text-[12px] uppercase tracking-[0.14em] font-semibold text-[#4338CA]"
-                style={{ fontFamily: 'var(--font-mono)' }}
-              >
-                What IBOT Adds to Your Process
-              </h3>
-            </div>
-
-            <div className="space-y-4">
-              {ibotPoints.map((item, idx) => (
-                <div key={idx} className="border-b pb-4 last:border-b-0 last:pb-0" style={{ borderColor: 'rgba(0, 0, 0, 0.05)' }}>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 size={16} className="text-[#10B981] shrink-0 mt-0.5" />
-                    <div>
-                      <h4
-                        className="text-[17px] font-normal text-[#09090B] mb-0.5"
-                        style={{ fontFamily: 'var(--font-display)' }}
-                      >
-                        {item.title}
-                      </h4>
-                      <p className="text-[13px] text-[#4B5563] leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 pt-5 border-t flex items-center justify-between text-[13px]" style={{ borderColor: 'rgba(0, 0, 0, 0.06)' }}>
-              <span className="font-medium text-[#09090B]">
-                Objective conviction replaces speculative hiring.
-              </span>
-              <span className="text-[#4338CA] font-medium text-[12px]" style={{ fontFamily: 'var(--font-mono)' }}>
-                Evidence-Driven
-              </span>
-            </div>
-          </motion.div>
-
+              <p className="text-[14px] text-[#64748B] leading-relaxed flex-grow">
+                {card.desc}
+              </p>
+            </motion.div>
+          ))}
         </div>
+
       </div>
     </section>
   );
