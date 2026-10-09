@@ -1,0 +1,9 @@
+
+services:
+  ibot-frontend:
+    build: .
+    container_name: ibot-frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8181:80"
+    network_mode: bridge
