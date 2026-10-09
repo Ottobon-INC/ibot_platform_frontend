@@ -1,77 +1,93 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Settings, Workflow, CheckCircle2 } from 'lucide-react';
+import { Terminal, TestTube2, GitBranch, FileCheck } from 'lucide-react';
 
 export function EcosystemSection() {
+  const stages = [
+    {
+      num: '01',
+      title: 'Diagnostic Baseline',
+      desc: 'Translates production standards into problem statements.',
+      icon: <Terminal strokeWidth={2} size={24} />
+    },
+    {
+      num: '02',
+      title: 'Sandbox Execution',
+      desc: 'Candidates push commits and satisfy automated tests.',
+      icon: <TestTube2 strokeWidth={2} size={24} />
+    },
+    {
+      num: '03',
+      title: 'Peer Review',
+      desc: 'Senior leads critique code. We measure adaptability.',
+      icon: <GitBranch strokeWidth={2} size={24} />
+    },
+    {
+      num: '04',
+      title: 'Executive Dossier',
+      desc: 'Compiles a permanent, audit-ready readiness ledger.',
+      icon: <FileCheck strokeWidth={2} size={24} />
+    }
+  ];
+
   return (
-    <section
-      id="configuration"
-      className="relative w-full py-24 sm:py-32 border-b overflow-hidden"
-      style={{
-        backgroundColor: 'var(--ibot-bg-light)',
-        borderColor: 'var(--ibot-border-light)',
-      }}
-    >
-      <div className="relative z-10 mx-auto w-full px-5 sm:px-8" style={{ maxWidth: '1200px' }}>
-        
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-20"
-        >
-          <h2 className="text-[var(--ibot-text-on-light)] font-normal mb-6 text-[40px] sm:text-[48px] leading-[1.1] tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
-            Keep your process.<br />
-            <span className="font-semibold text-[#0F172A]">
-              Add evidence where you need it.
-            </span>
+    <section id="evidence-trail" className="relative w-full py-32 bg-slate-50 border-b border-slate-200 overflow-hidden">
+      <div className="relative z-10 mx-auto w-full px-5 max-w-[1200px]">
+
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-24">
+          <h2 className="text-slate-900 font-normal mb-6 text-[40px] sm:text-[48px] tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+            Every candidate builds an <br />
+            <span className="font-bold text-orange-600">evidence trail.</span>
           </h2>
-          <p className="text-[var(--ibot-text-muted-light)] text-[18px] leading-[1.6]">
-            Configure modular pipelines that integrate seamlessly with your existing ATS and workflows.
-          </p>
         </motion.div>
 
-        {/* Visual Pipeline Configuration */}
-        <div className="relative">
-          {/* Connecting Line */}
-          <div className="absolute top-1/2 left-0 w-full h-[2px] bg-black/5 -translate-y-1/2 hidden md:block" />
+        <div className="relative w-full">
+          {/* Base Connecting Line */}
+          <div className="absolute top-[48px] left-[12%] right-[12%] h-[2px] bg-slate-200 z-0 hidden md:block" />
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
-            {[
-              { num: '01', title: 'Identify', icon: <Settings size={20} />, active: true },
-              { num: '02', title: 'Build', icon: <Code size={20} />, active: true },
-              { num: '03', title: 'Operate', icon: <Workflow size={20} />, active: true },
-              { num: '04', title: 'Transfer', icon: <CheckCircle2 size={20} />, active: true },
-            ].map((phase, idx) => (
+          {/* Animated Glowing Beam */}
+          <motion.div 
+            initial={{ left: "12%", width: 0 }}
+            whileInView={{ width: "76%" }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+            className="absolute top-[48px] h-[2px] bg-orange-500 z-0 hidden md:block shadow-[0_0_15px_rgba(234,88,12,0.8)]"
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-4 relative z-10">
+            {stages.map((stage, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -10 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className={`p-6 rounded-2xl border ${phase.active ? 'bg-white border-[#0F172A]/10 shadow-md' : 'bg-[#F8F9FA] border-black/5 shadow-sm'} text-center flex flex-col items-center justify-center relative transition-all`}
+                transition={{ delay: idx * 0.2, duration: 0.5 }}
+                className="flex flex-col items-center text-center group cursor-pointer"
               >
-                {phase.active && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[2px] bg-[#EA580C]" />
-                )}
-                
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${phase.active ? 'bg-[#0F172A]/5 border border-[#0F172A]/10 text-[#0F172A]' : 'bg-black/5 text-[#94A3B8]'}`}>
-                  {phase.icon}
-                </div>
-                <div className="text-[11px] font-bold tracking-widest text-[#94A3B8] mb-1">PHASE {phase.num}</div>
-                <div className={`text-[18px] font-semibold ${phase.active ? 'text-[#0F172A]' : 'text-[#64748B]'}`}>{phase.title}</div>
-                
-                {phase.active && (
-                  <div className="mt-4 px-3 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/20 text-[#10B981] text-[10px] font-bold tracking-wide">
-                    ACTIVE GATE
+                <div className="relative w-24 h-24 flex items-center justify-center mb-6">
+                  {/* Rotating inner ring */}
+                  <div className="absolute inset-0 rounded-full border-2 border-dashed border-slate-300 group-hover:border-orange-400 group-hover:rotate-180 transition-all duration-1000 ease-in-out" />
+                  
+                  {/* Core Icon */}
+                  <div className="relative w-[70px] h-[70px] bg-white border-2 border-slate-200 group-hover:border-orange-500 rounded-full flex items-center justify-center shadow-sm z-10 transition-all duration-300">
+                    <div className="text-slate-700 group-hover:text-orange-600 transition-colors duration-300">
+                      {stage.icon}
+                    </div>
                   </div>
-                )}
+                </div>
+
+                <div className="text-[12px] font-black text-slate-400 group-hover:text-orange-500 transition-colors duration-300 uppercase tracking-[0.3em] mb-4">
+                  STAGE {stage.num}
+                </div>
+
+                <h3 className="text-2xl text-slate-900 font-bold mb-3">{stage.title}</h3>
+                <p className="text-sm text-slate-500 max-w-xs">{stage.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
-        
+
       </div>
     </section>
   );

@@ -1,142 +1,78 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { GitPullRequest, Activity, ShieldCheck, Zap } from 'lucide-react';
+import { Activity, ShieldCheck } from 'lucide-react';
 
 export function CandidateExperienceSection() {
+  const [activeLog, setActiveLog] = useState(0);
+  const logs = [
+    "[SYS] Provisioning isolated SOC-2 sandbox environment...",
+    "[SEC] Injecting strict IAM roles and monitoring daemons.",
+    "[NET] Intercepting network calls. Simulating latency.",
+    "[EVAL] Candidate opened src/auth.ts. Tracking keystrokes.",
+    "[GIT] Commit detected: 'fix memory leak in connection pool'.",
+    "[PR] Automated diff generated. Confidence score: 98%."
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveLog((p) => (p + 1) % logs.length);
+    }, 1500);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section
-      id="candidate-experience"
-      className="relative w-full py-24 sm:py-32 border-b overflow-hidden"
-      style={{
-        backgroundColor: 'var(--ibot-bg-light)',
-        borderColor: 'var(--ibot-border-light)',
-      }}
-    >
-      <div className="relative z-10 mx-auto w-full px-5 sm:px-8" style={{ maxWidth: '1200px' }}>
-        
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-20"
-        >
-          <h2 className="text-[var(--ibot-text-on-light)] font-normal mb-6 text-[40px] sm:text-[48px] leading-[1.1] tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
-            Precision telemetry on{' '}
-            <span className="font-semibold text-[#0F172A]">
-              engineering capability.
-            </span>
+    <section id="candidate-experience" className="relative w-full py-32 bg-white border-b border-slate-200 overflow-hidden">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+      
+      <div className="relative z-10 mx-auto w-full px-5 max-w-[1200px]">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+          <h2 className="text-slate-900 font-normal mb-6 text-[40px] sm:text-[48px] leading-[1.1] tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+            Stop reading resumes. <br />
+            <span className="font-semibold text-orange-600">Start monitoring execution.</span>
           </h2>
-          <p className="text-[var(--ibot-text-muted-light)] text-[18px] leading-[1.6]">
-            Stop reading resumes. Start monitoring live execution inside isolated, SOC 2 compliant sandboxes.
+          <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+            Watch candidates solve complex engineering problems inside an isolated, real-world development environment.
           </p>
         </motion.div>
 
-        {/* ── Visual Bento Box Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Dashboard Hologram */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-4xl mx-auto h-[320px] sm:h-[400px] rounded-[2rem] border border-slate-700 bg-slate-800/80 backdrop-blur-2xl shadow-[0_0_100px_rgba(234,88,12,0.1)] overflow-hidden flex flex-col relative"
+        >
+          {/* Header */}
+          <div className="h-14 border-b border-slate-700 bg-slate-900/50 flex items-center px-6 justify-between">
+            <div className="flex gap-2">
+              <div className="w-3 h-3 rounded-full bg-red-500/80" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+              <div className="w-3 h-3 rounded-full bg-green-500/80" />
+            </div>
+            <div className="text-xs font-mono text-slate-400 tracking-wider">session_telemetry.log</div>
+            <ShieldCheck size={18} className="text-green-500" />
+          </div>
           
-          {/* Bento Card 1: PR Telemetry */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="md:col-span-2 relative p-8 rounded-2xl border border-black/5 bg-white shadow-sm overflow-hidden group hover:shadow-md transition-all duration-300"
-          >
-            <div className="flex flex-col h-full relative z-10">
-              <div className="flex items-center gap-2 mb-8">
-                <GitPullRequest size={20} className="text-[#0F172A]" />
-                <span className="text-[14px] font-bold text-[#0F172A] tracking-wide uppercase">Live Code Telemetry</span>
-              </div>
-              
-              {/* Abstract UI Visual */}
-              <div className="flex-grow mb-8 bg-[#F8F9FA] rounded-xl border border-black/5 p-4 font-mono text-[11px] sm:text-[12px] overflow-hidden shadow-inner">
-                <div className="flex justify-between text-[#64748B] mb-4 border-b border-black/5 pb-2 font-bold">
-                  <span>src/engine/partitioning.ts</span>
-                  <span className="text-[#10B981]">42 passing</span>
-                </div>
-                <div className="text-[#EF4444] bg-[#EF4444]/10 -mx-4 px-4 py-1 border-l-2 border-[#EF4444]">- const partitionKey = event.userId;</div>
-                <div className="text-[#10B981] bg-[#10B981]/10 -mx-4 px-4 py-1 border-l-2 border-[#10B981]">+ const partitionKey = generateTTLKey(event.userId);</div>
-                <div className="text-[#10B981] bg-[#10B981]/10 -mx-4 px-4 py-1 border-l-2 border-[#10B981]">+ await this.cache.set(partitionKey, event.data, {"{"} nx: true {"}"});</div>
-              </div>
-
-              <div>
-                <h3 className="text-[20px] text-[#0F172A] font-semibold mb-2">Automated Pull Request Analysis</h3>
-                <p className="text-[14px] text-[#475569]">See exactly how candidates handle concurrency, test coverage, and architectural feedback in real-time.</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Bento Card 2: Readiness Score */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="md:col-span-1 relative p-8 rounded-2xl border border-black/5 bg-white shadow-sm overflow-hidden group hover:shadow-md transition-all duration-300"
-          >
-            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#10B981]/5 to-transparent pointer-events-none" />
-            
-            <div className="flex flex-col h-full relative z-10">
-              <div className="flex items-center gap-2 mb-8">
-                <Activity size={20} className="text-[#10B981]" />
-                <span className="text-[14px] font-bold text-[#0F172A] tracking-wide uppercase">Readiness Matrix</span>
-              </div>
-              
-              {/* Abstract Visual */}
-              <div className="flex-grow flex items-center justify-center mb-8">
-                <div className="relative w-32 h-32">
-                  <svg className="w-full h-full transform -rotate-90">
-                    <circle cx="64" cy="64" r="60" stroke="currentColor" strokeWidth="6" fill="none" className="text-black/5" />
-                    <circle cx="64" cy="64" r="60" stroke="currentColor" strokeWidth="6" fill="none" strokeDasharray="377" strokeDashoffset="37" className="text-[#10B981]" strokeLinecap="round" />
-                  </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-[32px] font-bold text-[#0F172A]">90<span className="text-[16px]">%</span></span>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-[20px] text-[#0F172A] font-semibold mb-2">Ready for Prod</h3>
-                <p className="text-[14px] text-[#475569]">Zero guesswork. Our model evaluates code hygiene, security, and velocity.</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Bento Card 3: Security & Audit */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="md:col-span-3 relative p-8 rounded-2xl border border-black/5 bg-white shadow-sm overflow-hidden group hover:shadow-md transition-all duration-300 flex flex-col md:flex-row items-center gap-10"
-          >
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-4">
-                <ShieldCheck size={20} className="text-[#0F172A]" />
-                <span className="text-[14px] font-bold text-[#0F172A] tracking-wide uppercase">Permanent Ledger</span>
-              </div>
-              <h3 className="text-[24px] text-[#0F172A] font-semibold mb-4">Executive Sign-Off & Audit Trail</h3>
-              <p className="text-[15px] text-[#475569] max-w-lg">
-                Every commit, review comment, and capability score is permanently logged. Align recruiters, engineering leads, and stakeholders with objective, indisputable evidence.
-              </p>
-            </div>
-            
-            <div className="flex-1 w-full flex justify-end">
-               <div className="flex items-center gap-4 bg-[#F8F9FA] p-5 rounded-2xl border border-black/5 shadow-inner">
-                 <div className="w-12 h-12 rounded-full bg-[#10B981]/10 border border-[#10B981]/20 flex items-center justify-center">
-                   <ShieldCheck size={24} className="text-[#10B981]" />
-                 </div>
-                 <div>
-                   <div className="text-[11px] font-mono font-bold text-[#64748B] mb-1 uppercase tracking-wider">Final Authorization</div>
-                   <div className="text-[15px] text-[#0F172A] font-semibold">Candidate Approved</div>
-                   <div className="text-[13px] text-[#10B981] font-mono">Hash: 0x8f4...b2a</div>
-                 </div>
-               </div>
-            </div>
-          </motion.div>
-
-        </div>
+          {/* Body */}
+          <div className="p-8 flex flex-col gap-6 font-mono text-sm sm:text-base h-full overflow-hidden relative">
+            {logs.map((log, i) => (
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, x: -20 }} 
+                animate={{ opacity: i <= activeLog ? 1 : 0.1, x: 0 }}
+                transition={{ type: "spring", bounce: 0 }}
+                className={`flex gap-6 ${i === activeLog ? 'text-green-400 drop-shadow-[0_0_8px_rgba(74,222,128,0.5)]' : 'text-slate-500'}`}
+              >
+                <span className="opacity-50 select-none hidden sm:inline-block">{`0x${(1000 + i).toString(16).toUpperCase()}`}</span>
+                <span>{log}</span>
+              </motion.div>
+            ))}
+            {/* Fade out at bottom */}
+            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-800/80 to-transparent pointer-events-none" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
