@@ -27,18 +27,21 @@ export function Footer() {
           style={{ borderColor: 'var(--ibot-border-light)' }}
         >
           {/* Brand */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 select-none">
             <span
-              className="font-bold text-[#0F172A] text-[24px] tracking-tight leading-none"
+              className="font-bold text-[#0F172A] text-[22px] tracking-[-0.03em] leading-none"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              OTTOBON
+            </span>
+            <span className="text-[#EA580C] text-[13px] leading-none font-bold">
+              ★
+            </span>
+            <span
+              className="font-bold text-[#EA580C] text-[22px] tracking-[-0.03em] leading-none"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               IBOT
-            </span>
-            <span
-              className="text-[10px] font-bold uppercase tracking-widest text-[#EA580C] px-2 py-0.5 rounded-full border border-[#EA580C]/20 bg-[#EA580C]/5"
-              style={{ fontFamily: 'var(--font-mono)' }}
-            >
-              by Ottobon
             </span>
           </div>
 

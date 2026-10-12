@@ -25,7 +25,7 @@ export function CTASection({ onCTA }: { onCTA?: () => void }) {
             onClick={onCTA} 
             className="group relative inline-flex items-center justify-center gap-4 px-12 py-6 rounded-full bg-slate-900 text-white font-bold text-xl shadow-[0_10px_40px_rgba(15,23,42,0.2)] hover:shadow-[0_15px_60px_rgba(15,23,42,0.3)] hover:scale-105 hover:bg-slate-800 transition-all duration-300"
           >
-            Initiate Deployment 
+            Connect With Us 
             <ArrowRight className="group-hover:translate-x-2 transition-transform" />
           </button>
           

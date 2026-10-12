@@ -46,20 +46,23 @@ export function Navbar({ onCTA }: NavbarProps) {
         {/* Brand Wordmark */}
         <a
           href="/"
-          className="flex items-center gap-3 focus:outline-none"
-          aria-label="IBOT by Ottobon"
+          className="flex items-center gap-2 focus:outline-none group select-none"
+          aria-label="OTTOBON ★ IBOT"
         >
           <span
-            className="font-bold text-[#0F172A] text-[22px] tracking-[-0.03em] leading-none"
+            className="font-bold text-[#0F172A] text-[20px] sm:text-[22px] tracking-[-0.03em] leading-none"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            OTTOBON
+          </span>
+          <span className="text-[#EA580C] text-[13px] sm:text-[14px] leading-none font-bold transition-transform group-hover:scale-125 duration-200">
+            ★
+          </span>
+          <span
+            className="font-bold text-[#EA580C] text-[20px] sm:text-[22px] tracking-[-0.03em] leading-none"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             IBOT
-          </span>
-          <span
-            className="hidden sm:inline text-[10px] font-bold text-[#EA580C] tracking-[0.14em] uppercase px-2 py-0.5 rounded-full border border-[#EA580C]/20 bg-[#EA580C]/5"
-            style={{ fontFamily: 'var(--font-mono)' }}
-          >
-            by Ottobon
           </span>
         </a>
 

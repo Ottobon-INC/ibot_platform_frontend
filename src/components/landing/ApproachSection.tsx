@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, Code2, GitPullRequest, CheckCircle2, ChevronRight, X } from 'lucide-react';
 
@@ -10,29 +11,29 @@ export function ApproachSection() {
     {
       letter: 'I',
       name: 'Identify',
-      title: 'System Diagnostic',
-      desc: 'Before a single line of code is written, IBOT provisions a secure, replica environment of your exact production stack to ensure the test is authentic.',
+      title: 'Precision Diagnostics',
+      desc: 'Screen for learnability and emerging technology readiness using isolated production-replica environments mapped to your actual tech stack.',
       icon: <Terminal size={24} />
     },
     {
       letter: 'B',
       name: 'Build',
-      title: 'Sandbox Execution',
-      desc: 'Candidates solve real, complex engineering problems inside an actual IDE. We track not just if the code passes, but how they approach debugging.',
+      title: 'Practical Skill Nurturing',
+      desc: 'Candidates tackle real-world engineering ambiguity inside dedicated sandboxes, guided by practical challenges and automated test assertions.',
       icon: <Code2 size={24} />
     },
     {
       letter: 'O',
       name: 'Operate',
-      title: 'Peer Code Review',
-      desc: 'IBOT compiles a comprehensive diff and behavioral log, presenting it in a standard Pull Request format for your senior engineers to review effortlessly.',
+      title: 'Guided Project Delivery',
+      desc: 'Access remote, verified talent and Ottobon consultants who execute on live tasks and application features under rigorous engineering governance.',
       icon: <GitPullRequest size={24} />
     },
     {
       letter: 'T',
       name: 'Transfer',
-      title: 'Executive Dossier',
-      desc: 'All commits and iterations are compiled into a permanent, audit-ready readiness ledger for final executive sign-off.',
+      title: 'Frictionless Transition',
+      desc: 'Smoothly transition project-tested contributors into your internal engineering organization, backed by an audit-ready readiness dossier.',
       icon: <CheckCircle2 size={24} />
     }
   ];
@@ -174,9 +175,12 @@ export function ApproachSection() {
                                 {phase.desc}
                               </p>
                               
-                              <div className="mt-8 flex items-center gap-3 text-orange-600 font-semibold text-sm cursor-pointer hover:gap-5 transition-all">
+                              <Link
+                                to={`/phases/${phase.name.toLowerCase()}`}
+                                className="mt-8 inline-flex items-center gap-3 text-orange-600 font-semibold text-sm cursor-pointer hover:gap-5 transition-all"
+                              >
                                 Explore this phase <ChevronRight size={16} />
-                              </div>
+                              </Link>
                             </motion.div>
                           )}
                         </AnimatePresence>

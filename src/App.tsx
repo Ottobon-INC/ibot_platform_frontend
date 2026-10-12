@@ -2,6 +2,10 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import LandingPage from './pages/LandingPage';
+import IdentifyPhase from './pages/phases/IdentifyPhase';
+import BuildPhase from './pages/phases/BuildPhase';
+import OperatePhase from './pages/phases/OperatePhase';
+import TransferPhase from './pages/phases/TransferPhase';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
 import PlatformEntry from './pages/PlatformEntry';
@@ -82,6 +86,10 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/phases/identify" element={<IdentifyPhase />} />
+          <Route path="/phases/build" element={<BuildPhase />} />
+          <Route path="/phases/operate" element={<OperatePhase />} />
+          <Route path="/phases/transfer" element={<TransferPhase />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/get-started" element={<PlatformEntry />} />

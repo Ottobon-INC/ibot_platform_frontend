@@ -88,8 +88,8 @@ export function ShiftSection() {
     },
     {
       id: 'thousands',
-      title: 'From thousands down to one',
-      desc: 'Thousands of signals come in. What reaches your hiring team is only what genuinely needs human judgment.',
+      title: 'High-signal capability triage',
+      desc: 'Strip away resume inflation and synthetic test prep. What reaches your team is verified proof of real-world problem solving.',
       icon: <Search size={24} />,
       color: '#EA580C',
       renderGraphic: () => (
@@ -97,7 +97,7 @@ export function ShiftSection() {
           
           <div className="bg-white border border-slate-200 rounded-2xl w-72 p-6 shadow-sm">
              <div className="text-4xl font-bold text-[#0F172A] mb-1 tracking-tight">10,000+</div>
-             <div className="text-[12px] font-bold text-slate-500 tracking-wider uppercase">Raw Candidate Signals</div>
+             <div className="text-[12px] font-bold text-slate-500 tracking-wider uppercase">Unverified Submissions</div>
           </div>
           
           <div className="h-16 w-32 relative flex items-center justify-center">
@@ -109,7 +109,7 @@ export function ShiftSection() {
                animate={{ y: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity }}
                className="text-[10px] font-bold text-[#EA580C] uppercase tracking-widest relative z-10 bg-white/90 px-3 py-1.5 rounded-full shadow-sm border border-[#EA580C]/20"
              >
-               IBOT Filtering
+               IBOT Validation
              </motion.div>
           </div>
 
@@ -117,8 +117,8 @@ export function ShiftSection() {
             initial={{ scale: 0.95 }} animate={{ scale: 1 }} transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
             className="bg-[#EA580C] rounded-2xl w-72 p-6 shadow-lg shadow-[#EA580C]/30"
           >
-             <div className="text-4xl font-bold text-white mb-1">1</div>
-             <div className="text-[12px] font-bold text-orange-100 tracking-wider uppercase">High-Confidence Hire</div>
+             <div className="text-4xl font-bold text-white mb-1">100%</div>
+             <div className="text-[12px] font-bold text-orange-100 tracking-wider uppercase">Verified Capable Talent</div>
           </motion.div>
 
         </div>
@@ -200,7 +200,7 @@ export function ShiftSection() {
             </span>
           </h2>
           <p className="text-[#475569] text-[18px] leading-[1.6]">
-            IBOT clears the noise so your engineering and hiring teams can focus on real capabilities, not resume optimizations.
+            Traditional hiring processes test for textbook algorithm recall. IBOT validates practical engineering execution, real systems debugging, and adaptability under ambiguity.
           </p>
         </motion.div>
 
