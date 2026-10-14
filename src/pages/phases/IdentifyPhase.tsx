@@ -21,12 +21,12 @@ export default function IdentifyPhase() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--ibot-bg-dark)] text-[var(--ibot-text-on-dark)] font-sans selection:bg-[#EA580C] selection:text-white">
+    <div className="min-h-screen bg-[var(--ibot-bg-dark)] text-[var(--ibot-text-on-dark)] font-sans selection:bg-[#4F46E5] selection:text-white">
       {/* Universal Phase Navigation */}
       <PhaseNavbar onCTA={() => setModalOpen(true)} />
 
       {/* Main Page Flow - Approved 7-Section Architecture */}
-      <main className="pt-24 sm:pt-28">
+      <main className="pt-16 sm:pt-20">
         {/* Section 01: Hero Section */}
         <IdentifyHero
           onOpenModal={() => setModalOpen(true)}
@@ -53,7 +53,7 @@ export default function IdentifyPhase() {
       </main>
 
       {/* Global Footer */}
-      <Footer onCTA={() => setModalOpen(true)} />
+      <Footer />
 
       {/* Enterprise Consultation Lead Capture Modal */}
       <LeadModal

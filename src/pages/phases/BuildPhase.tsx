@@ -12,19 +12,19 @@ export default function BuildPhase() {
 
   const pillars = [
     {
-      icon: <Bug size={24} className="text-orange-600" />,
+      icon: <Bug size={24} className="text-indigo-600" />,
       title: 'Real-World Incident Immersion',
       desc: 'Instead of abstract puzzle quizzes, engineers are dropped into realistic system failure modes—debugging degraded database connections, unhandled race conditions, and streaming backpressure.',
       highlights: ['Dirty logs & incomplete stack traces', 'Production-replica microservices', 'Trade-off analysis under real constraints']
     },
     {
-      icon: <Layers size={24} className="text-orange-600" />,
+      icon: <Layers size={24} className="text-indigo-600" />,
       title: '5-Step Guided Nurturing Loop',
       desc: 'A structured cognitive feedback framework (Task → Problem Exploration → Targeted RFC Docs → Assertion Validation → Completion) builds autonomous judgment with zero senior manager burden.',
       highlights: ['Self-directed root cause discovery', 'Targeted architectural documentation', 'Eliminates repetitive senior lead mentoring']
     },
     {
-      icon: <Cpu size={24} className="text-orange-600" />,
+      icon: <Cpu size={24} className="text-indigo-600" />,
       title: 'Automated Regression Harness',
       desc: 'Every candidate commit is evaluated in an isolated containerized sandbox against automated regression assertion suites verifying memory safety, edge cases, and performance SLAs.',
       highlights: ['Zero exposure to proprietary client code', 'Instant automated assertion reporting', 'Deterministic pass/fail validation metrics']
@@ -75,7 +75,7 @@ export default function BuildPhase() {
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--ibot-bg-light)] text-[var(--ibot-text-on-light)] font-sans selection:bg-[#2563EB] selection:text-white">
+    <div className="min-h-screen bg-[var(--ibot-bg-light)] text-[var(--ibot-text-on-light)] font-sans selection:bg-[#4F46E5] selection:text-white">
       <PhaseNavbar onCTA={() => setModalOpen(true)} />
 
       <main className="pt-28 sm:pt-36 pb-24">
@@ -86,7 +86,7 @@ export default function BuildPhase() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-orange-600 font-mono text-xs font-bold uppercase tracking-widest mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200/80 text-indigo-600 font-mono text-xs font-bold uppercase tracking-widest mb-6"
           >
             <Code2 size={14} /> Phase 02 · Practical Skill Nurturing
           </motion.div>
@@ -99,7 +99,7 @@ export default function BuildPhase() {
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Nurture delivery under ambiguity. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-orange-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-indigo-600">
               Not textbook theory.
             </span>
           </motion.h1>
@@ -122,7 +122,7 @@ export default function BuildPhase() {
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="px-8 py-4 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-medium text-base shadow-lg shadow-orange-500/20 cursor-pointer transition-all hover:scale-[1.02]"
+              className="px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-base shadow-lg shadow-indigo-500/20 cursor-pointer transition-all hover:scale-[1.02]"
             >
               Calibrate Build Sandbox
             </button>
@@ -148,7 +148,7 @@ export default function BuildPhase() {
                 className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center mb-6">
                     {pillar.icon}
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-display)' }}>
@@ -179,7 +179,7 @@ export default function BuildPhase() {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between pb-8 mb-8 border-b border-slate-800 gap-4">
               <div>
-                <span className="text-xs font-mono text-orange-400 uppercase tracking-widest block mb-1">
+                <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest block mb-1">
                   Interactive Nurturing Simulator
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-bold">
@@ -204,11 +204,11 @@ export default function BuildPhase() {
                     onClick={() => setActiveStep(sIdx)}
                     className={`p-3 sm:p-4 rounded-xl text-left border transition-all cursor-pointer ${
                       isActive
-                        ? 'bg-orange-500/20 border-orange-500/60 text-white shadow-md'
+                        ? 'bg-indigo-500/20 border-indigo-500/60 text-white shadow-md'
                         : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'
                     }`}
                   >
-                    <div className="font-mono text-xs text-orange-400 font-bold mb-1">
+                    <div className="font-mono text-xs text-indigo-400 font-bold mb-1">
                       Step {stepItem.step}
                     </div>
                     <div className="text-xs sm:text-sm font-semibold truncate text-white">
@@ -231,7 +231,7 @@ export default function BuildPhase() {
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-1 rounded-md bg-orange-500/20 text-orange-300 font-mono text-xs uppercase font-semibold">
+                    <span className="px-2.5 py-1 rounded-md bg-indigo-500/20 text-indigo-300 font-mono text-xs uppercase font-semibold">
                       {sequencerSteps[activeStep].category}
                     </span>
                     <h4 className="text-xl font-bold text-white">
@@ -251,7 +251,7 @@ export default function BuildPhase() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10 text-xs">
                   <div>
                     <span className="text-slate-400 block font-mono">Telemetry Outcome</span>
-                    <span className="font-semibold text-orange-300 font-mono text-sm">
+                    <span className="font-semibold text-indigo-300 font-mono text-sm">
                       {sequencerSteps[activeStep].metric}
                     </span>
                   </div>
@@ -280,7 +280,7 @@ export default function BuildPhase() {
               <button
                 type="button"
                 onClick={() => setModalOpen(true)}
-                className="text-orange-400 font-bold hover:underline cursor-pointer"
+                className="text-indigo-400 font-bold hover:underline cursor-pointer"
               >
                 Schedule Build Sandbox Walkthrough →
               </button>
@@ -308,7 +308,7 @@ export default function BuildPhase() {
             </div>
             <Link
               to="/phases/operate"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-600 text-white font-semibold text-sm hover:bg-orange-700 transition-all cursor-pointer shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm hover:bg-indigo-700 transition-all cursor-pointer shadow-sm"
             >
               Proceed to Phase 03: Operate <ArrowRight size={16} />
             </Link>

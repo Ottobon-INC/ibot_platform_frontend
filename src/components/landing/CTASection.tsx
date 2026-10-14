@@ -6,7 +6,7 @@ export function CTASection({ onCTA }: { onCTA?: () => void }) {
   return (
     <section className="relative w-full py-40 overflow-hidden bg-white flex items-center justify-center">
       {/* Massive Glowing Orb */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-400/20 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/20 rounded-full blur-[150px] pointer-events-none" />
       
       {/* Grid Pattern */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(black 1px, transparent 1px), linear-gradient(90deg, black 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
@@ -17,7 +17,7 @@ export function CTASection({ onCTA }: { onCTA?: () => void }) {
           <h2 className="text-slate-900 font-black text-[48px] sm:text-[64px] mb-6 tracking-tight leading-[1.1]" style={{ fontFamily: 'var(--font-display)' }}>
             The Goal Isn't More Applicants.
           </h2>
-          <p className="text-orange-600 text-[24px] sm:text-[32px] font-medium mb-12">
+          <p className="text-indigo-600 text-[24px] sm:text-[32px] font-medium mb-12">
             It's More People You Can Confidently Put to Work.
           </p>
           

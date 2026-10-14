@@ -4,7 +4,7 @@
 /* =========================================================================
    OTTOBON IBOT — PREMIUM ACADEMIC/ENTERPRISE DESIGN SYSTEM
    Informed by Wireframe:
-   Cream/White Surfaces + Deep Navy + Warm Coral
+   Cream/White Surfaces + Deep Navy + Royal Indigo (#4F46E5)
    Typography: Playfair Display (display) + Inter (sans)
    ========================================================================= */
 
@@ -52,9 +52,9 @@
 
     --ibot-accent-primary:     #0F172A;  /* Deep Navy */
     --ibot-accent-hover:       #1E293B;
-    --ibot-accent-bright:      #EA580C;  /* Warm Coral */
-    --ibot-accent-secondary:   #F97316;
-    --ibot-accent-tint:        rgba(234, 88, 12, 0.1);
+    --ibot-accent-bright:      #4F46E5;  /* Royal Indigo */
+    --ibot-accent-secondary:   #6366F1;  /* Cognitive Violet */
+    --ibot-accent-tint:        rgba(79, 70, 229, 0.1);
 
     --ibot-status-verified:    #10B981;
     --ibot-status-pending:     #F59E0B;

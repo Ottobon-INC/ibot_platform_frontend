@@ -55,11 +55,11 @@ export function Navbar({ onCTA }: NavbarProps) {
           >
             OTTOBON
           </span>
-          <span className="text-[#EA580C] text-[13px] sm:text-[14px] leading-none font-bold transition-transform group-hover:scale-125 duration-200">
+          <span className="text-[#4F46E5] text-[13px] sm:text-[14px] leading-none font-bold transition-transform group-hover:scale-125 duration-200">
             ★
           </span>
           <span
-            className="font-bold text-[#EA580C] text-[20px] sm:text-[22px] tracking-[-0.03em] leading-none"
+            className="font-bold text-[#4F46E5] text-[20px] sm:text-[22px] tracking-[-0.03em] leading-none"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             IBOT
@@ -95,7 +95,7 @@ export function Navbar({ onCTA }: NavbarProps) {
 
           <button
             type="button"
-            className="lg:hidden p-2 text-[#0F172A] hover:text-[#EA580C]"
+            className="lg:hidden p-2 text-[#0F172A] hover:text-[#4F46E5]"
             onClick={() => setMobileMenuOpen((v) => !v)}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileMenuOpen}

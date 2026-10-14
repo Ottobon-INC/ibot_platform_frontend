@@ -29,12 +29,12 @@ export function CandidateExperienceSection() {
         
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16 sm:mb-20">
-          <div className="text-[11px] font-bold text-orange-600 uppercase tracking-[0.2em] mb-4">
+          <div className="text-[11px] font-bold text-indigo-600 uppercase tracking-[0.2em] mb-4">
             EVIDENCE-BASED VERIFICATION
           </div>
           <h2 className="text-slate-900 font-normal mb-6 text-[38px] sm:text-[48px] leading-[1.1] tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
             Stop reading resumes. <br />
-            <span className="font-semibold text-orange-600">Start evaluating execution.</span>
+            <span className="font-semibold text-indigo-600">Start evaluating execution.</span>
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-[17px] sm:text-[19px] leading-relaxed">
             Move past static interview claims. Inspect how contributors solve real-world ambiguity, absorb feedback, and submit production-ready code before making a permanent offer.
@@ -71,7 +71,7 @@ export function CandidateExperienceSection() {
 
             <div className="flex items-center gap-4 text-xs font-mono">
               <div className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 shadow-2xs">
-                <span className="text-slate-400">Readiness:</span> <strong className="text-orange-600 text-sm">98%</strong>
+                <span className="text-slate-400">Readiness:</span> <strong className="text-indigo-600 text-sm">98%</strong>
               </div>
               <div className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 shadow-2xs">
                 <span className="text-slate-400">Stack Match:</span> <strong className="text-emerald-600 text-sm">100%</strong>
@@ -86,7 +86,7 @@ export function CandidateExperienceSection() {
               onClick={() => setActiveTab('radar')}
               className={`py-4 border-b-2 transition-all cursor-pointer ${
                 activeTab === 'radar' 
-                  ? 'border-orange-600 text-orange-600 font-bold' 
+                  ? 'border-indigo-600 text-indigo-600 font-bold' 
                   : 'border-transparent hover:text-slate-900'
               }`}
             >
@@ -97,7 +97,7 @@ export function CandidateExperienceSection() {
               onClick={() => setActiveTab('commits')}
               className={`py-4 border-b-2 transition-all cursor-pointer ${
                 activeTab === 'commits' 
-                  ? 'border-orange-600 text-orange-600 font-bold' 
+                  ? 'border-indigo-600 text-indigo-600 font-bold' 
                   : 'border-transparent hover:text-slate-900'
               }`}
             >
@@ -108,7 +108,7 @@ export function CandidateExperienceSection() {
               onClick={() => setActiveTab('compliance')}
               className={`py-4 border-b-2 transition-all cursor-pointer ${
                 activeTab === 'compliance' 
-                  ? 'border-orange-600 text-orange-600 font-bold' 
+                  ? 'border-indigo-600 text-indigo-600 font-bold' 
                   : 'border-transparent hover:text-slate-900'
               }`}
             >
@@ -133,10 +133,10 @@ export function CandidateExperienceSection() {
                       Adaptive Competency Scores
                     </div>
                     {radarMetrics.map((item, idx) => (
-                      <div key={idx} className="p-3.5 rounded-xl bg-slate-50/70 border border-slate-200/60 hover:bg-orange-50/40 transition-colors">
+                      <div key={idx} className="p-3.5 rounded-xl bg-slate-50/70 border border-slate-200/60 hover:bg-indigo-50/40 transition-colors">
                         <div className="flex items-center justify-between text-xs font-semibold text-slate-800 mb-1">
                           <span>{item.label}</span>
-                          <span className="text-orange-600 font-mono font-bold">{item.score} / 10</span>
+                          <span className="text-indigo-600 font-mono font-bold">{item.score} / 10</span>
                         </div>
                         <div className="text-[11px] text-slate-500 leading-normal">
                           {item.desc}
@@ -148,7 +148,7 @@ export function CandidateExperienceSection() {
                   {/* Right: Verified Audit Summary Card */}
                   <div className="md:col-span-5 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white shadow-xl flex flex-col justify-between h-full">
                     <div>
-                      <div className="flex items-center gap-2 text-xs font-mono text-orange-400 uppercase tracking-widest mb-4">
+                      <div className="flex items-center gap-2 text-xs font-mono text-indigo-400 uppercase tracking-widest mb-4">
                         <ShieldCheck size={16} /> Audit Summary
                       </div>
                       <h4 className="text-xl font-bold mb-4 text-white">
@@ -196,7 +196,7 @@ export function CandidateExperienceSection() {
                   {commits.map((c, i) => (
                     <div key={i} className="p-4 rounded-xl border border-slate-200 flex items-center justify-between text-xs hover:border-slate-300 bg-white transition-all shadow-2xs">
                       <div className="flex items-center gap-3">
-                        <GitPullRequest size={16} className="text-orange-600 shrink-0" />
+                        <GitPullRequest size={16} className="text-indigo-600 shrink-0" />
                         <div>
                           <div className="font-mono font-semibold text-slate-800">{c.title}</div>
                           <div className="text-[10px] text-slate-400 font-mono mt-0.5">Commit {c.hash} · Submitted {c.time}</div>
@@ -219,17 +219,17 @@ export function CandidateExperienceSection() {
                   className="p-6 rounded-2xl bg-slate-50 border border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center"
                 >
                   <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs">
-                    <ShieldCheck size={24} className="text-orange-600 mx-auto mb-2" />
+                    <ShieldCheck size={24} className="text-indigo-600 mx-auto mb-2" />
                     <div className="text-xs font-bold text-slate-800">SOC-2 Isolated</div>
                     <div className="text-[11px] text-slate-500 mt-1">Practice container sanitized</div>
                   </div>
                   <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs">
-                    <Award size={24} className="text-orange-600 mx-auto mb-2" />
+                    <Award size={24} className="text-indigo-600 mx-auto mb-2" />
                     <div className="text-xs font-bold text-slate-800">IP Clearance</div>
                     <div className="text-[11px] text-slate-500 mt-1">All rights pre-assigned</div>
                   </div>
                   <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs">
-                    <UserCheck size={24} className="text-orange-600 mx-auto mb-2" />
+                    <UserCheck size={24} className="text-indigo-600 mx-auto mb-2" />
                     <div className="text-xs font-bold text-slate-800">Day-1 Absorption</div>
                     <div className="text-[11px] text-slate-500 mt-1">Instant internal transfer</div>
                   </div>

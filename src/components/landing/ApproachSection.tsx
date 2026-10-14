@@ -58,7 +58,7 @@ export function ApproachSection() {
         >
           <h2 className="text-[var(--ibot-text-on-light)] font-normal mb-6 text-[40px] sm:text-[48px] leading-[1.1] tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
             A structured path from <br />
-            <span className="font-semibold text-[#EA580C]">
+            <span className="font-semibold text-[#4F46E5]">
               potential to delivery.
             </span>
           </h2>
@@ -80,7 +80,7 @@ export function ApproachSection() {
                 className="w-72 h-72 bg-slate-900 rounded-[3rem] shadow-2xl flex flex-col items-center justify-center cursor-pointer group relative overflow-hidden"
               >
                 {/* Hover Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Pulsing rings */}
                 <div className="absolute inset-0 border border-white/10 rounded-[3rem] animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]" />
@@ -88,7 +88,7 @@ export function ApproachSection() {
                 <h3 className="text-7xl font-black tracking-widest text-white relative z-10 group-hover:scale-110 transition-transform duration-500">
                   IBOT
                 </h3>
-                <div className="mt-6 flex items-center gap-2 text-[11px] text-orange-400 font-mono tracking-[0.2em] relative z-10">
+                <div className="mt-6 flex items-center gap-2 text-[11px] text-indigo-400 font-mono tracking-[0.2em] relative z-10">
                   <span>CLICK TO INITIATE</span>
                   <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -128,7 +128,7 @@ export function ApproachSection() {
                       className={`relative overflow-hidden cursor-pointer rounded-3xl border transition-colors duration-200 flex flex-col group ${
                         isExpanded 
                           ? 'bg-white border-slate-200 shadow-2xl' 
-                          : 'bg-slate-900 border-slate-800 shadow-lg hover:bg-slate-800 hover:border-orange-500/40 hover:shadow-[0_20px_50px_rgba(234,88,12,0.15)]'
+                          : 'bg-slate-900 border-slate-800 shadow-lg hover:bg-slate-800 hover:border-indigo-500/40 hover:shadow-[0_20px_50px_rgba(79,70,229,0.15)]'
                       }`}
                     >
                       {/* Giant Background Letter */}
@@ -143,7 +143,7 @@ export function ApproachSection() {
                         
                         <div className="flex items-center justify-between">
                           <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-colors duration-500 ${
-                            isExpanded ? 'bg-orange-50 text-orange-600' : 'bg-white/10 text-white group-hover:bg-orange-500 group-hover:text-white'
+                            isExpanded ? 'bg-indigo-50 text-indigo-600' : 'bg-white/10 text-white group-hover:bg-indigo-600 group-hover:text-white'
                           }`}>
                             {phase.icon}
                           </div>
@@ -153,7 +153,7 @@ export function ApproachSection() {
                           <h3 className={`text-5xl font-black mb-2 transition-colors duration-500 ${isExpanded ? 'text-slate-900' : 'text-white'}`}>
                             {phase.letter}
                           </h3>
-                          <h4 className={`text-sm font-bold tracking-widest uppercase transition-colors duration-500 ${isExpanded ? 'text-orange-600' : 'text-slate-400'}`}>
+                          <h4 className={`text-sm font-bold tracking-widest uppercase transition-colors duration-500 ${isExpanded ? 'text-indigo-600' : 'text-slate-400'}`}>
                             {phase.name}
                           </h4>
                         </div>
@@ -177,7 +177,7 @@ export function ApproachSection() {
                               
                               <Link
                                 to={`/phases/${phase.name.toLowerCase()}`}
-                                className="mt-8 inline-flex items-center gap-3 text-orange-600 font-semibold text-sm cursor-pointer hover:gap-5 transition-all"
+                                className="mt-8 inline-flex items-center gap-3 text-indigo-600 font-semibold text-sm cursor-pointer hover:gap-5 transition-all"
                               >
                                 Explore this phase <ChevronRight size={16} />
                               </Link>

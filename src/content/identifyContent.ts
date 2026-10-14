@@ -28,7 +28,7 @@ export const IDENTIFY_CONTENT = {
     eyebrow: 'PHASE 01 · IDENTIFY',
     headline: 'Evaluate What Matters. Shortlist with Evidence.',
     supportingCopy:
-      'IBOT helps companies configure role-relevant evaluations, assess demonstrated candidate capabilities, and review practical work samples before making shortlisting decisions.',
+      'Configure role-relevant evaluations, verify candidate code in sandboxed environments, and review auditable work samples before final shortlisting decisions.',
     ctaPrimary: 'Explore Evaluation Methods',
     ctaSecondary: 'Schedule a Consultation',
     anchors: [
@@ -90,7 +90,7 @@ export const IDENTIFY_CONTENT = {
     eyebrow: 'THE SCREENING CHALLENGE',
     headline: 'The Inherent Limitations of Proxy Signals in Modern Hiring',
     supportingCopy:
-      'Resumes, credentials, and unstructured interviews provide useful background context, but they remain indirect indicators. They reflect how well candidates present past experience, not necessarily how they will analyze problems, navigate ambiguity, or execute in your day-to-day work environment.',
+      'Resumes and conversational interviews reflect how well candidates present past experience—not how they diagnose code, handle errors, or execute in production.',
     perspectives: [
       {
         id: 'conventional',
@@ -142,7 +142,7 @@ export const IDENTIFY_CONTENT = {
     eyebrow: 'CONFIGURABLE EVALUATION FRAMEWORK',
     headline: 'Your Hiring Requirements. Your Evaluation Process.',
     supportingCopy:
-      'IBOT does not impose a mandatory sequential testing funnel. Companies select from nine distinct evaluation methods across foundational, execution, and collaborative domains. Choose one, several, or all nine to match your role profile, seniority level, and qualification criteria.',
+      'Select from nine optional evaluation methods across foundational, execution, and collaborative domains to match your exact role criteria.',
     subnote:
       'The evaluation methods below represent the approved enterprise framework. In practice, talent teams select custom combinations per role profile.',
     domains: [
@@ -265,7 +265,7 @@ export const IDENTIFY_CONTENT = {
     eyebrow: 'QUALIFICATION ARCHITECTURE',
     headline: 'A Structured, Evidence-Led Qualification Journey',
     supportingCopy:
-      'Every step of the Identify workflow is designed to translate role criteria into clear evaluation data—enabling hiring teams to make defensible shortlisting decisions backed by real work samples.',
+      'A continuous 6-stage qualification pipeline translating role expectations into verified candidate work samples.',
     stages: [
       {
         number: '01',
@@ -318,7 +318,7 @@ export const IDENTIFY_CONTENT = {
     eyebrow: 'CANDIDATE EVALUATION OUTPUTS',
     headline: 'See Why a Candidate Meets Your Requirements.',
     supportingCopy:
-      'Rather than relying solely on resume claims or interview impressions, hiring teams review a comprehensive candidate dossier detailing selected assessments, threshold comparisons, demonstrated strengths, identified capability gaps, and human review recommendations.',
+      'Review auditable work samples, benchmark scores, verified strengths, and identified capability gaps in a unified candidate dossier.',
     scorecard: {
       profileLabel: 'Illustrative Profile: Backend Developer',
       configurationId: 'CFG-BK-805',
@@ -353,7 +353,7 @@ export const IDENTIFY_CONTENT = {
         name: 'HR & Cultural Fitment Round',
         type: 'Client-Configured Gate',
         status: 'CLEARED / PASS',
-        rubric: 'Alignment with team values, workplace expectations, and joining timeline verified.',
+      rubric: 'Alignment with team values, workplace expectations, and joining timeline verified.',
       },
       mathSummary: {
         rawSum: '68.4 pts',
@@ -402,7 +402,7 @@ export const IDENTIFY_CONTENT = {
     eyebrow: 'EMPLOYER VALUE & STRATEGY',
     headline: 'Clearer Signals. Better-Informed Hiring Decisions.',
     supportingCopy:
-      'Hiring succeeds when evaluation mirrors the actual responsibilities of the role. IBOT gives employers early clarity into candidate readiness, surfaces specific growth areas before offers are made, and equips hiring teams with the evidence needed to shortlist with confidence.',
+      'Align candidate evaluation with on-the-job execution, surface growth areas early, and ground shortlisting in auditable evidence.',
     pillars: [
       {
         number: '01',
@@ -451,7 +451,7 @@ export const IDENTIFY_CONTENT = {
     eyebrow: 'NEXT STEPS',
     headline: 'See How IBOT Fits Your Hiring Process.',
     supportingCopy:
-      'Explore how configurable evaluation methods and candidate dossiers can bring clarity to your technical screening and shortlisting decisions.',
+      'Schedule a consultation to configure role-relevant evaluation blueprints and review auditable candidate dossiers with our team.',
     ctaPrimary: 'Schedule an Identify Consultation',
     ctaSecondary: 'Explore the Full IBOT Model',
     anchors: [

@@ -12,19 +12,19 @@ export default function TransferPhase() {
 
   const pillars = [
     {
-      icon: <FileCheck size={24} className="text-orange-600" />,
+      icon: <FileCheck size={24} className="text-indigo-600" />,
       title: 'Audit-Ready Executive Dossier',
       desc: 'Complete chronological history of every task delivered, PR merged, architecture RFC reviewed, and regression test passed—giving executive teams indisputable evidence of delivery.',
       highlights: ['Full code review history & audit trail', '5-axis adaptability and velocity index', 'Eliminates hiring guesswork and buyer regret']
     },
     {
-      icon: <Sparkles size={24} className="text-orange-600" />,
+      icon: <Sparkles size={24} className="text-indigo-600" />,
       title: 'Zero Day-One Ramp-Up Lag',
       desc: 'Because the engineer has already shipped production code in your tech stack during the Operate phase, day one on your payroll yields 100% immediate delivery velocity.',
       highlights: ['Instant contributor productivity', 'Familiar with team communication cadences', 'Zero 6-to-8 week onboarding downtime']
     },
     {
-      icon: <Lock size={24} className="text-orange-600" />,
+      icon: <Lock size={24} className="text-indigo-600" />,
       title: 'Frictionless IP & HR Transition',
       desc: 'Clean legal transfer of intellectual property, repository permissions, SOC-2 compliance certifications, and 1-click candidate profile synchronization into Workday or Greenhouse.',
       highlights: ['Full legal IP assignment & NDA guarantees', 'IAM permission & key rotation protocol', 'Zero recruiter commission or broker markups']
@@ -32,7 +32,7 @@ export default function TransferPhase() {
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--ibot-bg-light)] text-[var(--ibot-text-on-light)] font-sans selection:bg-[#2563EB] selection:text-white">
+    <div className="min-h-screen bg-[var(--ibot-bg-light)] text-[var(--ibot-text-on-light)] font-sans selection:bg-[#4F46E5] selection:text-white">
       <PhaseNavbar onCTA={() => setModalOpen(true)} />
 
       <main className="pt-28 sm:pt-36 pb-24">
@@ -43,7 +43,7 @@ export default function TransferPhase() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-orange-600 font-mono text-xs font-bold uppercase tracking-widest mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200/80 text-indigo-600 font-mono text-xs font-bold uppercase tracking-widest mb-6"
           >
             <CheckCircle2 size={14} /> Phase 04 · Frictionless Transition
           </motion.div>
@@ -56,7 +56,7 @@ export default function TransferPhase() {
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Absorb proven contributors. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-orange-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-indigo-600">
               With zero Day-One ramp lag.
             </span>
           </motion.h1>
@@ -79,7 +79,7 @@ export default function TransferPhase() {
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="px-8 py-4 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-medium text-base shadow-lg shadow-orange-500/20 cursor-pointer transition-all hover:scale-[1.02]"
+              className="px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-base shadow-lg shadow-indigo-500/20 cursor-pointer transition-all hover:scale-[1.02]"
             >
               Plan Your Talent Transfer
             </button>
@@ -105,7 +105,7 @@ export default function TransferPhase() {
                 className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center mb-6">
                     {pillar.icon}
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-display)' }}>
@@ -136,7 +136,7 @@ export default function TransferPhase() {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between pb-8 mb-8 border-b border-slate-800 gap-4">
               <div>
-                <span className="text-xs font-mono text-orange-400 uppercase tracking-widest block mb-1">
+                <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest block mb-1">
                   Executive Handover Verification
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-bold">
@@ -150,7 +150,7 @@ export default function TransferPhase() {
                   type="button"
                   onClick={() => setActiveTab('dossier')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                    activeTab === 'dossier' ? 'bg-orange-600 text-white' : 'text-slate-400 hover:text-white'
+                    activeTab === 'dossier' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   Readiness Dossier
@@ -159,7 +159,7 @@ export default function TransferPhase() {
                   type="button"
                   onClick={() => setActiveTab('ip')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                    activeTab === 'ip' ? 'bg-orange-600 text-white' : 'text-slate-400 hover:text-white'
+                    activeTab === 'ip' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   IP & Compliance
@@ -168,7 +168,7 @@ export default function TransferPhase() {
                   type="button"
                   onClick={() => setActiveTab('onboarding')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                    activeTab === 'onboarding' ? 'bg-orange-600 text-white' : 'text-slate-400 hover:text-white'
+                    activeTab === 'onboarding' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   Day-1 Productivity
@@ -194,7 +194,7 @@ export default function TransferPhase() {
                   </div>
                   <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
                     <div className="text-xs font-mono text-slate-400 uppercase mb-1">Adaptability Index</div>
-                    <div className="text-3xl font-bold text-orange-400 font-mono">9.6 / 10</div>
+                    <div className="text-3xl font-bold text-indigo-400 font-mono">9.6 / 10</div>
                     <div className="text-xs text-slate-400 mt-1">Verified on distributed services</div>
                   </div>
                   <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
@@ -258,7 +258,7 @@ export default function TransferPhase() {
                 >
                   <div className="flex items-center justify-between pb-3 border-b border-white/10 text-slate-400">
                     <span>Onboarding Friction Comparison</span>
-                    <span className="text-orange-400 font-bold">DAY-1 PRODUCTIVITY GUARANTEE</span>
+                    <span className="text-indigo-400 font-bold">DAY-1 PRODUCTIVITY GUARANTEE</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm font-sans">
                     <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-slate-300">
@@ -291,7 +291,7 @@ export default function TransferPhase() {
               <button
                 type="button"
                 onClick={() => setModalOpen(true)}
-                className="text-orange-400 font-bold hover:underline cursor-pointer"
+                className="text-indigo-400 font-bold hover:underline cursor-pointer"
               >
                 Schedule Talent Transition Consultation →
               </button>
@@ -320,7 +320,7 @@ export default function TransferPhase() {
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-600 text-white font-semibold text-sm hover:bg-orange-700 transition-all cursor-pointer shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm hover:bg-indigo-700 transition-all cursor-pointer shadow-sm"
             >
               Connect With Us <ArrowRight size={16} />
             </button>

@@ -12,19 +12,19 @@ export default function OperatePhase() {
 
   const pillars = [
     {
-      icon: <Users size={24} className="text-orange-600" />,
+      icon: <Users size={24} className="text-indigo-600" />,
       title: 'Principal Architect Oversight',
       desc: 'An assigned Ottobon Principal Architect manages daily standups, breaks down complex stories, and enforces code standards, completely shielding your internal engineering leads.',
       highlights: ['0 hrs / wk client lead management overhead', 'Daily standup & sprint coordination', 'Rigorous PR review & quality gates']
     },
     {
-      icon: <GitPullRequest size={24} className="text-orange-600" />,
+      icon: <GitPullRequest size={24} className="text-indigo-600" />,
       title: 'Real Roadmap Feature Delivery',
       desc: 'Rather than sitting in synthetic sandbox loops, engineers write code for real backlog items, shipping tested features and integrations into client staging environments.',
       highlights: ['True production velocity tracking', 'CI/CD pipeline and lint adherence', 'Direct milestone accountability']
     },
     {
-      icon: <Clock size={24} className="text-orange-600" />,
+      icon: <Clock size={24} className="text-indigo-600" />,
       title: 'De-risked Trial-to-Hire Runway',
       desc: 'Evaluate technical judgment, communication clarity, and teamwork dynamics over 4 to 12 weeks of live delivery before making permanent hiring or payroll commitments.',
       highlights: ['Zero hiring risk or sunk severance cost', 'Transparent velocity and quality scorecards', 'Seamless progression into Transfer phase']
@@ -39,7 +39,7 @@ export default function OperatePhase() {
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--ibot-bg-light)] text-[var(--ibot-text-on-light)] font-sans selection:bg-[#2563EB] selection:text-white">
+    <div className="min-h-screen bg-[var(--ibot-bg-light)] text-[var(--ibot-text-on-light)] font-sans selection:bg-[#4F46E5] selection:text-white">
       <PhaseNavbar onCTA={() => setModalOpen(true)} />
 
       <main className="pt-28 sm:pt-36 pb-24">
@@ -50,7 +50,7 @@ export default function OperatePhase() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-orange-600 font-mono text-xs font-bold uppercase tracking-widest mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200/80 text-indigo-600 font-mono text-xs font-bold uppercase tracking-widest mb-6"
           >
             <GitPullRequest size={14} /> Phase 03 · Guided Project Delivery
           </motion.div>
@@ -63,7 +63,7 @@ export default function OperatePhase() {
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Execute real features today. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-orange-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-indigo-600">
               With zero internal lead drag.
             </span>
           </motion.h1>
@@ -86,7 +86,7 @@ export default function OperatePhase() {
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="px-8 py-4 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-medium text-base shadow-lg shadow-orange-500/20 cursor-pointer transition-all hover:scale-[1.02]"
+              className="px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-base shadow-lg shadow-indigo-500/20 cursor-pointer transition-all hover:scale-[1.02]"
             >
               Spin Up Guided Delivery Team
             </button>
@@ -112,7 +112,7 @@ export default function OperatePhase() {
                 className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center mb-6">
                     {pillar.icon}
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-display)' }}>
@@ -143,7 +143,7 @@ export default function OperatePhase() {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between pb-8 mb-8 border-b border-slate-800 gap-4">
               <div>
-                <span className="text-xs font-mono text-orange-400 uppercase tracking-widest block mb-1">
+                <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest block mb-1">
                   Live Project Governance Console
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-bold">
@@ -157,7 +157,7 @@ export default function OperatePhase() {
                   type="button"
                   onClick={() => setActiveTab('sprint')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                    activeTab === 'sprint' ? 'bg-orange-600 text-white' : 'text-slate-400 hover:text-white'
+                    activeTab === 'sprint' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   Active Sprint
@@ -166,7 +166,7 @@ export default function OperatePhase() {
                   type="button"
                   onClick={() => setActiveTab('reviews')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                    activeTab === 'reviews' ? 'bg-orange-600 text-white' : 'text-slate-400 hover:text-white'
+                    activeTab === 'reviews' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   PR Reviews
@@ -175,7 +175,7 @@ export default function OperatePhase() {
                   type="button"
                   onClick={() => setActiveTab('sla')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                    activeTab === 'sla' ? 'bg-orange-600 text-white' : 'text-slate-400 hover:text-white'
+                    activeTab === 'sla' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   Zero-Lead SLA
@@ -200,7 +200,7 @@ export default function OperatePhase() {
                       className="p-4 rounded-xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="font-mono text-xs text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">
+                        <span className="font-mono text-xs text-indigo-400 font-bold bg-indigo-500/10 px-2 py-0.5 rounded">
                           {item.id}
                         </span>
                         <span className="font-medium text-slate-200">{item.title}</span>
@@ -243,7 +243,7 @@ export default function OperatePhase() {
                     <div>Assertions: <span className="text-white">24/24 Passed</span></div>
                     <div>SonarQube: <span className="text-emerald-400">0 Vulnerabilities</span></div>
                     <div>Coverage: <span className="text-white">96.8%</span></div>
-                    <div>Lead Time: <span className="text-orange-400">0 Client Hours</span></div>
+                    <div>Lead Time: <span className="text-indigo-400">0 Client Hours</span></div>
                   </div>
                 </motion.div>
               )}
@@ -264,7 +264,7 @@ export default function OperatePhase() {
                   </div>
                   <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
                     <div className="text-xs font-mono text-slate-400 uppercase mb-1">Sprint Velocity</div>
-                    <div className="text-3xl font-bold text-orange-400 font-mono">94 pts / sprint</div>
+                    <div className="text-3xl font-bold text-indigo-400 font-mono">94 pts / sprint</div>
                     <div className="text-xs text-slate-400 mt-1">Consistent production throughput</div>
                   </div>
                   <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
@@ -285,7 +285,7 @@ export default function OperatePhase() {
               <button
                 type="button"
                 onClick={() => setModalOpen(true)}
-                className="text-orange-400 font-bold hover:underline cursor-pointer"
+                className="text-indigo-400 font-bold hover:underline cursor-pointer"
               >
                 Discuss Guided Delivery Teams →
               </button>
@@ -313,7 +313,7 @@ export default function OperatePhase() {
             </div>
             <Link
               to="/phases/transfer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-600 text-white font-semibold text-sm hover:bg-orange-700 transition-all cursor-pointer shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm hover:bg-indigo-700 transition-all cursor-pointer shadow-sm"
             >
               Proceed to Phase 04: Transfer <ArrowRight size={16} />
             </Link>

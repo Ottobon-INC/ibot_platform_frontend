@@ -11,7 +11,7 @@ export function ShiftSection() {
       title: 'Every commit accounted for',
       desc: 'Built from patterns seen across thousands of real engineering incidents — not a generic technical screen.',
       icon: <TerminalSquare size={24} />,
-      color: '#EA580C',
+      color: '#4F46E5',
       renderGraphic: () => (
         <div className="w-full h-full bg-[#0F172A] flex flex-col md:flex-row items-center justify-center relative overflow-hidden gap-8 px-8 font-sans">
            
@@ -29,12 +29,12 @@ export function ShiftSection() {
 
            {/* IBOT Assessment */}
            <div className="w-full md:w-2/5 flex flex-col items-center relative z-10">
-             <div className="text-[11px] font-bold text-[#EA580C] uppercase tracking-widest mb-4 flex items-center gap-2 text-center">
+             <div className="text-[11px] font-bold text-[#4F46E5] uppercase tracking-widest mb-4 flex items-center gap-2 text-center">
                <ShieldCheck size={14} /> IBOT Assessment
              </div>
              <motion.div 
                initial={{ y: 5 }} animate={{ y: -5 }} transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-               className="w-full bg-white rounded-xl p-5 border-2 border-[#EA580C]/30 shadow-[0_0_40px_rgba(234,88,12,0.2)] flex flex-col items-center text-center gap-3 h-32 justify-center relative"
+               className="w-full bg-white rounded-xl p-5 border-2 border-[#4F46E5]/30 shadow-[0_0_40px_rgba(79,70,229,0.2)] flex flex-col items-center text-center gap-3 h-32 justify-center relative"
              >
                <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold shadow-sm border border-green-200">✓</div>
                <div className="text-[#0F172A] font-mono font-bold text-[12px] leading-snug">"Debug Production Memory Leak"</div>
@@ -91,7 +91,7 @@ export function ShiftSection() {
       title: 'High-signal capability triage',
       desc: 'Strip away resume inflation and synthetic test prep. What reaches your team is verified proof of real-world problem solving.',
       icon: <Search size={24} />,
-      color: '#EA580C',
+      color: '#4F46E5',
       renderGraphic: () => (
         <div className="w-full h-full bg-[#F8FAFC] flex flex-col items-center justify-center relative overflow-hidden font-sans text-center">
           
@@ -107,7 +107,7 @@ export function ShiftSection() {
              </svg>
              <motion.div 
                animate={{ y: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity }}
-               className="text-[10px] font-bold text-[#EA580C] uppercase tracking-widest relative z-10 bg-white/90 px-3 py-1.5 rounded-full shadow-sm border border-[#EA580C]/20"
+               className="text-[10px] font-bold text-[#4F46E5] uppercase tracking-widest relative z-10 bg-white/90 px-3 py-1.5 rounded-full shadow-sm border border-[#4F46E5]/20"
              >
                IBOT Validation
              </motion.div>
@@ -115,10 +115,10 @@ export function ShiftSection() {
 
           <motion.div 
             initial={{ scale: 0.95 }} animate={{ scale: 1 }} transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-            className="bg-[#EA580C] rounded-2xl w-72 p-6 shadow-lg shadow-[#EA580C]/30"
+            className="bg-[#4F46E5] rounded-2xl w-72 p-6 shadow-lg shadow-[#4F46E5]/30"
           >
              <div className="text-4xl font-bold text-white mb-1">100%</div>
-             <div className="text-[12px] font-bold text-orange-100 tracking-wider uppercase">Verified Capable Talent</div>
+             <div className="text-[12px] font-bold text-indigo-100 tracking-wider uppercase">Verified Capable Talent</div>
           </motion.div>
 
         </div>
@@ -195,7 +195,7 @@ export function ShiftSection() {
         >
           <h2 className="text-[var(--ibot-text-on-light)] font-normal mb-6 text-[40px] sm:text-[48px] leading-[1.1] tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
             Built for the talent signals <br />
-            <span className="font-semibold text-[#EA580C]">
+            <span className="font-semibold text-[#4F46E5]">
               that actually matter.
             </span>
           </h2>

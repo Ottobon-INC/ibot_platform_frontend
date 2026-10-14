@@ -34,11 +34,11 @@ export function Footer() {
             >
               OTTOBON
             </span>
-            <span className="text-[#EA580C] text-[13px] leading-none font-bold">
+            <span className="text-[#4F46E5] text-[13px] leading-none font-bold">
               ★
             </span>
             <span
-              className="font-bold text-[#EA580C] text-[22px] tracking-[-0.03em] leading-none"
+              className="font-bold text-[#4F46E5] text-[22px] tracking-[-0.03em] leading-none"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               IBOT

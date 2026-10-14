@@ -46,7 +46,7 @@ export function NurturingSection() {
         >
           <h2 className="text-[#0F172A] font-normal mb-6 text-[40px] sm:text-[48px] leading-[1.1] tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
             Every candidate builds an <br/>
-            <span className="font-bold text-[#EA580C]">
+            <span className="font-bold text-[#4F46E5]">
               evidence trail.
             </span>
           </h2>
@@ -77,15 +77,15 @@ export function NurturingSection() {
                  <div className="relative w-24 h-24 flex items-center justify-center mb-6">
                    
                    {/* Background Blob 1 - Continuous Spin */}
-                   <div className="absolute inset-0 border border-slate-200 group-hover:border-orange-300 group-hover:bg-orange-50 rounded-[35%] animate-[spin_12s_linear_infinite] transition-colors duration-500 ease-in-out bg-white/50" />
+                   <div className="absolute inset-0 border border-slate-200 group-hover:border-indigo-300 group-hover:bg-indigo-50 rounded-[35%] animate-[spin_12s_linear_infinite] transition-colors duration-500 ease-in-out bg-white/50" />
                    
                    {/* Background Blob 2 - Reverse Continuous Spin */}
-                   <div className="absolute inset-0 border border-slate-100 group-hover:border-orange-200 rounded-[2.5rem] animate-[spin_15s_linear_infinite_reverse] transition-colors duration-500 ease-in-out" />
+                   <div className="absolute inset-0 border border-slate-100 group-hover:border-indigo-200 rounded-[2.5rem] animate-[spin_15s_linear_infinite_reverse] transition-colors duration-500 ease-in-out" />
                    
                    {/* Inner Circle (solid white to cover the line) */}
-                   <div className="relative w-[70px] h-[70px] bg-white border border-slate-200 group-hover:border-orange-400 rounded-full flex items-center justify-center shadow-sm z-10 group-hover:shadow-lg transition-all duration-300">
+                   <div className="relative w-[70px] h-[70px] bg-white border border-slate-200 group-hover:border-indigo-400 rounded-full flex items-center justify-center shadow-sm z-10 group-hover:shadow-lg transition-all duration-300">
                      {/* The icon */}
-                     <div className="text-slate-800 group-hover:text-orange-600 transform group-hover:scale-110 transition-all duration-300">
+                     <div className="text-slate-800 group-hover:text-indigo-600 transform group-hover:scale-110 transition-all duration-300">
                        {stage.icon}
                      </div>
                    </div>
@@ -93,11 +93,11 @@ export function NurturingSection() {
                  </div>
 
                  {/* Text Content */}
-                 <div className="text-[11px] font-bold text-[#EA580C] uppercase tracking-[0.2em] mb-4">
+                 <div className="text-[11px] font-bold text-[#4F46E5] uppercase tracking-[0.2em] mb-4">
                    STAGE {stage.num}
                  </div>
                  
-                 <h3 className="text-[20px] text-slate-900 group-hover:text-orange-600 transition-colors duration-300 font-semibold mb-3" style={{ fontFamily: 'var(--font-display)' }}>
+                 <h3 className="text-[20px] text-slate-900 group-hover:text-indigo-600 transition-colors duration-300 font-semibold mb-3" style={{ fontFamily: 'var(--font-display)' }}>
                    {stage.title}
                  </h3>
                  
