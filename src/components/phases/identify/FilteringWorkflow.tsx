@@ -1,42 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { GitBranch, ShieldCheck, UserCheck, ArrowRight, Check, Play, Pause, Terminal, FileCode2, Sliders, Database, UserCheck2, Sparkles } from 'lucide-react';
+import { GitBranch, ShieldCheck, UserCheck, ArrowRight, Check, Terminal, FileCode2, Sliders, Database, UserCheck2, Sparkles } from 'lucide-react';
 import { IDENTIFY_CONTENT } from '../../../content/identifyContent';
 import { transitions, tabContentVariants, MOTION_EASINGS } from './motionTokens';
 
 export const FilteringWorkflow: React.FC = () => {
   const { workflow } = IDENTIFY_CONTENT;
   const [activeStageIndex, setActiveStageIndex] = useState<number>(0);
-  const [isPlayingJourney, setIsPlayingJourney] = useState<boolean>(false);
   const shouldReduceMotion = useReducedMotion();
 
-  // Automatic Guided Journey Stepper
-  useEffect(() => {
-    if (!isPlayingJourney || shouldReduceMotion) return;
-
-    const timer = setInterval(() => {
-      setActiveStageIndex((prev) => {
-        if (prev >= 5) {
-          setIsPlayingJourney(false);
-          return 5;
-        }
-        return prev + 1;
-      });
-    }, 1800);
-
-    return () => clearInterval(timer);
-  }, [isPlayingJourney, shouldReduceMotion]);
-
-  const togglePlayJourney = () => {
-    if (isPlayingJourney) {
-      setIsPlayingJourney(false);
-    } else {
-      if (activeStageIndex >= 5) {
-        setActiveStageIndex(0);
-      }
-      setIsPlayingJourney(true);
-    }
-  };
 
   const stageDeliverables = [
     {
@@ -107,29 +79,10 @@ export const FilteringWorkflow: React.FC = () => {
           </p>
         </div>
 
-        {/* Guided Journey Play / Scrub Controller */}
-        <div className="flex items-center gap-3 shrink-0">
-          <button
-            type="button"
-            onClick={togglePlayJourney}
-            className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 border transition-all duration-150 cursor-pointer shadow-2xs focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${
-              isPlayingJourney
-                ? 'bg-indigo-600 text-white border-indigo-700 shadow-sm'
-                : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-700'
-            }`}
-          >
-            {isPlayingJourney ? (
-              <>
-                <Pause size={13} />
-                <span>Pause Guided Journey</span>
-              </>
-            ) : (
-              <>
-                <Play size={13} className="text-indigo-600 fill-indigo-600" />
-                <span>{activeStageIndex >= 5 ? 'Replay Pipeline Journey' : 'Play Pipeline Journey'}</span>
-              </>
-            )}
-          </button>
+        {/* Governed Stage Status Indicator */}
+        <div className="flex items-center gap-2 text-xs font-mono text-slate-600 bg-slate-100/90 px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-2xs shrink-0">
+          <span className="w-2 h-2 rounded-full bg-emerald-500" />
+          <span>Stage 0{activeStageIndex + 1} of 06 · Active Pipeline Gate</span>
         </div>
       </motion.div>
 
@@ -156,14 +109,10 @@ export const FilteringWorkflow: React.FC = () => {
             return (
               <motion.div
                 key={stage.number}
-                onClick={() => {
-                  setIsPlayingJourney(false);
-                  setActiveStageIndex(idx);
-                }}
+                onClick={() => setActiveStageIndex(idx)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    setIsPlayingJourney(false);
                     setActiveStageIndex(idx);
                   }
                 }}

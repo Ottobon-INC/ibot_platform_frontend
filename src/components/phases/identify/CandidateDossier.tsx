@@ -154,7 +154,7 @@ export const CandidateDossier: React.FC = () => {
             <Terminal size={14} />
             <span>02. Work Artifact Diff</span>
             {spotlightSource === 'round06' && (
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
             )}
             {activeTab === 'artifact' && (
               <motion.div 
@@ -179,7 +179,7 @@ export const CandidateDossier: React.FC = () => {
             <ShieldCheck size={14} />
             <span>03. Strengths & Mentorship Gaps</span>
             {spotlightSource === 'round07' && (
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
             )}
             {activeTab === 'qualitative' && (
               <motion.div 

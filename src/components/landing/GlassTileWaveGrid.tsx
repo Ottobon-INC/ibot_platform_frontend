@@ -89,16 +89,26 @@ export function GlassTileWaveGrid({ className = '' }: GlassTileWaveGridProps) {
 
       ctx.clearRect(0, 0, width, height);
 
-      // Grid boundaries across full viewport
-      const cols = Math.ceil(width / (tileSize + gap)) + 2;
-      const rows = Math.ceil(height / (tileSize + gap)) + 2;
+      // Symmetrically center grid boundaries across viewport with bleed on both sides
+      const pitch = tileSize + gap;
+      const cols = Math.ceil(width / pitch) + 2;
+      const rows = Math.ceil(height / pitch) + 2;
+      const totalGridWidth = (cols - 1) * pitch + tileSize;
+      const totalGridHeight = (rows - 1) * pitch + tileSize;
+      const startX = (width - totalGridWidth) / 2;
+      const startY = (height - totalGridHeight) / 2;
       const centerX = width * 0.5;
       const centerY = height * 0.45;
 
       for (let c = 0; c < cols; c++) {
         for (let r = 0; r < rows; r++) {
-          const baseX = c * (tileSize + gap);
-          const baseY = r * (tileSize + gap);
+          const baseX = startX + c * pitch;
+          const baseY = startY + r * pitch;
+
+          // Skip tiles completely outside the canvas bounds
+          if (baseX + tileSize < 0 || baseX > width || baseY + tileSize < 0 || baseY > height) {
+            continue;
+          }
 
           // Restrained wave equation
           const wavePhase = prefersReducedMotion ? 0 : elapsed * 1.0 + (c * 0.22) + (r * 0.20);
@@ -118,10 +128,7 @@ export function GlassTileWaveGrid({ className = '' }: GlassTileWaveGridProps) {
           const distFromCenter = Math.hypot(baseX + tileSize / 2 - centerX, (baseY + tileSize / 2 - centerY) * 1.4);
           const centerSoftness = Math.min(1, 0.45 + (distFromCenter / (width * 0.4)) * 0.55);
 
-          // Edge fades
-          const edgeFadeX = Math.min(1, Math.min(baseX / 80, (width - baseX) / 80));
-          const edgeFadeY = Math.min(1, Math.min(baseY / 80, (height - baseY) / 80));
-          const opacity = centerSoftness * Math.max(0, edgeFadeX) * Math.max(0, edgeFadeY);
+          const opacity = centerSoftness;
 
           if (opacity <= 0.01) continue;
 

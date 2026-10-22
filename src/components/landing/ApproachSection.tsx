@@ -143,7 +143,7 @@ export function ApproachSection() {
                         
                         <div className="flex items-center justify-between">
                           <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-colors duration-500 ${
-                            isExpanded ? 'bg-indigo-50 text-indigo-600' : 'bg-white/10 text-white group-hover:bg-indigo-600 group-hover:text-white'
+                            isExpanded ? 'bg-indigo-50 text-[#4F46E5]' : 'bg-white/10 text-white group-hover:bg-[#4F46E5] group-hover:text-white'
                           }`}>
                             {phase.icon}
                           </div>
@@ -153,7 +153,7 @@ export function ApproachSection() {
                           <h3 className={`text-5xl font-black mb-2 transition-colors duration-500 ${isExpanded ? 'text-slate-900' : 'text-white'}`}>
                             {phase.letter}
                           </h3>
-                          <h4 className={`text-sm font-bold tracking-widest uppercase transition-colors duration-500 ${isExpanded ? 'text-indigo-600' : 'text-slate-400'}`}>
+                          <h4 className={`text-sm font-bold tracking-widest uppercase transition-colors duration-500 ${isExpanded ? 'text-[#4F46E5]' : 'text-slate-400'}`}>
                             {phase.name}
                           </h4>
                         </div>
@@ -168,16 +168,16 @@ export function ApproachSection() {
                               transition={{ duration: 0.4, delay: 0.2 }}
                               className="mt-8 border-t border-slate-100 pt-8"
                             >
-                              <h5 className="text-3xl font-bold text-slate-800 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+                              <h5 className="text-3xl font-bold text-[#0F172A] mb-4" style={{ fontFamily: 'var(--font-display)' }}>
                                 {phase.title}
                               </h5>
-                              <p className="text-lg text-slate-600 leading-relaxed max-w-lg">
+                              <p className="text-lg text-[#475569] leading-relaxed max-w-lg">
                                 {phase.desc}
                               </p>
                               
                               <Link
                                 to={`/phases/${phase.name.toLowerCase()}`}
-                                className="mt-8 inline-flex items-center gap-3 text-indigo-600 font-semibold text-sm cursor-pointer hover:gap-5 transition-all"
+                                className="mt-8 inline-flex items-center gap-3 text-[#4F46E5] font-semibold text-sm cursor-pointer hover:gap-5 transition-all"
                               >
                                 Explore this phase <ChevronRight size={16} />
                               </Link>

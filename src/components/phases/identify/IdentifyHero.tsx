@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Lock, BarChart3, Check, RotateCcw, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Lock, BarChart3, Check, Sparkles } from 'lucide-react';
 import { IDENTIFY_CONTENT } from '../../../content/identifyContent';
 import { transitions, buttonHoverProps, MOTION_EASINGS } from './motionTokens';
 
@@ -36,64 +36,6 @@ export const IdentifyHero: React.FC<IdentifyHeroProps> = ({ onOpenModal, onExplo
   const [activeModuleHover, setActiveModuleHover] = useState<number | null>(null);
   const shouldReduceMotion = useReducedMotion();
 
-  // Storytelling Engine State: Replay key, live rolling counter, and multi-phase status
-  const [assemblyKey, setAssemblyKey] = useState<number>(0);
-  const [displayScore, setDisplayScore] = useState<string>('0.0%');
-  const [assemblyPhase, setAssemblyPhase] = useState<'docking' | 'scoring' | 'gate' | 'verified'>('docking');
-
-  useEffect(() => {
-    if (shouldReduceMotion) {
-      setDisplayScore('80.5%');
-      setAssemblyPhase('verified');
-      return;
-    }
-
-    setAssemblyPhase('docking');
-    setDisplayScore('0.0%');
-
-    // Phase 2: Start scoring calculation at 650ms
-    const scoringTimer = setTimeout(() => {
-      setAssemblyPhase('scoring');
-      
-      const startTime = performance.now();
-      const duration = 600; // 600ms roll
-      const targetScore = 80.5;
-
-      const animateRoll = (now: number) => {
-        const elapsed = now - startTime;
-        const progress = Math.min(1, elapsed / duration);
-        // Smooth ease-out quad
-        const easedProgress = 1 - Math.pow(1 - progress, 2);
-        const current = (targetScore * easedProgress).toFixed(1);
-        setDisplayScore(`${current}%`);
-
-        if (progress < 1) {
-          requestAnimationFrame(animateRoll);
-        } else {
-          setDisplayScore('80.5%');
-        }
-      };
-
-      requestAnimationFrame(animateRoll);
-    }, 650);
-
-    // Phase 3: Gate verification at 1350ms
-    const gateTimer = setTimeout(() => {
-      setAssemblyPhase('gate');
-    }, 1350);
-
-    // Final Verified State at 1650ms
-    const verifiedTimer = setTimeout(() => {
-      setAssemblyPhase('verified');
-    }, 1650);
-
-    return () => {
-      clearTimeout(scoringTimer);
-      clearTimeout(gateTimer);
-      clearTimeout(verifiedTimer);
-    };
-  }, [assemblyKey, shouldReduceMotion]);
-
   return (
     <section className="relative px-4 sm:px-6 lg:px-8 max-w-[1280px] mx-auto pt-2 sm:pt-4 lg:pt-6 pb-16 lg:pb-24 overflow-hidden sm:overflow-visible">
       {/* Precision Ambient Background Mesh */}
@@ -127,7 +69,7 @@ export const IdentifyHero: React.FC<IdentifyHeroProps> = ({ onOpenModal, onExplo
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Evaluate What Matters. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-indigo-900 to-[#4F46E5] italic font-medium pr-1">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-indigo-950 to-[#4F46E5] italic font-medium pr-1">
               Shortlist with Evidence.
             </span>
           </motion.h1>
@@ -194,7 +136,6 @@ export const IdentifyHero: React.FC<IdentifyHeroProps> = ({ onOpenModal, onExplo
 
         {/* ── RIGHT COLUMN: Sleek Compact Calibration Workbench (Max-W 480px, Perfectly Proportioned) ── */}
         <motion.div
-          key={`workbench-${assemblyKey}`}
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: MOTION_EASINGS.easeOut }}
@@ -211,7 +152,7 @@ export const IdentifyHero: React.FC<IdentifyHeroProps> = ({ onOpenModal, onExplo
             transition={transitions.hover}
             className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_16px_40px_rgba(15,23,42,0.05)] hover:shadow-[0_20px_50px_rgba(79,70,229,0.1)] p-4 sm:p-5 relative overflow-hidden transition-all duration-200"
           >
-            {/* Top Tactical Bar: Candidate Verification Header & Interactive Replay Button */}
+            {/* Top Tactical Bar: Candidate Verification Header */}
             <div className="flex items-start justify-between pb-3.5 mb-3.5 border-b border-slate-100 gap-2">
               <div>
                 <div className="flex items-center gap-1.5 mb-1 flex-wrap">
@@ -228,51 +169,14 @@ export const IdentifyHero: React.FC<IdentifyHeroProps> = ({ onOpenModal, onExplo
                 </h3>
               </div>
 
-              {/* Status Pill & Replay Run Control */}
-              <div className="flex items-center gap-1.5 shrink-0">
-                <button
-                  type="button"
-                  onClick={() => setAssemblyKey(prev => prev + 1)}
-                  title="Replay candidate evidence assembly demonstration"
-                  className="p-1 rounded-md border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors cursor-pointer flex items-center gap-1 text-[10px] font-mono focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
-                >
-                  <RotateCcw size={11} className="text-indigo-600" />
-                  <span className="hidden sm:inline">Replay</span>
-                </button>
-
-                <motion.div 
-                  className={`flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold transition-colors duration-200 ${
-                    assemblyPhase === 'verified'
-                      ? 'bg-emerald-50 border border-emerald-200 text-emerald-700'
-                      : 'bg-indigo-50 border border-indigo-200 text-indigo-700'
-                  }`}
-                >
-                  {assemblyPhase === 'verified' ? (
-                    <>
-                      <CheckCircle2 size={12} className="text-emerald-600" />
-                      <span>{previewCard.status}</span>
-                    </>
-                  ) : assemblyPhase === 'gate' ? (
-                    <>
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span>3/3 GATE VERIFIED</span>
-                    </>
-                  ) : assemblyPhase === 'scoring' ? (
-                    <>
-                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-pulse" />
-                      <span>2/3 CALIBRATING</span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                      <span>1/3 DOCKING</span>
-                    </>
-                  )}
-                </motion.div>
+              {/* Status Pill */}
+              <div className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-emerald-50 border border-emerald-200 text-emerald-700 shrink-0">
+                <CheckCircle2 size={12} className="text-emerald-600" />
+                <span>{previewCard.status}</span>
               </div>
             </div>
 
-            {/* Composite Telemetry Display (High-Impact Minimalist Meter with Live Rollover) */}
+            {/* Composite Telemetry Display (High-Impact Minimalist Meter) */}
             <motion.div 
               initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -291,16 +195,16 @@ export const IdentifyHero: React.FC<IdentifyHeroProps> = ({ onOpenModal, onExplo
                 </div>
                 <div className="text-right">
                   <span className="text-2xl sm:text-3xl font-bold font-mono text-emerald-400 leading-none inline-block">
-                    {displayScore}
+                    {previewCard.compositeScore}
                   </span>
                 </div>
               </div>
 
-              {/* Benchmark Visual Progress Meter with Storytelling Calibration Fill */}
+              {/* Benchmark Visual Progress Meter */}
               <div className="relative w-full h-1.5 rounded-full bg-slate-800 overflow-hidden mb-1.5">
                 <motion.div 
-                  initial={{ width: shouldReduceMotion ? '80.5%' : '0%' }}
-                  animate={{ width: assemblyPhase === 'docking' ? '0%' : '80.5%' }}
+                  initial={{ width: shouldReduceMotion ? previewCard.compositeScore : '0%' }}
+                  animate={{ width: previewCard.compositeScore }}
                   transition={{ duration: shouldReduceMotion ? 0 : 0.65, ease: MOTION_EASINGS.easeOut }}
                   className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-emerald-400"
                 />
@@ -314,10 +218,8 @@ export const IdentifyHero: React.FC<IdentifyHeroProps> = ({ onOpenModal, onExplo
               <div className="flex justify-between text-[9px] font-mono text-slate-400">
                 <span>0%</span>
                 <span className="text-slate-300">▲ 75.0% Min</span>
-                <span className={`font-bold transition-colors duration-200 ${
-                  assemblyPhase === 'verified' || assemblyPhase === 'gate' ? 'text-emerald-400' : 'text-slate-500'
-                }`}>
-                  80.5% Actual
+                <span className="font-bold text-emerald-400">
+                  {previewCard.compositeScore} Actual
                 </span>
                 <span>100%</span>
               </div>
@@ -423,11 +325,7 @@ export const IdentifyHero: React.FC<IdentifyHeroProps> = ({ onOpenModal, onExplo
                 onMouseEnter={() => setActiveModuleHover(3)}
                 onMouseLeave={() => setActiveModuleHover(null)}
                 whileHover={shouldReduceMotion ? undefined : { x: 2 }}
-                className={`p-2.5 rounded-lg border flex flex-col justify-between shadow-2xs transition-all duration-300 cursor-pointer ${
-                  assemblyPhase === 'verified' || assemblyPhase === 'gate'
-                    ? 'bg-emerald-50/70 border-emerald-300 ring-1 ring-emerald-400/20'
-                    : 'bg-emerald-50/30 border-emerald-100'
-                }`}
+                className="p-2.5 rounded-lg border flex flex-col justify-between shadow-2xs transition-all duration-300 cursor-pointer bg-emerald-50/70 border-emerald-300 ring-1 ring-emerald-400/20"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">

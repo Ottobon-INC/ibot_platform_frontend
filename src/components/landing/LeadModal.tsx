@@ -344,7 +344,7 @@ export function LeadModal({ open, onClose, preset }: LeadModalProps) {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold text-white transition-all duration-150 shadow-md shadow-[#4F46E5]/30 cursor-pointer"
+                      className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold text-white transition-all duration-150 shadow-md shadow-[#4F46E5]/25 cursor-pointer"
                       style={{
                         backgroundColor: '#4F46E5',
                         fontFamily: 'var(--font-sans)',

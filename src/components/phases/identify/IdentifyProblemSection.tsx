@@ -15,39 +15,45 @@ export const IdentifyProblemSection: React.FC = () => {
   const signalPairs = [
     {
       id: 0,
-      label: 'Signal 01: Claims vs. Execution',
-      proxyTag: 'Self-Reported Claim',
-      proxyHeadline: '"Led microservices & concurrency"',
-      proxyDesc: 'Historical bullet points without live execution proof.',
-      evidenceTag: 'Sandbox PR Diff Telemetry',
-      evidenceHeadline: '18/18 Tests Passed · Docker Sandbox',
-      evidenceDesc: 'Context-managed pool & timeout protection verified.',
-      proxyValidity: '35%',
-      evidenceValidity: '95%',
-    },
-    {
-      id: 1,
-      label: 'Signal 02: Pedigree vs. Calibrated Rubric',
-      proxyTag: 'Pedigree Proxy',
+      label: 'Signal 01: Pedigree vs. Calibrated Benchmark',
+      proxyTag: 'Prestige Proxy',
       proxyHeadline: '"Tier-1 University & Brand Logo"',
-      proxyDesc: 'Favors historical prestige over role-specific competency.',
+      proxyDesc: 'Historical brand pedigree proxy favors prestige over role-calibrated technical depth.',
+      proxyWarning: 'High pedigree bias with zero role-specific benchmark data.',
       evidenceTag: 'Auditable Benchmark Rubric',
-      evidenceHeadline: '80.5% Score vs 75.0% Baseline',
-      evidenceDesc: '85% Technical weight + independent client HR gate.',
+      evidenceHeadline: '80.5% Composite Score vs 75.0% Baseline',
+      evidenceDesc: 'Role-weighted scorecard (85% technical + client HR gate) eliminates pedigree distortion.',
+      evidenceAuditNote: 'Multi-round rubric normalization eliminates pedigree bias before shortlisting.',
       proxyValidity: '30%',
       evidenceValidity: '96%',
     },
     {
-      id: 2,
-      label: 'Signal 03: Trivia Riddles vs. Sandboxes',
-      proxyTag: 'Abstract Puzzle',
-      proxyHeadline: '"Invert Binary Tree in 20 min"',
-      proxyDesc: 'Assesses memorized puzzles rather than production trade-offs.',
-      evidenceTag: 'Production Sandboxes & AI Copilot',
+      id: 1,
+      label: 'Signal 02: Banning AI vs. Copilot Stewardship',
+      proxyTag: 'Closed-Book Blackout',
+      proxyHeadline: '"No LLMs Allowed · Screen Recorder Locked"',
+      proxyDesc: 'Forcing closed-book syntax recall fails to evaluate real-world AI pair-programming and prompt hygiene.',
+      proxyWarning: 'Zero assessment of prompt hygiene, hallucination triage, or AI stewardship.',
+      evidenceTag: 'Method 07: AI-Pair Programming',
       evidenceHeadline: 'Caught Hallucinated API in 42s',
-      evidenceDesc: 'Realistic error handling and AI-native pair programming.',
+      evidenceDesc: 'Candidate steered copilot, identified ungrounded library signature, and wrote regression test.',
+      evidenceAuditNote: 'Real-time copilot session recordings verify AI stewardship and prompt hygiene.',
       proxyValidity: '25%',
       evidenceValidity: '98%',
+    },
+    {
+      id: 2,
+      label: 'Signal 03: Subjective Debrief vs. Auditable Dossier',
+      proxyTag: 'Uncalibrated Debrief',
+      proxyHeadline: '"Didn\'t feel like a cultural fit in debrief"',
+      proxyDesc: 'Hiring committees debate subjective gut feelings with high interviewer variance and zero audit trail.',
+      proxyWarning: 'High debrief variance with zero recorded code diffs or auditable logs.',
+      evidenceTag: 'Stage 06: Dossier & Verified Telemetry',
+      evidenceHeadline: '18/18 Unit & Integration Tests Passed',
+      evidenceDesc: 'Hiring manager retains shortlisting authority backed by recorded terminal logs and code diffs.',
+      evidenceAuditNote: 'Auditable execution telemetry logged directly into candidate dossier for committee review.',
+      proxyValidity: '35%',
+      evidenceValidity: '97%',
     },
   ];
 
@@ -110,7 +116,7 @@ export const IdentifyProblemSection: React.FC = () => {
 
         {/* Live Signal Depth Readout Badge */}
         <div className="flex items-center gap-2 shrink-0 text-xs font-mono text-slate-500">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-emerald-500" />
           <span>Predictive Validity: <strong className="text-amber-700">{currentPair.proxyValidity} Proxy</strong> → <strong className="text-indigo-600">{currentPair.evidenceValidity} Verified</strong></span>
         </div>
       </motion.div>
@@ -141,7 +147,7 @@ export const IdentifyProblemSection: React.FC = () => {
             {/* Signal Resolution Meter Strip */}
             <div className="p-3 rounded-xl bg-white/60 border border-slate-200/70 mb-5">
               <div className="flex justify-between items-center text-[10px] font-mono text-slate-500 mb-1.5">
-                <span>Signal Fidelity: Unverified Claims</span>
+                <span>Signal Fidelity: {currentPair.proxyTag}</span>
                 <span className="text-amber-700 font-semibold">{currentPair.proxyValidity} Predictive Depth</span>
               </div>
               <div className="w-full h-1.5 rounded-full bg-slate-200 overflow-hidden">
@@ -182,7 +188,7 @@ export const IdentifyProblemSection: React.FC = () => {
                 </div>
                 <div className="text-[10px] text-amber-700 font-mono flex items-center gap-1">
                   <AlertTriangle size={11} className="shrink-0" />
-                  <span>Zero runtime telemetry or auditable diff available.</span>
+                  <span>{currentPair.proxyWarning}</span>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -216,19 +222,12 @@ export const IdentifyProblemSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Center Indicator: Directional Bridge with Pulse Leap */}
+        {/* Center Indicator: Directional Bridge */}
         <div className="hidden lg:flex lg:col-span-1 flex-col items-center justify-center relative">
-          <div className="h-full w-px bg-slate-200 relative">
-            <motion.div 
-              animate={{
-                scale: [1, 1.15, 1],
-                borderColor: ['#e2e8f0', '#4F46E5', '#e2e8f0'],
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-indigo-600"
-            >
+          <div className="h-full w-px bg-slate-200/80 relative">
+            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white border border-slate-200 shadow-xs flex items-center justify-center text-indigo-600">
               <ArrowRight size={16} />
-            </motion.div>
+            </div>
           </div>
         </div>
 
@@ -261,7 +260,7 @@ export const IdentifyProblemSection: React.FC = () => {
             {/* Signal Resolution Meter Strip */}
             <div className="p-3 rounded-xl bg-indigo-50/50 border border-indigo-100 mb-5">
               <div className="flex justify-between items-center text-[10px] font-mono text-indigo-800 mb-1.5">
-                <span>Signal Fidelity: Direct Work Telemetry</span>
+                <span>Signal Fidelity: {currentPair.evidenceTag}</span>
                 <span className="text-emerald-700 font-bold">{currentPair.evidenceValidity} Auditable Evidence</span>
               </div>
               <div className="w-full h-1.5 rounded-full bg-indigo-100 overflow-hidden">
@@ -308,7 +307,7 @@ export const IdentifyProblemSection: React.FC = () => {
                 </div>
                 <div className="text-[10px] text-indigo-300 flex items-center gap-1">
                   <Sparkles size={11} className="shrink-0" />
-                  <span>Auditable execution telemetry logged directly into candidate dossier.</span>
+                  <span>{currentPair.evidenceAuditNote}</span>
                 </div>
               </motion.div>
             </AnimatePresence>

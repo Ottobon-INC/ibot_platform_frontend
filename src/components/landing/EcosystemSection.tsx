@@ -5,7 +5,7 @@ import { Building2, Rocket, Network, CheckCircle2, ShieldCheck, ArrowRight, Laye
 const ECOSYSTEM_TRACKS = [
   {
     id: 'enterprise',
-    icon: <Building2 size={22} className="text-indigo-600" />,
+    icon: <Building2 size={22} className="text-[#4F46E5]" />,
     title: 'Enterprise Teams',
     subtitle: 'Internal Cohort Upskilling & Validation',
     metric: '0 hrs / wk',
@@ -20,7 +20,7 @@ const ECOSYSTEM_TRACKS = [
   },
   {
     id: 'scaleups',
-    icon: <Rocket size={22} className="text-indigo-600" />,
+    icon: <Rocket size={22} className="text-[#4F46E5]" />,
     title: 'Growing Companies',
     subtitle: 'On-Demand AI Capability Injection',
     metric: '100% Day-1',
@@ -35,7 +35,7 @@ const ECOSYSTEM_TRACKS = [
   },
   {
     id: 'staffing',
-    icon: <Network size={22} className="text-indigo-600" />,
+    icon: <Network size={22} className="text-[#4F46E5]" />,
     title: 'Staffing & Talent Partners',
     subtitle: 'Elevated Candidate Credibility',
     metric: '3.4x Higher',
@@ -82,17 +82,17 @@ export function EcosystemSection() {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200/80 text-indigo-600 font-mono text-[11px] font-bold uppercase tracking-wider mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200/80 text-[#4F46E5] font-mono text-[11px] font-bold uppercase tracking-wider mb-4">
             <Workflow size={13} /> Ecosystem Architecture
           </div>
           <h2
-            className="text-slate-900 font-bold mb-4 text-[34px] sm:text-[44px] leading-[1.12] tracking-tight"
+            className="text-[#0F172A] font-bold mb-4 text-[34px] sm:text-[44px] leading-[1.12] tracking-tight"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Strengthening the <br />
-            <span className="text-indigo-600">talent supply chain.</span>
+            <span className="text-[#4F46E5]">talent supply chain.</span>
           </h2>
-          <p className="text-slate-600 text-[16px] sm:text-[18px] leading-relaxed">
+          <p className="text-[#475569] text-[16px] sm:text-[18px] leading-relaxed">
             One governed framework tailored for enterprise cohorts, fast-growing teams, and elite staffing partners.
           </p>
         </motion.div>
@@ -129,7 +129,7 @@ export function EcosystemSection() {
                       <div className="text-sm sm:text-base font-bold text-slate-900 font-mono leading-none">
                         {track.metric}
                       </div>
-                      <div className="text-[10px] text-indigo-600 font-mono uppercase tracking-wider font-semibold mt-1">
+                      <div className="text-[10px] text-[#4F46E5] font-mono uppercase tracking-wider font-semibold mt-1">
                         {track.metricLabel}
                       </div>
                     </div>
@@ -143,7 +143,7 @@ export function EcosystemSection() {
                   </div>
 
                   {/* 1-Sentence High-Impact Summary */}
-                  <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed mb-6">
+                  <p className="text-[#475569] text-xs sm:text-[13px] leading-relaxed mb-6">
                     {track.summary}
                   </p>
                 </div>
@@ -160,7 +160,7 @@ export function EcosystemSection() {
                         key={pIdx}
                         className="p-2 rounded-xl bg-slate-50 border border-slate-100 text-center flex flex-col justify-center min-h-[52px]"
                       >
-                        <span className="text-[9px] font-mono text-indigo-600 font-bold leading-none mb-1">
+                        <span className="text-[9px] font-mono text-[#4F46E5] font-bold leading-none mb-1">
                           {p.step}
                         </span>
                         <span className="text-[11px] font-semibold text-slate-700 leading-tight">

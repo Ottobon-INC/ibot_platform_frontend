@@ -4,6 +4,116 @@ This file tracks the changes and contributions made by Sampath for each push to 
 
 ## Log
 
+- **[2026-10-15] Identify Phase De-Vibe-Coding & Executive ROI Console Upgrade (`IdentifyHero.tsx`, `FilteringWorkflow.tsx`, `CandidateDossier.tsx`, `BusinessValueSection.tsx`)**
+  - **Preserved Core Messaging & Locked Fidelity:** Fully maintained the approved 7-section architecture, the 9 evaluation methods, the 6-stage filtering workflow, and the 80.5% normalized scorecard math while eliminating all repetitive micro-details and vibe-coded tropes.
+  - **Redesigned `BusinessValueSection.tsx` into an Executive Strategic Impact Console:**
+    - Eliminated the copy-pasted candidate test diff bullets ("18/18 Unit tests passed", "Clean architecture vs Microservices rollbacks", "80.5% scorecard") that previously repeated earlier sections.
+    - Built 3 executive outcome cards with concrete business metrics:
+      1. *Outcome 01: Senior Engineering Hours Reclaimed* (`15–20h` Eng Hours Saved / Candidate by eliminating uncalibrated phone screens; committees review pre-verified telemetry before calls).
+      2. *Outcome 02: Targeted Day-1 Onboarding Velocity* (`Day 1` Calibrated Onboarding Ramp; pre-mapped strengths and mentorship focus areas eliminate 8-week ramp drag).
+      3. *Outcome 03: Probationary Risk Elimination* (`100%` Human Authority backed by telemetry; normalized benchmarks eliminate pedigree bias and costly 90-day mis-hires).
+    - Unfolded the previously buried "Dual-Track Evaluation" accordion into an open, prominent **Engineering Standard Console** comparing Track 01 (Unassisted Foundations) vs. Track 02 (AI-Assisted Orchestration & Stewardship).
+  - **De-Vibe-Coded `IdentifyHero.tsx`:**
+    - Eliminated the simulated 1.65-second odometer counter (`requestAnimationFrame` rolling 0.0% -> 80.5%), the "Replay" button, and artificial multi-phase timers (`docking` -> `scoring` -> `gate` -> `verified`).
+    - The calibration preview card now renders immediately with authoritative status (`80.5% QUALIFIED`) and crisp, deterministic progress telemetry.
+  - **De-Vibe-Coded `FilteringWorkflow.tsx`:**
+    - Removed the artificial "Auto-Play Guided Journey" with the 1800ms timer interval and Play/Pause controller.
+    - Cleaned up stage node click/keydown handlers to directly trigger `setActiveStageIndex(idx)` without residual timer calls.
+    - Added an authoritative enterprise stage status pill (`Stage 0{x} of 06 · Active Pipeline Gate`) that updates with direct stage selection.
+  - **Grounded `CandidateDossier.tsx`:**
+    - Replaced blinking `animate-pulse` dots on tab labels with solid, professional status indicators.
+  - **Verification:** TypeScript compilation clean with 0 errors (`npx tsc --noEmit` code 0).
+
+- **[2026-10-15] Identify Phase Decoupling & Modern Technical Screening Dilemmas (`IdentifyProblemSection.tsx`)**
+  - **Zero Cross-Page Redundancy:** Completely resolved content overlap between the main Landing Page (`ShiftSection.tsx`) and the Identify Phase deep dive (`/phases/identify`). Removed duplicate "Claims vs Execution" and "Binary Tree Riddles" topics from Phase 1.
+  - **Refactored 3 Interactive Technical Screening Dilemmas in `IdentifyProblemSection.tsx`:**
+    1. *Signal 01: Pedigree Bias vs. Calibrated Benchmark* (Prestige Proxy: Brand Logo & Degree, 30% validity -> Evidence: 80.5% Composite Score vs 75.0% Baseline, 96% validity). Eliminates pedigree distortion using the role-weighted scorecard.
+    2. *Signal 02: Banning AI Tools vs. Copilot Stewardship* (Proxy: Closed-Book AI Blackout, 25% validity -> Evidence: Caught Hallucinated API in 42s, 98% validity). Maps directly to Method 07 (AI-Pair Programming Round) to evaluate modern prompt hygiene and hallucination triage.
+    3. *Signal 03: Subjective Debrief Arguments vs. Auditable Dossier* (Proxy: Uncalibrated Debriefs with high interviewer variance, 35% validity -> Evidence: 18/18 Unit & Integration Tests Passed & Stage 06 Human Hiring Manager Authority, 97% validity).
+  - **De-Vibe-Coding:** Replaced the infinite pulsing arrow and pulse badge animations with a clean, stable directional bridge connector and solid status indicators.
+  - **Verification:** TypeScript compilation clean with 0 errors (`npx tsc --noEmit` code 0).
+
+- **[2026-10-15] Enterprise De-Vibe-Coding & Groundbreaking UI Redesign across Landing Page (`ShiftSection.tsx`, `NurturingSection.tsx`, `CandidateExperienceSection.tsx`)**
+  - **Preserved `ApproachSection.tsx`:** Left the user-approved interactive 4-phase cube/accordion section completely intact as the central lifecycle showcase.
+  - **Redesigned `ShiftSection.tsx` into the "Capability Signal Gap" Console:**
+    - Completely eliminated vibe-coded elements: removed continuous bouncing card loops, removed the looping animated 99.9% precision chart with pulsing beacons, and eliminated ungrounded marketing claims.
+    - Built a high-precision, interactive **Signal Resolution Console** comparing conventional screening proxies with verified sandbox runtime telemetry across 3 real engineering scenarios:
+      1. *Resume Claims vs. Runtime Execution* (CV buzzwords vs. 16/16 test assertions in Docker container).
+      2. *Trivia Riddles vs. Real Incident Debugging* (Invert Binary Tree vs. patching unhandled async state & connection leak in 18 min).
+      3. *8-Week Ramp Drag vs. Principal-Governed Delivery* (15–20 hrs/wk lead burnout vs. Ottobon Principal Architect code review & 0 hrs/wk lead drag).
+    - Features simulated IDE syntax-highlighted code tabs, 100% CI pass status, and auditable diff summaries.
+  - **Redesigned `NurturingSection.tsx` into the Live Sandbox Engineering Workbench:**
+    - Eliminated duplicate 4-phase definitions (leaving the 4 phases exclusively to `ApproachSection`) and removed infinite spinning squircle shapes.
+    - Transformed the section into an interactive **4-Step Sandbox Incident Simulator (The Build Engine)**:
+      - *Step 01: Stack Ingestion* (Instant Docker replica dev-containers mirroring client repos).
+      - *Step 02: Ambiguity Injection* (Real production incident involving transaction deadlocks and shifting requirements).
+      - *Step 03: Automated Regression Harness* (16 automated test suites executing live in 42ms with 0 leaks).
+      - *Step 04: Principal Lead Review* (Ottobon Principal Architect code review and PR approval gate).
+    - Includes interactive step buttons, concrete telemetry boxes, and real container log/code snippets.
+  - **Elevated `CandidateExperienceSection.tsx` into the Auditable Readiness Ledger:**
+    - Upgraded Alex Morgan's dossier with cryptographic audit stamp (`#98-OB-AUDIT`), 5-axis adaptive competency matrix, verifiable pull request commit ledger with atomic line diffs, and SOC-2/100% IP clearance verification.
+  - **Verification:**
+    - TypeScript compilation clean with 0 errors (`npx tsc --noEmit` code 0).
+
+  - **Click-to-Expand Phase Inspector Popup:**
+    - Upgraded the 4 timeline stage cards in [`NurturingSection.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/NurturingSection.tsx) with an interactive click-to-expand popup feature.
+    - Built a high-fidelity modal dialog with backdrop blur (`bg-slate-950/60 backdrop-blur-md`), smooth Framer Motion spring physics, keyboard accessibility (Escape key dismiss), body scroll-lock management, and click-outside dismissal.
+    - Each popup modal features:
+      - Phase letter badge and title header.
+      - Top interactive phase switcher pills (`I`, `B`, `O`, `T`) allowing users to seamlessly switch between all 4 phases without closing the modal.
+      - Key Phase Metric highlight strip (e.g., `80.5% Benchmark Rubric`, `16/16 Test Assertions`, `0 Wks Ramp Drag`, `$0 Buyout Fees`).
+      - Detailed Phase Objective narrative.
+      - Auditable Deliverables & Telemetry breakdown (3 concrete checkpoints with checkmarks).
+      - Quality Gate Enforcement SLA callout.
+      - Direct navigation button linking to the respective phase deep dive page (`/phases/identify`, `/phases/build`, `/phases/operate`, `/phases/transfer`).
+  - **Lifecycle Rebalancing (Eliminating Over-Indexing on Phase 1):**
+    - Re-anchored the 4 milestone nodes directly to the 4 pillars of the IBOT engine (**01 Identify**, **02 Build**, **03 Operate**, **04 Transfer**), resolving the duplication with the 6-stage intake funnel on `/phases/identify`.
+    - Added subtle "[I]", "[B]", "[O]", "[T]" acronym watermarks and an "Inspect Deliverables" pill on each card.
+  - **Verification:**
+    - TypeScript compilation clean with 0 errors (`npx tsc --noEmit` code 0).
+
+  - **Editorial Display Typography Transition (`Newsreader` + `Inter`):**
+    - Imported Google Fonts [`Newsreader`](https://fonts.google.com/specimen/Newsreader) (optical sizing `6..72`, weights `400..700`, italic variants) for all major editorial display headlines across light and dark surfaces.
+    - Standardized body copy and UI controls on [`Inter`](https://fonts.google.com/specimen/Inter) for crisp readability, with [`JetBrains Mono`](https://fonts.google.com/specimen/JetBrains+Mono) for scores, telemetry, and code snippets.
+    - Configured global design tokens in [`index.html`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/index.html) and [`src/index.css`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/index.css):
+      - `--font-display: 'Newsreader', Georgia, serif;`
+      - `--font-sans: 'Inter', sans-serif;`
+      - `--font-mono: 'JetBrains Mono', monospace;`
+  - **Brand Palette Unification & Royal Indigo Restoration (`#4F46E5` & Deep Navy `#0F172A`):**
+    - Established **Royal Indigo (`#4F46E5`)** as IBOT's distinctive primary brand accent across the entire landing page and phase experience, removing all unintentional orange brand accents while preserving authentic semantic warning states.
+    - Standardized all primary headings to Deep Navy (`#0F172A`) on light sections and crisp pure white (`#FFFFFF`) on dark cards.
+    - Standardized body prose and descriptions to legible Slate (`#475569`).
+    - Standardized all primary action CTAs, highlight spans, focus rings, and active state indicators to **Royal Indigo (`#4F46E5`, hover `#4338CA`)**:
+      - [`Navbar.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/Navbar.tsx), [`PhaseNavbar.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/phases/PhaseNavbar.tsx), & [`Footer.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/Footer.tsx): Unified `OTTOBON ★ IBOT` lockup with Royal Indigo star and `IBOT`. Replaced OS-dependent unicode `★` with an optically-centered inline SVG star (`viewBox="0 0 24 24"`) and `whitespace-nowrap shrink-0` to eliminate vertical baseline sag and prevent text wrapping.
+      - [`Hero.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/Hero.tsx): Royal Indigo italic accent line ("without disruption."), primary CTA button ("Book a demo" in `#4F46E5`), assurance indicator icons, and right-hand Dual-Track console booster accent.
+      - [`ShiftSection.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/ShiftSection.tsx): IBOT validation badges, capability triage card (`bg-[#4F46E5]`), accent heading spans, and fixed the "Generic Tool" comparison card visibility (removed `opacity-50`, elevated card to `bg-slate-800/90 border border-slate-600` with crisp `text-white` font-mono title, `text-slate-300` subtitle, and balancing `✕` badge).
+      - [`NurturingSection.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/NurturingSection.tsx): Stage labels, heading accent, and squircle rotation hover states (`hover:border-indigo-300`, `hover:bg-indigo-50`).
+      - [`ApproachSection.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/ApproachSection.tsx): Interactive cube glow, expanded card phase title, and "Explore this phase" CTA.
+      - [`CandidateExperienceSection.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/CandidateExperienceSection.tsx): Eyebrow badge, dossier tabs, score highlights, and audit icons.
+      - [`IntegrationSection.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/IntegrationSection.tsx): Leadership persona tabs, active indicator dots, and Ottobon Principal Lead badge.
+      - [`EcosystemSection.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/EcosystemSection.tsx): Track icons, metric badges, and pipeline step counters.
+      - [`ProofSection.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/ProofSection.tsx): Redesigned the "Commercial flexibility backed by verified capability" section from 3 plain text boxes into an enterprise-grade showcase: high-impact numerical metric pills (`0% Bad-Hire Risk`, `0 Wks Ramp Drag`, `3.4x Measurable ROI`), interactive micro-visual artifacts (guaranteed terms pill grid, dual ramp comparison progress meter, live audit hash `#98-OB-AUDIT` telemetry card), verified outcome checklist bullets, and an enterprise commercial model strip with "Explore Pilot Terms" action.
+      - [`CTASection.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/CTASection.tsx): Primary CTA button (`bg-[#4F46E5] hover:bg-[#4338CA]`), subtle ambient glow, and subtitle accent.
+      - [`LeadModal.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/LeadModal.tsx): "Request a demo" button styled with Royal Indigo tokens (`#4F46E5`, hover `#4338CA`).
+      - Phase Subpages & [`PhaseNavbar.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/phases/PhaseNavbar.tsx): Selection highlights, navbar badge, and CTAs across `/phases/identify`, `/phases/build`, `/phases/operate`, `/phases/transfer`.
+  - **Verification & Health:**
+    - TypeScript compilation clean with 0 errors (`npx tsc --noEmit` code 0).
+    - Verified all landing-page and phase components use Royal Indigo (`#4F46E5`), with zero brand-orange styling remaining.
+
+- **[2026-10-15] Landing Page Hero Background Asymmetry & Whitespace Gap Remediation (`GlassTileWaveGrid.tsx`, `Hero.tsx`)**
+  - **Identified Root Cause of Left-Side Whitespace Gap:**
+    - The animated canvas grid in [`GlassTileWaveGrid.tsx`](file:///c:/Users/Sampath/Desktop/IBOT%20Landing%20Page/ibot_platform_frontend/src/components/landing/GlassTileWaveGrid.tsx) originated columns from `baseX = c * (tileSize + gap)` starting at `c = 0` (`baseX = 0`).
+    - The canvas edge fade equation `edgeFadeX = Math.min(1, Math.min(baseX / 80, (width - baseX) / 80))` evaluated to `0` for `baseX = 0`, zeroing out opacity and skipping the entire leftmost column (`x = 0` to `74px`).
+    - Meanwhile on the right side, `cols = Math.ceil(width / (tileSize + gap)) + 2` carried tiles past `width`, causing the right side to stretch and bleed edge-to-edge while leaving a ~74px blank white space gap on the left.
+  - **Symmetric Centering & Bleed Geometry:**
+    - Centered the grid coordinate system symmetrically across the viewport (`totalGridWidth = (cols - 1) * pitch + tileSize`, `startX = (width - totalGridWidth) / 2`).
+    - Anchored horizontal and vertical tile placement so tiles symmetrically bleed off both left and right edges equally.
+    - Replaced the asymmetrical edge-fade multiplier that deleted column 0, ensuring consistent edge-to-edge coverage across all screen widths.
+  - **Atmospheric Lighting Balance (`Hero.tsx`):**
+    - Balanced ambient radial gradients, harmonizing the bottom-left lighting with `#6366F1` (Cognitive Violet) to complement the top-right Royal Indigo glow.
+  - **Verification:**
+    - Verified TypeScript type check with zero errors (`npx tsc --noEmit` code 0).
+
 - **[2026-10-14] IBOT Identify Phase — Visual-First Product Storytelling & ~62% Text Density Reduction (`/phases/identify`)**
   - **Objective & Architectural Shift ("Less Reading. More Understanding"):**
     - Transitioned `/phases/identify` from a text-heavy content presentation into an interactive, visual-first enterprise product experience.

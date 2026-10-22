@@ -1,11 +1,10 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* =========================================================================
    OTTOBON IBOT — PREMIUM ACADEMIC/ENTERPRISE DESIGN SYSTEM
-   Informed by Wireframe:
-   Cream/White Surfaces + Deep Navy + Royal Indigo (#4F46E5)
-   Typography: Playfair Display (display) + Inter (sans)
+   Deep Navy (#0F172A) + Royal Indigo (#4F46E5) + Soft Cream (#FAF9F6)
+   Typography: Newsreader (editorial display) + Inter (sans UI)
    ========================================================================= */
 
 @theme {
@@ -35,14 +34,15 @@
   --color-ibot-border-dark-hover:  var(--ibot-border-dark-hover);
   --color-ibot-border-light:       var(--ibot-border-light);
 
-  --font-display: 'Playfair Display', Georgia, serif;
+  --font-display: 'Newsreader', Georgia, serif;
   --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
 }
 
 @layer base {
   :root {
-    /* ── Light Mode System (Navy / Coral / Cream) ── */
-    --ibot-bg-dark:            #FAF9F6;  /* Soft Cream background (formerly dark) */
+    /* ── Light Mode System (Navy / Royal Indigo / Soft Cream) ── */
+    --ibot-bg-dark:            #FAF9F6;  /* Soft Cream background */
     --ibot-bg-dark-card:       #FFFFFF;  /* White card */
     --ibot-bg-dark-raised:     #F3F2EE;
     
@@ -52,9 +52,10 @@
 
     --ibot-accent-primary:     #0F172A;  /* Deep Navy */
     --ibot-accent-hover:       #1E293B;
-    --ibot-accent-bright:      #4F46E5;  /* Royal Indigo */
-    --ibot-accent-secondary:   #6366F1;  /* Cognitive Violet */
-    --ibot-accent-tint:        rgba(79, 70, 229, 0.1);
+    --ibot-accent-bright:      #4F46E5;  /* Royal Indigo (Approved brand accent) */
+    --ibot-accent-secondary:   #4338CA;  /* Deep Indigo */
+    --ibot-accent-tint:        rgba(79, 70, 229, 0.08); /* Subtle Indigo Tint */
+    --ibot-accent-border:      rgba(79, 70, 229, 0.2);
 
     --ibot-status-verified:    #10B981;
     --ibot-status-pending:     #F59E0B;
@@ -64,15 +65,15 @@
     --ibot-text-muted-dark:    #475569;  /* Slate gray */
     --ibot-text-dim-dark:      #64748B;
 
-    --ibot-text-on-light:      #0F172A;
-    --ibot-text-muted-light:   #475569;
+    --ibot-text-on-light:      #0F172A;  /* Deep Navy */
+    --ibot-text-muted-light:   #475569;  /* Slate */
     --ibot-text-dim-light:     #64748B;
 
     --ibot-border-dark:        rgba(15, 23, 42, 0.1);
     --ibot-border-dark-hover:  rgba(15, 23, 42, 0.2);
     --ibot-border-light:       rgba(15, 23, 42, 0.1);
 
-    --font-display: 'Playfair Display', Georgia, serif;
+    --font-display: 'Newsreader', Georgia, serif;
     --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono:    "JetBrains Mono", monospace;
   }
